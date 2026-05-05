@@ -104,8 +104,8 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_77%_34%,rgba(78,161,255,.24),transparent_42%),radial-gradient(circle_at_26%_76%,rgba(243,178,60,.16),transparent_36%),linear-gradient(to_bottom,rgba(255,255,255,.02),transparent_45%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:42px_42px]" />
 
-        <div className="relative mx-auto max-w-[1240px] px-5 pb-20 pt-7 md:px-8 md:pb-24 lg:pt-10">
-          <nav className="mb-14 flex min-h-[80px] items-center justify-between rounded-[24px] border border-white/[0.14] bg-[rgba(9,24,56,0.72)] px-5 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl md:px-8">
+        <div className="relative mx-auto max-w-[1240px] px-5 pb-14 pt-5 md:px-8 md:pb-16 lg:pt-7">
+          <nav className="mb-8 flex min-h-[78px] items-center justify-between rounded-[24px] border border-white/[0.14] bg-[rgba(9,24,56,0.72)] px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl md:mb-10 md:px-8">
             <div className="flex items-center gap-3.5">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#76B7FF]/35 bg-gradient-to-br from-[#0a1f47] to-[#235cb9] text-lg">🎓</div>
               <div>
@@ -128,22 +128,22 @@ export default function HomePage() {
             </div>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.06fr]">
-            <div>
-              <p className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/35 bg-[rgba(9,24,56,0.72)] px-4 py-2.5 text-sm text-[#D7E1F3] shadow-[0_0_0_1px_rgba(78,161,255,0.12)]">
+          <div className="grid items-center gap-10 lg:min-h-[calc(100vh-160px)] lg:max-h-[760px] lg:grid-cols-[minmax(0,0.95fr)_minmax(520px,1.05fr)] lg:gap-12 xl:gap-16">
+            <div className="max-w-[620px]">
+              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/35 bg-[rgba(9,24,56,0.72)] px-4 py-2.5 text-sm text-[#D7E1F3] shadow-[0_0_0_1px_rgba(78,161,255,0.12)]">
                 ✨ Die Lernplattform für offizielle Sach- und Fachkundeprüfungen
               </p>
-              <h1 className="text-5xl font-semibold leading-[1.02] md:text-6xl xl:text-[72px]">
+              <h1 className="max-w-[620px] text-[clamp(2.75rem,9vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em] md:text-[clamp(3.1rem,8vw,4rem)] lg:text-[clamp(3.5rem,5vw,5.4rem)] lg:leading-[0.98]">
                 Bestehe deine Prüfung.
                 <br />
                 Mit <span className="bg-gradient-to-r from-[#f7c664] to-[#F3B23C] bg-clip-text text-transparent">Klarheit, Struktur</span>
                 <br />
                 und System.
               </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[#D7E1F3] md:text-xl">
+              <p className="mt-6 max-w-[560px] text-[17px] leading-[1.65] text-[#D7E1F3] md:text-[18px] lg:text-[19px]">
                 Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische Prüfungen und mobiles Lernen — alles an einem Ort.
               </p>
-              <div className="mt-9 flex flex-col gap-3.5 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3.5 sm:flex-row">
                 <button className="rounded-2xl bg-[#F3B23C] px-6 py-3.5 font-semibold text-[#08142B] shadow-[0_12px_30px_rgba(243,178,60,0.18)] transition hover:-translate-y-1 hover:bg-[#E09B1F]">
                   Jetzt starten →
                 </button>
@@ -151,9 +151,9 @@ export default function HomePage() {
                   Alle Zertifikate ansehen
                 </button>
               </div>
-              <div className="mt-9 grid gap-3 text-sm sm:grid-cols-3">
+              <div className="mt-6 grid max-w-[560px] gap-2.5 text-sm sm:grid-cols-3">
                 {heroTrustItems.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] px-4 py-3 text-[#D7E1F3]">
+                  <div key={item.label} className="rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] px-3.5 py-2.5 text-[13px] text-[#D7E1F3]">
                     <span className="mr-2 text-[#76B7FF]">{item.icon}</span>
                     {item.label}
                   </div>
@@ -161,46 +161,46 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[32px] bg-[radial-gradient(circle,rgba(78,161,255,.24),transparent_68%)]" />
-              <div className="relative rounded-[30px] border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-5 shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)] md:p-6">
+            <div className="relative w-full max-w-[660px] lg:ml-auto">
+              <div className="absolute -inset-3 -z-10 rounded-[32px] bg-[radial-gradient(circle,rgba(78,161,255,.24),transparent_68%)]" />
+              <div className="relative max-h-[520px] overflow-hidden rounded-[30px] border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)] md:p-5">
                 <div className="mb-5 flex items-center justify-between rounded-2xl border border-white/10 bg-[#081735] px-4 py-3 text-sm text-[#9FB0CC]">
                   <span>FachkundePilot Dashboard</span>
                   <span>⌕ 🔔 ● ● ●</span>
                 </div>
-                <div className="grid gap-4 md:grid-cols-[156px_1fr]">
-                  <aside className="rounded-2xl border border-white/10 bg-[#081735] p-4 text-sm text-[#9FB0CC]">
+                <div className="grid gap-3 md:grid-cols-[146px_1fr]">
+                  <aside className="rounded-2xl border border-white/10 bg-[#081735] p-3 text-[13px] text-[#9FB0CC]">
                     {['Übersicht','Zertifikate','Lernkarten','Prüfungen','Fortschritt','Einstellungen'].map((s, i) => <p key={s} className={i===0 ? 'mb-3 rounded-lg bg-white/10 px-2 py-1 text-[#F8FAFC]' : 'mb-3'}>{s}</p>)}
                   </aside>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-xl font-semibold">Guten Abend, Ahmet 👋</p>
-                      <p className="text-sm text-[#9FB0CC]">Weiter so! Du bist auf dem besten Weg.</p>
-                    </div>
-                    <div className="grid gap-3 md:grid-cols-2">
-                      <div className="rounded-[22px] border border-[#4EA1FF]/35 bg-[#0A1838] p-4">
+                    <div className="space-y-3.5">
+                      <div>
+                        <p className="text-lg font-semibold">Guten Abend, Ahmet 👋</p>
+                        <p className="text-sm text-[#9FB0CC]">Weiter so! Du bist auf dem besten Weg.</p>
+                      </div>
+                      <div className="grid gap-3 md:grid-cols-2">
+                      <div className="rounded-[20px] border border-[#4EA1FF]/35 bg-[#0A1838] p-3.5">
                         <p className="text-sm text-[#D7E1F3]">Dein Gesamtfortschritt</p><p className="mt-1 text-3xl font-semibold">78%</p>
                         <div className="mt-2 h-2 rounded-full bg-slate-800"><div className="h-2 w-[78%] rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#76B7FF]" /></div>
                         <p className="mt-2 text-xs text-[#9FB0CC]">Super! Nur noch 22% bis zum Ziel.</p>
                       </div>
-                      <div className="rounded-[22px] border border-white/10 bg-[#0A1838] p-4">
+                      <div className="rounded-[20px] border border-white/10 bg-[#0A1838] p-3.5">
                         <p className="text-sm text-[#D7E1F3]">Lernzeit diese Woche</p><p className="mt-2 text-2xl font-semibold">12 h 45 min</p><p className="text-xs text-[#34D399]">+18% vs. letzte Woche</p>
                         <p className="mt-3 text-xs text-[#9FB0CC]">Prüfungsziel in 14 Tagen</p>
                       </div>
                     </div>
-                    <div className="space-y-2 rounded-[22px] border border-white/10 bg-[#0A1838] p-4 text-sm text-[#D7E1F3]">
+                    <div className="space-y-2 rounded-[20px] border border-white/10 bg-[#0A1838] p-3.5 text-sm text-[#D7E1F3]">
                       <p className="font-medium text-[#F8FAFC]">Aktive Zertifikate</p>
                       {[['§34a Bewachung','82%'],['Güterkraftverkehr','65%'],['Versicherung §34d','74%']].map(([n,v]) => <div key={n}><div className='mb-1 flex justify-between text-xs'><span>{n}</span><span>{v}</span></div><div className='h-1.5 rounded-full bg-slate-800'><div className='h-1.5 rounded-full bg-gradient-to-r from-[#F3B23C] to-[#4EA1FF]' style={{width:v}}/></div></div>)}
                     </div>
-                    <div className="rounded-[22px] border border-[#F3B23C]/35 bg-[rgba(243,178,60,0.12)] p-4">
+                    <div className="rounded-[20px] border border-[#F3B23C]/35 bg-[rgba(243,178,60,0.12)] p-3.5">
                       <p className="text-sm text-[#F8FAFC]">Heute empfohlen</p><p className="text-sm text-[#D7E1F3]">20 Min. Lernkarten: Recht & Kostenrechnung</p>
                       <button className="mt-3 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-xs text-[#F8FAFC] transition hover:-translate-y-0.5">Weiterlernen</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-3 md:absolute md:-left-14 md:top-8 md:w-56 md:grid-cols-1">
-                {[['🌍','Mehrsprachig','DE · AR · EN · TR'],['⭐','4.9/5','Nutzerbewertung'],['📈','78%','Dein Lernstand'],['📜','12+','Zertifikate verfügbar']].map(([i,t,s]) => <div key={t} className="rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-3 text-sm text-[#D7E1F3] shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1"><p>{i} <span className='font-semibold'>{t}</span></p><p className='text-xs text-[#9FB0CC]'>{s}</p></div>)}
+              <div className="mt-4 grid grid-cols-2 gap-3 md:mt-0 md:grid-cols-2 lg:absolute lg:left-0 lg:top-0 lg:z-10 lg:grid-cols-1 lg:gap-2.5">
+                {[['🌍','Mehrsprachig','DE · AR · EN · TR'],['⭐','4.9/5','Nutzerbewertung'],['📈','78%','Dein Lernstand'],['📜','12+','Zertifikate verfügbar']].map(([i,t,s], idx) => <div key={t} className={`rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] px-3.5 py-3 text-sm text-[#D7E1F3] shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 lg:w-[206px] ${idx === 0 ? 'lg:translate-x-[-20px] lg:translate-y-[50px]' : ''} ${idx === 1 ? 'lg:translate-x-[-20px] lg:translate-y-[58px]' : ''} ${idx === 2 ? 'lg:translate-x-[-20px] lg:translate-y-[64px]' : ''} ${idx === 3 ? 'lg:translate-x-[-20px] lg:translate-y-[70px]' : ''}`}><p>{i} <span className='font-semibold'>{t}</span></p><p className='text-xs text-[#9FB0CC]'>{s}</p></div>)}
               </div>
             </div>
           </div>
