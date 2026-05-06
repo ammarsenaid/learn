@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const navItems = [
   { label: "Zertifikate", href: "#zertifikate" },
-  { label: "Methode", href: "#lernmethode" },
+  { label: "Methode", href: "#methode" },
   { label: "Plattform", href: "#plattform" },
   { label: "Preise", href: "#preise" },
   { label: "Kontakt", href: "#kontakt" },
@@ -31,57 +31,57 @@ const dashboardMetrics = [
 
 const trustStats = [
   {
-    icon: "🌍",
+    code: "DE",
     title: "Mehrsprachig",
     value: "DE · AR · EN · TR",
-    text: "Deutsch bleibt Prüfungssprache — deine Sprache hilft beim Verstehen.",
+    text: "Deutsch bleibt Prüfungssprache — Erklärungen helfen beim Verstehen.",
   },
   {
-    icon: "🧪",
+    code: "SIM",
     title: "Simulation",
     value: "Realistisch",
     text: "Trainiere mit Zeitdruck, Punkten und Themenanalyse.",
   },
   {
-    icon: "🧠",
+    code: "AI",
     title: "Smart Review",
     value: "Gezielt",
     text: "Schwache Themen werden sichtbar und automatisch wiederholt.",
   },
   {
-    icon: "🛠️",
+    code: "CMS",
     title: "Admin-ready",
-    value: "CMS-Logik",
-    text: "Inhalte, Karten, Fragen und Zertifikate später sauber pflegen.",
+    value: "Skalierbar",
+    text: "Inhalte, Karten, Fragen und Zertifikate sauber pflegen.",
   },
 ] as const;
 
 const learningModes = [
   {
-    icon: "📖",
+    code: "01",
     title: "Lesemodus",
-    text: "Lerne offizielle Begriffe strukturiert, ohne dich in PDFs zu verlieren.",
+    text: "Offizielle Begriffe strukturiert lernen, ohne in PDFs zu verlieren.",
   },
   {
-    icon: "🃏",
+    code: "02",
     title: "Kartenmodus",
-    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+    text: "Prüfungsrelevante Regeln, Definitionen und Falllogik wiederholen.",
   },
   {
-    icon: "🧮",
+    code: "03",
     title: "Rechenmodus",
-    text: "Trainiere Kostenrechnung, Prozentrechnung und typische Prüfungsaufgaben.",
+    text: "Kostenrechnung, Prozentrechnung und typische Prüfungsaufgaben trainieren.",
   },
   {
-    icon: "🏁",
+    code: "04",
     title: "Prüfungsmodus",
-    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Auswertung.",
+    text: "Echte Prüfungssituationen mit Zeit, Punkten und Auswertung simulieren.",
   },
 ] as const;
 
 const certificates = [
   {
-    icon: "🚕",
+    code: "TM",
     title: "Taxi & Mietwagen",
     subtitle: "Fachkundeprüfung nach PBefG",
     description: "Tarif-, Orts-, Unternehmer- und Kostenwissen für die Personenbeförderung.",
@@ -92,7 +92,7 @@ const certificates = [
     readiness: "82%",
   },
   {
-    icon: "🛡️",
+    code: "34A",
     title: "§34a Bewachung",
     subtitle: "Sachkundeprüfung nach §34a GewO",
     description: "Recht, Deeskalation, Umgang mit Menschen und Praxisfälle sicher verstehen.",
@@ -103,7 +103,7 @@ const certificates = [
     readiness: "76%",
   },
   {
-    icon: "🚚",
+    code: "GV",
     title: "Güterkraftverkehr",
     subtitle: "Fachkundeprüfung Güterverkehr",
     description: "Kostenrechnung, Disposition, Transportrecht und EU-Regeln strukturiert lernen.",
@@ -114,7 +114,7 @@ const certificates = [
     readiness: "68%",
   },
   {
-    icon: "📄",
+    code: "34D",
     title: "Versicherung §34d",
     subtitle: "Sachkunde Versicherungsvermittlung",
     description: "Beratungslogik, Haftung, Produktgrundlagen und Regulatorik prüfungsnah üben.",
@@ -125,7 +125,7 @@ const certificates = [
     readiness: "54%",
   },
   {
-    icon: "📊",
+    code: "34F",
     title: "Finanzanlagen §34f",
     subtitle: "Sachkunde Finanzanlagenvermittlung",
     description: "Produkte, Risikoaufklärung, Geeignetheit und regulatorische Pflichten verstehen.",
@@ -136,7 +136,7 @@ const certificates = [
     readiness: "49%",
   },
   {
-    icon: "🏛️",
+    code: "IM",
     title: "Immobiliardarlehen",
     subtitle: "Sachkunde Darlehensvermittlung",
     description: "Darlehensarten, Finanzierung, Verbraucherschutz und Beratungslogik im Blick.",
@@ -145,6 +145,24 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · TR",
     readiness: "46%",
+  },
+] as const;
+
+const personas = [
+  {
+    code: "01",
+    title: "Berufsumsteiger",
+    text: "Brauchen klare Struktur, einfache Sprache und schnelle Orientierung.",
+  },
+  {
+    code: "02",
+    title: "Mehrsprachige Lernende",
+    text: "Müssen deutsche Begriffe behalten, aber in der eigenen Sprache verstehen.",
+  },
+  {
+    code: "03",
+    title: "Schulen & Anbieter",
+    text: "Brauchen Inhalte, Nutzerverwaltung, Fortschritt und skalierbare Lernpfade.",
   },
 ] as const;
 
@@ -198,17 +216,17 @@ const intelligenceItems = [
 
 const platformRoles = [
   {
-    icon: "👤",
+    code: "USER",
     title: "Lernende",
     text: "Lernen, Karten üben, Prüfungen simulieren, Fortschritt sehen.",
   },
   {
-    icon: "🧑‍🏫",
+    code: "EDU",
     title: "Dozenten",
     text: "Kapitel, Fragen, Erklärungen und Lernlogik kuratieren.",
   },
   {
-    icon: "🛡️",
+    code: "ADM",
     title: "Admin",
     text: "Zertifikate, Sprachen, Inhalte, Nutzer und Veröffentlichungen verwalten.",
   },
@@ -254,37 +272,19 @@ const learningTimeline = [
 const seoPages = [
   {
     title: "Zertifikat-Seiten",
-    text: "Jede Prüfung bekommt eine eigene indexierbare Seite mit Struktur, FAQ und Lernpfad.",
+    text: "Jede Prüfung bekommt eine indexierbare Seite mit Struktur, FAQ und Lernpfad.",
   },
   {
     title: "Kapitel-Seiten",
-    text: "Themen wie Recht, Betrieb, Kostenrechnung oder Vorschriften können eigene SEO-Seiten werden.",
+    text: "Themen wie Recht, Betrieb und Kostenrechnung können eigene SEO-Seiten werden.",
   },
   {
     title: "Glossar-Seiten",
-    text: "Deutsche Fachbegriffe können einzeln erklärt und langfristig über Google gefunden werden.",
+    text: "Deutsche Fachbegriffe können einzeln erklärt und langfristig gefunden werden.",
   },
   {
     title: "Fragen-Seiten",
     text: "Prüfungsnahe Fragen können später als Lern- und Suchseiten funktionieren.",
-  },
-] as const;
-
-const learnerPersonas = [
-  {
-    icon: "🧑‍💼",
-    title: "Berufsumsteiger",
-    text: "Brauchen klare Struktur, einfache Sprache und schnelle Orientierung.",
-  },
-  {
-    icon: "🌍",
-    title: "Mehrsprachige Lernende",
-    text: "Müssen deutsche Begriffe behalten, aber in der eigenen Sprache verstehen.",
-  },
-  {
-    icon: "🏢",
-    title: "Schulen & Anbieter",
-    text: "Brauchen Inhalte, Nutzerverwaltung, Fortschritt und skalierbare Lernpfade.",
   },
 ] as const;
 
@@ -309,27 +309,12 @@ const comparisonRows = [
   },
 ] as const;
 
-const conversionReasons = [
-  {
-    title: "Für Lernende",
-    text: "Weniger Chaos, mehr Sicherheit, bessere Wiederholung.",
-  },
-  {
-    title: "Für Betreiber",
-    text: "Inhalte skalieren über Zertifikate, Sprachen und Rollen.",
-  },
-  {
-    title: "Für SEO",
-    text: "Jede Prüfung, jedes Kapitel und jede Frage kann später indexierbar werden.",
-  },
-] as const;
-
 const pricingPlans = [
   {
     name: "Starter",
     price: "0 €",
     description: "Zum Testen der Plattform und Lernlogik.",
-    benefits: ["Demo-Lektionen", "Beispiel-Lernkarten", "Einblicke in Prüfungssimulation"],
+    benefits: ["Demo-Lektionen", "Beispiel-Lernkarten", "Einblick in Prüfungssimulation"],
     highlighted: false,
   },
   {
@@ -445,22 +430,38 @@ function SectionKicker({ children }: { children: ReactNode }) {
   );
 }
 
-function PrimaryButton({ children }: { children: ReactNode }) {
+function PrimaryButton({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <a
-      href="#preise"
-      className="inline-flex justify-center rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-7 py-4 text-base font-black text-[#06122b] shadow-[0_20px_60px_rgba(244,178,60,0.34)] transition hover:-translate-y-0.5 hover:shadow-[0_25px_80px_rgba(244,178,60,0.46)]"
+      href={href}
+      className={`inline-flex justify-center rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-7 py-4 text-base font-black text-[#06122b] shadow-[0_20px_60px_rgba(244,178,60,0.34)] transition hover:-translate-y-0.5 hover:shadow-[0_25px_80px_rgba(244,178,60,0.46)] ${className}`}
     >
       {children}
     </a>
   );
 }
 
-function SecondaryButton({ children }: { children: ReactNode }) {
+function SecondaryButton({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <a
-      href="#zertifikate"
-      className="inline-flex justify-center rounded-2xl border border-white/15 bg-white/[0.05] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10"
+      href={href}
+      className={`inline-flex justify-center rounded-2xl border border-white/15 bg-white/[0.05] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10 ${className}`}
     >
       {children}
     </a>
@@ -484,8 +485,16 @@ function ProgressBar({
           : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
 
   return (
-    <div className="h-2 rounded-full bg-black/30">
+    <div className="h-2 overflow-hidden rounded-full bg-black/30">
       <div className={`h-full rounded-full ${color}`} style={{ width: value }} />
+    </div>
+  );
+}
+
+function CodeMark({ children }: { children: ReactNode }) {
+  return (
+    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-xs font-black text-[#f3b23c]">
+      {children}
     </div>
   );
 }
@@ -493,10 +502,13 @@ function ProgressBar({
 function Navbar() {
   return (
     <header className="relative z-20 mx-auto max-w-[1400px] px-4 pt-5 sm:px-6 lg:px-8">
-      <nav className="flex min-h-[84px] items-center justify-between rounded-[30px] border border-white/10 bg-[#061731]/82 px-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:px-7">
-        <a href="#" className="flex items-center gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
-            ✦
+      <nav
+        aria-label="Hauptnavigation"
+        className="flex min-h-[84px] items-center justify-between rounded-[30px] border border-white/10 bg-[#061731]/82 px-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:px-7"
+      >
+        <a href="#" aria-label="FachkundePilot Startseite" className="flex items-center gap-3">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl font-black text-[#f3b23c] shadow-[0_0_38px_rgba(78,161,255,0.25)]">
+            FP
           </div>
           <div>
             <p className="text-xl font-black tracking-[-0.04em] text-white md:text-2xl">
@@ -517,11 +529,37 @@ function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="hidden rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-black text-white transition hover:bg-white/[0.1] sm:block">
+          <a
+            href="#sprache"
+            className="hidden rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-black text-white transition hover:bg-white/[0.1] sm:inline-flex"
+          >
             DE
-          </button>
-          <PrimaryButton>Jetzt starten</PrimaryButton>
+          </a>
+          <PrimaryButton href="#preise" className="hidden sm:inline-flex">
+            Jetzt starten
+          </PrimaryButton>
+          <a
+            href="#preise"
+            className="inline-flex rounded-2xl bg-[#f3b23c] px-4 py-2.5 text-sm font-black text-[#06122b] sm:hidden"
+          >
+            Start
+          </a>
         </div>
+      </nav>
+
+      <nav
+        aria-label="Mobile Navigation"
+        className="mt-3 flex gap-2 overflow-x-auto rounded-2xl border border-white/10 bg-[#061731]/70 p-2 backdrop-blur-xl lg:hidden"
+      >
+        {navItems.map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            className="shrink-0 rounded-xl bg-white/[0.05] px-4 py-2 text-xs font-black text-[#c7d2e5]"
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );
@@ -539,13 +577,12 @@ function DashboardPreview() {
             <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
             <p className="text-xs font-medium text-[#8ea0c0]">Live Lernübersicht</p>
           </div>
-
           <div className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06] text-[#9fb0cc]">
-              ⌕
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06] text-xs font-black text-[#9fb0cc]">
+              S
             </span>
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06]">
-              🔔
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06] text-xs font-black text-[#9fb0cc]">
+              N
             </span>
             <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#f3b23c] to-[#4ea1ff]" />
           </div>
@@ -570,7 +607,7 @@ function DashboardPreview() {
           <main className="min-w-0">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
+                <p className="text-xl font-black text-white">Guten Abend, Ahmet</p>
                 <p className="text-sm leading-6 text-[#8ea0c0]">
                   Du bist auf dem besten Weg zur Prüfung.
                 </p>
@@ -626,9 +663,12 @@ function DashboardPreview() {
                 <p className="mt-2 text-sm font-bold text-white">
                   20 Min. Lernkarten: Recht & Kostenrechnung
                 </p>
-                <button className="mt-4 rounded-xl bg-[#f3b23c] px-4 py-2 text-xs font-black text-[#07162f]">
+                <a
+                  href="#methode"
+                  className="mt-4 inline-flex rounded-xl bg-[#f3b23c] px-4 py-2 text-xs font-black text-[#07162f]"
+                >
                   Weiterlernen
-                </button>
+                </a>
               </div>
             </div>
           </main>
@@ -668,8 +708,8 @@ function Hero() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <PrimaryButton>Jetzt starten →</PrimaryButton>
-              <SecondaryButton>Alle Zertifikate ansehen</SecondaryButton>
+              <PrimaryButton href="#preise">Jetzt starten →</PrimaryButton>
+              <SecondaryButton href="#zertifikate">Alle Zertifikate ansehen</SecondaryButton>
             </div>
 
             <div className="mt-7 grid max-w-[610px] gap-3 sm:grid-cols-3">
@@ -704,9 +744,7 @@ function TrustStrip() {
                 index < trustStats.length - 1 ? "md:border-r md:border-white/10" : ""
               }`}
             >
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-xl">
-                {item.icon}
-              </div>
+              <CodeMark>{item.code}</CodeMark>
               <div>
                 <p className="text-sm font-bold text-[#8ea0c0]">{item.title}</p>
                 <p className="text-2xl font-black tracking-[-0.04em] text-white">
@@ -724,7 +762,7 @@ function TrustStrip() {
 
 function LearningModes() {
   return (
-    <section id="lernmethode" className="mx-auto max-w-[1360px] px-4 pt-20 sm:px-6 lg:px-8">
+    <section id="methode" className="mx-auto max-w-[1360px] px-4 pt-20 sm:px-6 lg:px-8">
       <div className="mb-8 max-w-3xl">
         <SectionKicker>Lernsystem</SectionKicker>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
@@ -741,10 +779,10 @@ function LearningModes() {
             key={mode.title}
             className="group rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
           >
-            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
-              {mode.icon}
-            </div>
-            <h3 className="text-2xl font-black tracking-[-0.04em] text-white">{mode.title}</h3>
+            <CodeMark>{mode.code}</CodeMark>
+            <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-white">
+              {mode.title}
+            </h3>
             <p className="mt-3 text-sm leading-7 text-[#afc0da]">{mode.text}</p>
           </Glass>
         ))}
@@ -768,12 +806,10 @@ function AudienceSection() {
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
-        {learnerPersonas.map((person) => (
+        {personas.map((person) => (
           <Glass key={person.title} className="rounded-[30px] p-6">
-            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
-              {person.icon}
-            </div>
-            <h3 className="text-2xl font-black text-white">{person.title}</h3>
+            <CodeMark>{person.code}</CodeMark>
+            <h3 className="mt-5 text-2xl font-black text-white">{person.title}</h3>
             <p className="mt-3 text-sm leading-7 text-[#afc0da]">{person.text}</p>
           </Glass>
         ))}
@@ -813,7 +849,7 @@ function CurriculumSystem() {
 
 function LanguageBridge() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+    <section id="sprache" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionKicker>Sprachbrücke</SectionKicker>
@@ -958,10 +994,8 @@ function PlatformSection() {
         <div className="grid gap-4 md:grid-cols-3">
           {platformRoles.map((role) => (
             <Glass key={role.title} className="rounded-[30px] p-5">
-              <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
-                {role.icon}
-              </div>
-              <h3 className="text-2xl font-black text-white">{role.title}</h3>
+              <CodeMark>{role.code}</CodeMark>
+              <h3 className="mt-5 text-2xl font-black text-white">{role.title}</h3>
               <p className="mt-3 text-sm leading-7 text-[#afc0da]">{role.text}</p>
             </Glass>
           ))}
@@ -974,7 +1008,7 @@ function PlatformSection() {
 function CertificatesSection() {
   return (
     <section id="zertifikate" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <Glass className="rounded-[34px] p-5 md:p-8">
+      <div className="rounded-[38px] border border-white/10 bg-gradient-to-br from-[#081d42] via-[#071a3a] to-[#050f24] p-5 shadow-[0_28px_110px_rgba(0,0,0,0.46)] md:p-8">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <SectionKicker>Zertifikate</SectionKicker>
@@ -983,26 +1017,37 @@ function CertificatesSection() {
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-[#afc0da]">
               Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung. Jedes Zertifikat
-              folgt derselben starken Lernlogik.
+              folgt derselben Lernlogik.
             </p>
           </div>
 
-          <button className="w-fit rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-[#76b7ff] transition hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
-            Alle Zertifikate ansehen →
-          </button>
+          <a
+            href="#preise"
+            className="w-fit rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-[#76b7ff] transition hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10"
+          >
+            Mitgliedschaft ansehen →
+          </a>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {certificates.map((certificate) => (
+          {certificates.map((certificate, index) => (
             <article
               key={certificate.title}
-              className="group flex min-h-[330px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
+              className={`group flex min-h-[350px] flex-col rounded-[30px] border p-5 transition duration-300 hover:-translate-y-1 ${
+                index === 0
+                  ? "border-[#f3b23c]/35 bg-[#f3b23c]/10 shadow-[0_24px_70px_rgba(244,183,63,0.12)]"
+                  : "border-white/10 bg-[#0a1b3f]/85 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
+              }`}
             >
               <div className="mb-5 flex items-center justify-between">
-                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
-                  {certificate.icon}
-                </div>
-                <span className="rounded-full border border-[#f3b23c]/25 bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
+                <CodeMark>{certificate.code}</CodeMark>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-black ${
+                    index === 0
+                      ? "bg-[#f3b23c] text-[#07162f]"
+                      : "border border-[#f3b23c]/25 bg-[#f3b23c]/10 text-[#f3b23c]"
+                  }`}
+                >
                   {certificate.badge}
                 </span>
               </div>
@@ -1016,34 +1061,37 @@ function CertificatesSection() {
               </p>
 
               <div className="mt-5 grid gap-2 sm:grid-cols-3">
-                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
+                <span className="rounded-2xl bg-white/[0.06] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
                   {certificate.stats}
                 </span>
-                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
+                <span className="rounded-2xl bg-white/[0.06] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
                   {certificate.level}
                 </span>
-                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
+                <span className="rounded-2xl bg-white/[0.06] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
                   {certificate.languages}
                 </span>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5 rounded-2xl border border-white/10 bg-black/10 p-3">
                 <div className="mb-2 flex items-center justify-between text-xs font-bold text-[#8ea0c0]">
                   <span>Beispiel-Lernstand</span>
                   <span>{certificate.readiness}</span>
                 </div>
-                <ProgressBar value={certificate.readiness} tone="blue" />
+                <ProgressBar value={certificate.readiness} tone={index === 0 ? "gold" : "blue"} />
               </div>
 
               <div className="mt-5 border-t border-white/10 pt-4">
-                <button className="text-sm font-black text-[#76b7ff] transition group-hover:text-[#f3b23c]">
+                <a
+                  href="#preise"
+                  className="text-sm font-black text-[#76b7ff] transition group-hover:text-[#f3b23c]"
+                >
                   Mehr erfahren →
-                </button>
+                </a>
               </div>
             </article>
           ))}
         </div>
-      </Glass>
+      </div>
     </section>
   );
 }
@@ -1059,7 +1107,7 @@ function AdminPanelPreview() {
               <h3 className="mt-1 text-2xl font-black text-white">Content Management</h3>
             </div>
             <span className="rounded-full bg-[#34d399]/10 px-3 py-1 text-xs font-black text-[#34d399]">
-              Live-ready
+              Ready
             </span>
           </div>
 
@@ -1256,28 +1304,6 @@ function Comparison() {
   );
 }
 
-function ConversionLayer() {
-  return (
-    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <div className="mb-8 max-w-4xl">
-        <SectionKicker>Business-Logik</SectionKicker>
-        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
-          Die Seite verkauft nicht nur Kurse. Sie verkauft Sicherheit.
-        </h2>
-      </div>
-
-      <div className="grid gap-5 md:grid-cols-3">
-        {conversionReasons.map((reason) => (
-          <Glass key={reason.title} className="rounded-[30px] p-6">
-            <h3 className="text-2xl font-black text-white">{reason.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-[#afc0da]">{reason.text}</p>
-          </Glass>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function PricingSection() {
   return (
     <section id="preise" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
@@ -1322,7 +1348,9 @@ function PricingSection() {
                 <p key={benefit} className="flex items-center gap-3 text-sm font-bold">
                   <span
                     className={`grid h-6 w-6 place-items-center rounded-full ${
-                      plan.highlighted ? "bg-[#07162f] text-white" : "bg-[#34d399]/15 text-[#34d399]"
+                      plan.highlighted
+                        ? "bg-[#07162f] text-white"
+                        : "bg-[#34d399]/15 text-[#34d399]"
                     }`}
                   >
                     ✓
@@ -1481,8 +1509,8 @@ function Footer() {
       <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-12 text-[#afc0da] sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#f3b23c]/30 bg-[#081b3d] text-[#f3b23c]">
-              ✦
+            <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#f3b23c]/30 bg-[#081b3d] text-sm font-black text-[#f3b23c]">
+              FP
             </div>
             <p className="text-2xl font-black text-white">FachkundePilot</p>
           </div>
@@ -1542,7 +1570,6 @@ export default function Page() {
       <LearningEngine />
       <ExamSimulation />
       <Comparison />
-      <ConversionLayer />
       <PricingSection />
       <Testimonials />
       <FAQ />
