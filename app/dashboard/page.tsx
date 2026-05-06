@@ -144,7 +144,7 @@ export default async function DashboardPage() {
               <div className="flex flex-wrap items-center gap-3">
                 <div className="rounded-lg border border-[#2a4c77] bg-[#0a2039] px-3 py-2 text-sm">DE / AR</div>
                 <div className="rounded-lg border border-[#2a4c77] bg-[#0a2039] px-3 py-2 text-sm">Ahmet</div>
-                <Link href="/dashboard#simulation" className="rounded-lg bg-[#f3c76a] px-4 py-2 text-sm font-semibold text-[#1a2538]">
+                <Link href="/lernen/taxi-mietwagen/simulation" className="rounded-lg bg-[#f3c76a] px-4 py-2 text-sm font-semibold text-[#1a2538]">
                   Prüfung starten
                 </Link>
               </div>
@@ -231,7 +231,7 @@ export default async function DashboardPage() {
             <p className="mt-2 text-slate-200">{questions.length} Fragen verfügbar</p>
             <p className="text-sm text-slate-300">Simulation vorbereiten</p>
             {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : null}
-            <Link href="/lernen/taxi-mietwagen/fragen" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Alle Fragen öffnen</Link>
+            <Link href="/lernen/taxi-mietwagen/simulation" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Simulation starten</Link>
             <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
               <li>45 Minuten</li>
               <li>Punkteauswertung</li>
