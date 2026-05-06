@@ -15,13 +15,13 @@ const navItems = [
   { label: "Plattform", href: "#plattform" },
   { label: "Preise", href: "#preise" },
   { label: "Kontakt", href: "#kontakt" },
-];
+] as const;
 
 const heroTrustItems = [
   "Deutsch bleibt Prüfungssprache",
   "Erklärungen in AR / EN / TR",
   "Prüfung realistisch trainieren",
-];
+] as const;
 
 const dashboardMetrics = [
   { label: "Prüfungsreife", value: "82%", progress: "82%", tone: "blue" },
@@ -329,6 +329,25 @@ const comparisonRows = [
   },
 ] as const;
 
+const seoPages = [
+  {
+    title: "Zertifikat-Seiten",
+    text: "Jede Prüfung bekommt eine eigene indexierbare Seite mit Struktur, FAQ und Lernpfad.",
+  },
+  {
+    title: "Kapitel-Seiten",
+    text: "Themen wie Recht, Betrieb, Kostenrechnung oder Vorschriften können eigene SEO-Seiten werden.",
+  },
+  {
+    title: "Glossar-Seiten",
+    text: "Deutsche Fachbegriffe können einzeln erklärt und langfristig über Google gefunden werden.",
+  },
+  {
+    title: "Fragen-Seiten",
+    text: "Prüfungsnahe Fragen können später als Lern- und Suchseiten funktionieren.",
+  },
+] as const;
+
 const conversionReasons = [
   {
     title: "Für Lernende",
@@ -509,13 +528,7 @@ function Navbar() {
         </a>
 
         <div className="hidden items-center gap-8 text-sm font-semibold text-[#c7d2e5] lg:flex">
-          {[
-            { label: "Zertifikate", href: "#zertifikate" },
-            { label: "Methode", href: "#lernmethode" },
-            { label: "Plattform", href: "#plattform" },
-            { label: "Preise", href: "#preise" },
-            { label: "Kontakt", href: "#kontakt" },
-          ].map((item) => (
+          {navItems.map((item) => (
             <a key={item.label} href={item.href} className="transition hover:text-white">
               {item.label}
             </a>
@@ -885,6 +898,34 @@ function IntelligenceLayer() {
           </div>
         </div>
       </Glass>
+    </section>
+  );
+}
+
+function SEOScaleSection() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[0.78fr_1.22fr]">
+        <div>
+          <SectionKicker>SEO-Architektur</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            Später wird jede Lernseite ein Suchmaschinen-Einstieg.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+            Das Projekt soll nicht wie eine versteckte App wirken. Die Struktur kann später mit
+            indexierbaren Seiten, Glossar, Kapiteln und Zertifikat-Landingpages wachsen.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {seoPages.map((item) => (
+            <Glass key={item.title} className="rounded-[30px] p-5">
+              <h3 className="text-2xl font-black text-white">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-[#afc0da]">{item.text}</p>
+            </Glass>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
@@ -1443,6 +1484,7 @@ export default function Page() {
       <CurriculumSystem />
       <LanguageBridge />
       <IntelligenceLayer />
+      <SEOScaleSection />
       <PlatformSection />
       <CertificatesSection />
       <FeatureStrip />
