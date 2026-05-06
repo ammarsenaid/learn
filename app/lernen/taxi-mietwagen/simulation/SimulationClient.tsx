@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { saveSimulationAttempt } from '@/components/learning/progress-store';
 
 type SimulationOption = { id: string; option_de: string; is_correct: boolean };
 type SimulationQuestion = { id: string; question_de: string; explanation_de?: string | null; explanation_ar?: string | null; options: SimulationOption[] };
@@ -29,6 +30,15 @@ export default function SimulationClient({ questions }: { questions: SimulationQ
   }, [answers, questions, totalQuestions]);
 
   const resultMessage = evaluated.percentage < 60 ? 'Weiter üben' : evaluated.percentage <= 80 ? 'Gute Basis' : 'Prüfungsnah stark';
+  const savedRef = useRef(false);
+
+  useEffect(() => {
+    if (submitted && !savedRef.current) {
+      saveSimulationAttempt(evaluated.percentage, evaluated.correctAnswers, totalQuestions);
+      savedRef.current = true;
+    }
+    if (!submitted) savedRef.current = false;
+  }, [submitted, evaluated.percentage, evaluated.correctAnswers, totalQuestions]);
 
   if (!started) return <section className="rounded-2xl border border-[#1e385c] bg-[#09223f] p-6 sm:p-8"><h1 className="text-2xl font-bold text-white sm:text-3xl">Taxi &amp; Mietwagen Prüfungssimulation</h1><div className="mt-6 grid gap-3 sm:grid-cols-3"><div className="rounded-xl border border-[#214267] bg-[#0b2645] p-4"><p className="text-xs uppercase text-slate-300">Fragen verfügbar</p><p className="mt-2 text-2xl font-bold text-white">{totalQuestions}</p></div><div className="rounded-xl border border-[#214267] bg-[#0b2645] p-4"><p className="text-xs uppercase text-slate-300">Geschätzte Zeit</p><p className="mt-2 text-2xl font-bold text-white">{estimatedMinutes} Min.</p></div><div className="rounded-xl border border-[#214267] bg-[#0b2645] p-4"><p className="text-xs uppercase text-slate-300">Bewertung</p><p className="mt-2 text-base font-semibold text-sky-200">Nur Übungsmodus</p></div></div><button onClick={() => setStarted(true)} disabled={totalQuestions === 0} className="mt-6 rounded-lg bg-[#f3c76a] px-5 py-3 font-semibold text-[#03111f] disabled:cursor-not-allowed disabled:opacity-50">Simulation starten</button></section>;
 

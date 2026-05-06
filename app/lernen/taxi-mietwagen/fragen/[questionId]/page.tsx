@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getQuestionById, getQuestionOptionsByQuestionId, getQuestionsByCertificateId, getCertificateBySlug } from '@/lib/cms';
+import QuestionActionButtons from '@/components/learning/QuestionActionButtons';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -28,6 +29,7 @@ export default async function QuestionDetailPage({ params }: { params: Promise<{
     <ul className="mt-5 space-y-3">{options.map((option) => <li key={option.id} className={`rounded-lg border p-3 ${option.is_correct ? 'border-green-500 bg-green-950/30 text-green-100' : 'border-red-500/60 bg-red-950/20 text-red-100'}`}>{option.option_de}</li>)}</ul>
     {question.explanation_de ? <section className="mt-5 rounded-lg border border-[#2a4c77] bg-[#09223f] p-4"><h2 className="text-sm font-semibold text-[#f3c76a]">Erklärung (DE)</h2><p className="mt-1 text-slate-200">{question.explanation_de}</p></section> : null}
     {question.explanation_ar ? <section className="mt-3 rounded-lg border border-[#2a4c77] bg-[#09223f] p-4"><h2 className="text-sm font-semibold text-[#f3c76a]">Erklärung (AR)</h2><p className="mt-1 text-slate-200">{question.explanation_ar}</p></section> : null}
+    <div className="mt-5"><QuestionActionButtons questionId={question.id} title={question.question_de.slice(0, 80)} href={`/lernen/taxi-mietwagen/fragen/${question.id}`} /></div>
     </article>
     <div className="flex flex-wrap gap-3">{nextQuestion ? <Link href={`/lernen/taxi-mietwagen/fragen/${nextQuestion.id}`} className="rounded-lg bg-[#f3c76a] px-4 py-2 font-semibold text-[#03111f]">Nächste Frage</Link> : null}<Link href="/lernen/taxi-mietwagen/fragen" className="rounded-lg border border-sky-400 px-4 py-2 text-sky-200">Zur Fragenübersicht</Link><Link href="/dashboard" className="rounded-lg border border-[#2a4c77] px-4 py-2">Zurück zum Dashboard</Link></div>
   </div></main>;
