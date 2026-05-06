@@ -2,48 +2,55 @@ import type { ReactNode } from "react";
 
 const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
 
+const heroTrustItems = [
+  "IHK-orientierte Struktur",
+  "Mehrsprachige Erklärungen",
+  "Prüfungssimulation",
+];
+
+const heroMetrics = [
+  { label: "Lernstand", value: "78%", tone: "blue" },
+  { label: "Lernzeit", value: "12h 45m", tone: "green" },
+  { label: "Karten fällig", value: "24", tone: "gold" },
+];
+
 const trustStats = [
   {
     icon: "🌍",
     title: "Mehrsprachig",
     value: "DE · AR · EN · TR",
-    text: "Deutsch lernen, in deiner Sprache verstehen",
+    text: "Deutsch bleibt Prüfungssprache — deine Sprache hilft beim Verstehen.",
   },
   {
     icon: "⭐",
     title: "Bewertung",
     value: "4.9/5",
-    text: "Klare Struktur, einfache Erklärungen",
+    text: "Klare Struktur, einfache Erklärungen und messbarer Fortschritt.",
   },
   {
-    icon: "📈",
-    title: "Lernstand",
-    value: "78%",
-    text: "Fortschritt sichtbar und messbar",
+    icon: "🧠",
+    title: "Lernlogik",
+    value: "Smart Review",
+    text: "Wiederholung, Schwächenanalyse und realistische Prüfungsfragen.",
   },
   {
     icon: "🎓",
     title: "Zertifikate",
-    value: "12+",
-    text: "Sach- und Fachkundeprüfungen geplant",
+    value: "12+ geplant",
+    text: "Ein Lernsystem für mehrere deutsche Sach- und Fachkundeprüfungen.",
   },
 ] as const;
-
-const heroChips = [
-  "IHK-orientierte Struktur",
-  "Lernkarten & Prüfungssimulation",
-  "DSGVO-konform",
-];
 
 const certificates = [
   {
     icon: "🚕",
     title: "Taxi & Mietwagen",
     subtitle: "Fachkundeprüfung nach PBefG",
-    description: "Tarif-, Orts- und Unternehmerwissen für deine Personenbeförderung.",
+    description: "Tarif-, Orts- und Unternehmerwissen für die Personenbeförderung.",
     stats: "12 Kapitel · 850+ Fragen",
     badge: "Beliebt",
     level: "Mittel",
+    languages: "DE · AR · EN · TR",
   },
   {
     icon: "🛡️",
@@ -53,6 +60,7 @@ const certificates = [
     stats: "9 Kapitel · 650+ Fragen",
     badge: "Beliebt",
     level: "Einsteiger",
+    languages: "DE · AR · EN",
   },
   {
     icon: "🚚",
@@ -62,6 +70,7 @@ const certificates = [
     stats: "10 Kapitel · 700+ Fragen",
     badge: "Verfügbar",
     level: "Fortgeschritten",
+    languages: "DE · EN · TR",
   },
   {
     icon: "📄",
@@ -71,6 +80,7 @@ const certificates = [
     stats: "8 Kapitel · 600+ Fragen",
     badge: "Bald verfügbar",
     level: "Mittel",
+    languages: "DE · AR · EN",
   },
   {
     icon: "📊",
@@ -80,6 +90,7 @@ const certificates = [
     stats: "7 Kapitel · 550+ Fragen",
     badge: "Bald verfügbar",
     level: "Fortgeschritten",
+    languages: "DE · EN",
   },
   {
     icon: "🏛️",
@@ -89,39 +100,40 @@ const certificates = [
     stats: "7 Kapitel · 500+ Fragen",
     badge: "Bald verfügbar",
     level: "Mittel",
+    languages: "DE · AR · TR",
   },
 ] as const;
 
 const features = [
   {
     icon: "💡",
-    title: "Verständliche Erklärungen",
-    text: "Komplexe deutsche Prüfungsbegriffe einfach erklärt — ohne trockenes Auswendiglernen.",
+    title: "Deutsch verstehen",
+    text: "Prüfungsbegriffe bleiben deutsch, aber werden einfach und logisch erklärt.",
   },
   {
     icon: "🧪",
-    title: "Prüfungssimulation",
-    text: "Trainiere realistische Prüfungen mit Zeitdruck, Ergebnis und Fehleranalyse.",
+    title: "Prüfung simulieren",
+    text: "Trainiere echte Prüfungssituationen mit Zeitdruck und Auswertung.",
   },
   {
     icon: "🃏",
-    title: "Smarte Lernkarten",
-    text: "Wiederhole wichtige Begriffe, Regeln und Rechenlogik mit System.",
+    title: "Lernkarten",
+    text: "Wiederhole Regeln, Begriffe und Rechenlogik mit System.",
   },
   {
     icon: "📈",
-    title: "Fortschritt sichtbar",
-    text: "Sieh sofort, welche Themen sitzen und wo du noch üben musst.",
+    title: "Fortschritt messen",
+    text: "Erkenne sofort, welche Themen sitzen und was noch fehlt.",
   },
   {
     icon: "📱",
     title: "Mobil lernen",
-    text: "Lerne unterwegs, zu Hause oder in der Pause — auf jedem Gerät.",
+    text: "Auf Smartphone, Tablet und Desktop — überall weiterlernen.",
   },
   {
     icon: "🌐",
-    title: "Mehrsprachige Hilfe",
-    text: "Deutsch bleibt Prüfungssprache, Erklärungen helfen dir beim Verstehen.",
+    title: "Mehrsprachig",
+    text: "Arabisch, Englisch und Türkisch helfen dir beim Verstehen.",
   },
 ] as const;
 
@@ -129,17 +141,17 @@ const steps = [
   {
     number: "01",
     title: "Zertifikat wählen",
-    text: "Wähle dein Prüfungsziel und starte mit einem klaren Lernpfad.",
+    text: "Wähle dein Prüfungsziel und starte mit einem klaren Lernplan.",
   },
   {
     number: "02",
     title: "Deutsch verstehen",
-    text: "Lerne deutsche Fachbegriffe mit einfachen Erklärungen in deiner Sprache.",
+    text: "Lerne die offiziellen deutschen Begriffe mit einfachen Erklärungen.",
   },
   {
     number: "03",
-    title: "Trainieren & bestehen",
-    text: "Übe mit Lernkarten, Fragen und Prüfungssimulationen bis du sicher bist.",
+    title: "Prüfung trainieren",
+    text: "Übe mit Lernkarten, Fragen und realistischen Prüfungssimulationen.",
   },
 ] as const;
 
@@ -162,6 +174,11 @@ const testimonials = [
     label: "Taxi & Mietwagen",
     quote: "Deutsch war schwer für mich. Die einfachen Erklärungen haben alles verändert.",
   },
+] as const;
+
+const comparison = [
+  ["Bücher & PDFs", "unübersichtlich", "kein Fortschritt", "keine Prüfungssimulation"],
+  ["FachkundePilot", "klare Lernpfade", "messbarer Fortschritt", "realistische Prüfungen"],
 ] as const;
 
 const pricingBenefits = [
@@ -269,6 +286,21 @@ function Navbar() {
   );
 }
 
+function ProgressBar({ value, tone = "blue" }: { value: string; tone?: "blue" | "gold" | "green" }) {
+  const color =
+    tone === "gold"
+      ? "bg-[#f3b23c]"
+      : tone === "green"
+        ? "bg-[#34d399]"
+        : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
+
+  return (
+    <div className="h-2 rounded-full bg-black/30">
+      <div className={`h-full rounded-full ${color}`} style={{ width: value }} />
+    </div>
+  );
+}
+
 function DashboardPreview() {
   return (
     <Glass className="relative overflow-hidden rounded-[34px] border-[#4ea1ff]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_35px_110px_rgba(36,100,210,0.24)]">
@@ -294,7 +326,7 @@ function DashboardPreview() {
 
         <div className="grid gap-4 lg:grid-cols-[120px_1fr]">
           <aside className="hidden rounded-2xl border border-white/10 bg-[#0a1b3f] p-2 text-xs font-bold text-[#8ea0c0] lg:block">
-            {["Übersicht", "Zertifikate", "Karten", "Prüfungen", "Fortschritt"].map(
+            {["Übersicht", "Zertifikate", "Karten", "Prüfung", "Fortschritt"].map(
               (item, index) => (
                 <div
                   key={item}
@@ -304,54 +336,41 @@ function DashboardPreview() {
                 >
                   {item}
                 </div>
-              )
+              ),
             )}
           </aside>
 
           <main className="min-w-0">
-            <div className="mb-4">
-              <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
-              <p className="text-sm leading-6 text-[#8ea0c0]">
-                Du bist auf dem besten Weg zur Prüfung.
-              </p>
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
+                <p className="text-sm leading-6 text-[#8ea0c0]">
+                  Du bist auf dem besten Weg zur Prüfung.
+                </p>
+              </div>
+              <span className="w-fit rounded-full bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
+                Prüfung in 14 Tagen
+              </span>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-sm text-[#afc0da]">Gesamtfortschritt</p>
-                <div className="mt-2 flex items-end justify-between">
-                  <p className="text-5xl font-black tracking-[-0.06em] text-white">78%</p>
-                  <span className="rounded-full bg-[#34d399]/10 px-3 py-1 text-xs font-black text-[#34d399]">
-                    +18%
-                  </span>
-                </div>
-                <div className="mt-4 h-2.5 rounded-full bg-black/30">
-                  <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]" />
-                </div>
-                <p className="mt-3 text-xs text-[#8ea0c0]">Nur noch 22% bis zum Lernziel.</p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-sm text-[#afc0da]">Lernzeit heute</p>
-                <p className="mt-2 text-4xl font-black tracking-[-0.05em] text-white">
-                  45 min
-                </p>
-                <p className="mt-2 text-xs font-black text-[#34d399]">
-                  +12 min gegenüber gestern
-                </p>
-                <div className="mt-4 grid h-16 grid-cols-7 items-end gap-1">
-                  {[45, 62, 78, 50, 88, 70, 96].map((height, index) => (
-                    <span
-                      key={index}
-                      className="rounded-full bg-gradient-to-t from-[#4ea1ff] to-[#6ee7f9]"
-                      style={{ height: `${height}%` }}
+            <div className="grid gap-3 md:grid-cols-3">
+              {heroMetrics.map((metric) => (
+                <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                  <p className="text-sm text-[#afc0da]">{metric.label}</p>
+                  <p className="mt-2 text-3xl font-black tracking-[-0.05em] text-white">
+                    {metric.value}
+                  </p>
+                  <div className="mt-4">
+                    <ProgressBar
+                      value={metric.label === "Lernzeit" ? "64%" : metric.label === "Karten fällig" ? "42%" : "78%"}
+                      tone={metric.tone as "blue" | "gold" | "green"}
                     />
-                  ))}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
-            <div className="mt-3 grid gap-3 md:grid-cols-[1.05fr_.95fr]">
+            <div className="mt-3 grid gap-3 md:grid-cols-[1.1fr_.9fr]">
               <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <p className="text-sm font-black text-white">Aktive Zertifikate</p>
@@ -368,12 +387,7 @@ function DashboardPreview() {
                       <span className="text-[#afc0da]">{name}</span>
                       <span className="font-black text-white">{progress}</span>
                     </div>
-                    <div className="h-1.5 rounded-full bg-black/30">
-                      <div
-                        className="h-full rounded-full bg-[#f3b23c]"
-                        style={{ width: progress }}
-                      />
-                    </div>
+                    <ProgressBar value={progress} tone="gold" />
                   </div>
                 ))}
               </div>
@@ -400,8 +414,8 @@ function DashboardPreview() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(78,161,255,0.28),transparent_34%),radial-gradient(circle_at_20%_30%,rgba(244,183,63,0.12),transparent_26%),linear-gradient(180deg,#06122b_0%,#07162f_60%,#06122b_100%)]" />
-      <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(78,161,255,0.3),transparent_34%),radial-gradient(circle_at_20%_30%,rgba(244,183,63,0.14),transparent_26%),linear-gradient(180deg,#06122b_0%,#07162f_62%,#06122b_100%)]" />
+      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
 
       <div className="relative">
         <Navbar />
@@ -410,7 +424,7 @@ function Hero() {
           <div>
             <Badge>Die Lernplattform für offizielle Sach- und Fachkundeprüfungen</Badge>
 
-            <h1 className="mt-6 max-w-[660px] text-[52px] font-black leading-[0.97] tracking-[-0.065em] text-white sm:text-[64px] lg:text-[72px] xl:text-[82px]">
+            <h1 className="mt-6 max-w-[680px] text-[52px] font-black leading-[0.97] tracking-[-0.065em] text-white sm:text-[64px] lg:text-[72px] xl:text-[84px]">
               Bestehe deine Prüfung.
               <br />
               Mit{" "}
@@ -421,7 +435,7 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="mt-6 max-w-[575px] text-lg leading-8 text-[#c7d2e5]">
+            <p className="mt-6 max-w-[585px] text-lg leading-8 text-[#c7d2e5]">
               Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische
               Prüfungen und mobiles Lernen — alles an einem Ort.
             </p>
@@ -431,7 +445,7 @@ function Hero() {
               <SecondaryButton>Alle Zertifikate ansehen</SecondaryButton>
             </div>
 
-            <div className="mt-7 grid max-w-[600px] gap-3 sm:grid-cols-3">
+            <div className="mt-7 grid max-w-[610px] gap-3 sm:grid-cols-3">
               {heroChips.map((item) => (
                 <div
                   key={item}
@@ -508,10 +522,10 @@ function CertificatesSection() {
           {certificates.map((certificate) => (
             <article
               key={certificate.title}
-              className="group flex min-h-[290px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
+              className="group flex min-h-[310px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
             >
               <div className="mb-5 flex items-center justify-between">
-                <div className="grid h-13 w-13 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
                   {certificate.icon}
                 </div>
                 <span className="rounded-full border border-[#f3b23c]/25 bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
@@ -527,12 +541,15 @@ function CertificatesSection() {
                 {certificate.description}
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                <span className="rounded-full bg-white/[0.05] px-3 py-1 text-xs font-bold text-[#c7d2e5]">
+              <div className="mt-5 grid gap-2 sm:grid-cols-3">
+                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
                   {certificate.stats}
                 </span>
-                <span className="rounded-full bg-white/[0.05] px-3 py-1 text-xs font-bold text-[#c7d2e5]">
+                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
                   {certificate.level}
+                </span>
+                <span className="rounded-2xl bg-white/[0.05] px-3 py-2 text-xs font-bold text-[#c7d2e5]">
+                  {certificate.languages}
                 </span>
               </div>
 
@@ -608,20 +625,63 @@ function MethodAndProof() {
 
       <Glass className="rounded-[34px] p-6 md:p-8">
         <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-          Erfolgsgeschichten
+          Warum nicht einfach PDF?
         </p>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
-          Das sagen Teilnehmende
+          Lernen mit System statt Chaos.
         </h2>
         <p className="mt-4 text-lg leading-8 text-[#afc0da]">
-          Klarheit, Struktur und Wiederholung machen den Unterschied.
+          FachkundePilot verwandelt trockene Unterlagen in einen klaren Lernprozess.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-1">
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {comparison.map(([title, a, b, c]) => (
+            <div
+              key={title}
+              className={`rounded-3xl border p-5 ${
+                title === "FachkundePilot"
+                  ? "border-[#f3b23c]/35 bg-[#f3b23c]/10"
+                  : "border-white/10 bg-white/[0.045]"
+              }`}
+            >
+              <p className="text-2xl font-black text-white">{title}</p>
+              <div className="mt-5 space-y-3 text-sm font-semibold text-[#c7d2e5]">
+                <p>• {a}</p>
+                <p>• {b}</p>
+                <p>• {c}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Glass>
+    </section>
+  );
+}
+
+function Testimonials() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <Glass className="rounded-[34px] p-6 md:p-8">
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+              Erfolgsgeschichten
+            </p>
+            <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+              Das sagen Teilnehmende
+            </h2>
+          </div>
+          <p className="max-w-xl text-lg leading-8 text-[#afc0da]">
+            Klarheit, Struktur und Wiederholung machen den Unterschied — besonders wenn Deutsch
+            nicht deine Muttersprache ist.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
+              className="rounded-3xl border border-white/10 bg-white/[0.045] p-5"
             >
               <div className="flex items-center gap-3">
                 <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#f3b23c] to-[#4ea1ff] text-sm font-black text-[#07162f]">
@@ -632,8 +692,8 @@ function MethodAndProof() {
                   <p className="text-xs font-bold text-[#76b7ff]">{testimonial.label}</p>
                 </div>
               </div>
-              <p className="mt-3 text-[#f3b23c]">★★★★★</p>
-              <p className="mt-3 text-sm leading-7 text-[#c7d2e5]">“{testimonial.quote}”</p>
+              <p className="mt-4 text-[#f3b23c]">★★★★★</p>
+              <p className="mt-4 text-sm leading-7 text-[#c7d2e5]">“{testimonial.quote}”</p>
             </article>
           ))}
         </div>
@@ -683,7 +743,7 @@ function FinalCTA() {
                 >
                   {item}
                 </div>
-              )
+              ),
             )}
           </div>
 
@@ -755,6 +815,7 @@ export default function Page() {
       <CertificatesSection />
       <FeatureStrip />
       <MethodAndProof />
+      <Testimonials />
       <FinalCTA />
       <Footer />
     </div>
