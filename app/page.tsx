@@ -159,6 +159,11 @@ const painPoints = [
     title: "Prüfungsdruck fehlt",
     text: "Lesen reicht nicht. Man muss unter Zeitdruck Fragen sicher verstehen und beantworten.",
   },
+  {
+    icon: "brain",
+    title: "Rechnen blockiert viele",
+    text: "Kostenrechnung, Prozentfragen und Formeln bremsen den Lernfluss kurz vor der Prüfung.",
+  },
 ] as const;
 
 const featureStrip = [
@@ -454,7 +459,7 @@ function GoldButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_42px_rgba(246,200,79,0.48)] ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3.5 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_42px_rgba(246,200,79,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
     >
       {children}
     </a>
@@ -473,7 +478,7 @@ function DarkButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-400/60 hover:bg-sky-400/10 ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3.5 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-400/60 hover:bg-sky-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
     >
       {children}
     </a>
@@ -587,11 +592,11 @@ function DashboardMockup() {
   const bars = [35, 50, 42, 65, 48, 78, 92] as const;
 
   return (
-    <div className="relative rounded-[24px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
+    <div className="relative rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-4 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
       <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/60 blur-xl" />
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
 
-      <div className="relative rounded-2xl border border-slate-600/35 bg-[#07172a] p-3">
+      <div className="relative rounded-2xl border border-slate-600/35 bg-[#07172a] p-4">
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-black text-white">
             <span className="rounded-md bg-yellow-400 px-1.5 py-0.5 text-[10px] text-[#081526]">
@@ -608,31 +613,12 @@ function DashboardMockup() {
           </div>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-[118px_1fr]">
-          <aside className="hidden rounded-xl border border-slate-600/30 bg-[#061326] p-2 text-[11px] font-bold text-slate-400 md:block">
-            {["Übersicht", "Zertifikate", "Lernkarten", "Prüfungen", "Analyse", "Einstellungen"].map(
-              (item, index) => (
-                <div
-                  key={item}
-                  className={`mb-1 rounded-lg px-3 py-2 ${
-                    index === 0
-                      ? "border border-sky-400/30 bg-sky-400/15 text-sky-100"
-                      : "hover:bg-white/5"
-                  }`}
-                >
-                  {item}
-                </div>
-              ),
-            )}
-
-            <div className="mt-10 rounded-lg px-3 py-2 text-slate-500">Abmelden</div>
-          </aside>
-
+        <div className="grid gap-3">
           <main>
             <div className="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
               <div>
                 <p className="text-base font-black text-white sm:text-lg">Guten Abend, Ahmet</p>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-sm text-slate-400">
                   Prüfung in 14 Tagen · Heute: 24 Karten fällig
                 </p>
               </div>
@@ -650,13 +636,13 @@ function DashboardMockup() {
                 <div className="mt-2">
                   <Progress value="78%" />
                 </div>
-                <p className="mt-2 text-[10px] text-slate-500">
+                <p className="mt-2 text-xs text-slate-400">
                   Nächstes Ziel: Kostenrechnung
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
-                <p className="text-xs font-semibold text-slate-400">Lernzeit heute</p>
+              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
+                <p className="text-sm font-semibold text-slate-300">Lernzeit heute</p>
                 <div className="mt-2 flex items-end justify-between gap-4">
                   <p className="text-3xl font-black tracking-[-0.06em] text-white">42m</p>
                   <div className="flex h-9 flex-1 items-end gap-1">
@@ -669,7 +655,7 @@ function DashboardMockup() {
                     ))}
                   </div>
                 </div>
-                <p className="mt-2 text-[10px] text-slate-500">Diese Woche: 4h 20m</p>
+                <p className="mt-2 text-xs text-slate-400">Diese Woche: 4h 20m</p>
               </div>
             </div>
 
@@ -680,9 +666,9 @@ function DashboardMockup() {
                 {activeCerts.map(([name, progress, tone]) => (
                   <div
                     key={name}
-                    className="mb-2 grid grid-cols-[1fr_76px] items-center gap-3 rounded-lg bg-[#061326] px-3 py-2"
+                    className="mb-2 grid grid-cols-[1fr_92px] items-center gap-3 rounded-lg bg-[#061326] px-3 py-2.5"
                   >
-                    <div className="text-xs font-bold text-slate-200">{name}</div>
+                    <div className="text-sm font-bold text-slate-200">{name}</div>
                     <Progress value={progress} color={tone} />
                   </div>
                 ))}
@@ -693,7 +679,7 @@ function DashboardMockup() {
                   Heute empfohlen
                 </p>
                 <p className="mt-2 text-2xl font-black text-white">20 Min.</p>
-                <p className="mt-1 text-[11px] leading-5 text-slate-300">
+                <p className="mt-1 text-sm leading-6 text-slate-300">
                   Lernkarten Recht & Kostenrechnung
                 </p>
                 <a
@@ -711,7 +697,7 @@ function DashboardMockup() {
                   <p className="text-[10px] font-black uppercase tracking-[0.14em] text-sky-300">
                     Sprachbrücke
                   </p>
-                  <p className="mt-1 text-xs font-bold text-white">
+                  <p className="mt-1 text-sm font-bold text-white">
                     Betriebssitz → المكان الرسمي المسجل للشركة
                   </p>
                 </div>
@@ -768,33 +754,26 @@ function Hero() {
       <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1240px] gap-9 px-4 pb-12 pt-7 lg:grid-cols-[minmax(0,500px)_minmax(0,1fr)] lg:items-center lg:pb-16 lg:pt-9 xl:gap-12">
+        <div className="mx-auto grid max-w-[1240px] gap-12 px-4 pb-16 pt-10 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] lg:items-center lg:pb-24 lg:pt-16 xl:gap-14">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="max-w-[540px] text-[38px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[50px] lg:text-[56px] xl:text-[62px]">
-              Deutsch lernen.
-              <br />
-              <span className="bg-gradient-to-r from-white via-[#ffe27a] to-[#f3ad24] bg-clip-text text-transparent">
-                In deiner Sprache verstehen.
-                <br />
-                Sicher bestehen.
-              </span>
+            <h1 className="max-w-[560px] text-[40px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[54px] lg:text-[60px] xl:text-[66px]">
+              Deutsche Fachkundeprüfungen gezielt bestehen.
             </h1>
 
-            <p className="mt-5 max-w-[500px] text-base font-medium leading-7 text-slate-300">
-              FachkundePilot hilft dir, deutsche Prüfungsbegriffe zu verstehen, mit Lernkarten zu
-              sichern und echte Prüfungssituationen zu trainieren.
+            <p className="mt-6 max-w-[580px] text-lg font-medium leading-8 text-slate-300">
+              Lerne deutsche Prüfungsbegriffe, verstehe sie in deiner Sprache und trainiere mit Lernkarten, Simulationen und klaren Lernpfaden.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <GoldButton>Zertifikat auswählen</GoldButton>
-              <DarkButton href="/methode">Demo ansehen</DarkButton>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <GoldButton href="/zertifikate">Zertifikat auswählen</GoldButton>
+              <DarkButton href="/dashboard">Demo ansehen</DarkButton>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:max-w-[500px]">
+            <div className="mt-7 grid gap-4 sm:grid-cols-3 lg:max-w-[560px]">
               {[
                 ["check", "An offiziellen Themen orientiert"],
                 ["cards", "Lernkarten & Wiederholung"],
@@ -802,7 +781,7 @@ function Hero() {
               ].map(([icon, text]) => (
                 <div
                   key={text}
-                  className="rounded-xl border border-slate-600/35 bg-[#071a30]/80 p-3 text-[11px] font-bold leading-4 text-slate-300"
+                  className="rounded-xl border border-slate-600/35 bg-[#071a30]/80 p-4 text-sm font-bold leading-5 text-slate-200"
                 >
                   <SvgIcon name={icon as IconName} className="mb-2 text-yellow-300" />
                   {text}
@@ -833,8 +812,8 @@ function StatStrip() {
   ] as const;
 
   return (
-    <section className="mx-auto max-w-[1180px] px-4 pt-6">
-      <div className="grid gap-3 rounded-2xl border border-[#b88a2e]/40 bg-[#06182c]/90 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.35)] md:grid-cols-4">
+    <section className="mx-auto max-w-[1180px] px-4 pt-10 lg:pt-14">
+      <div className="grid gap-4 rounded-3xl border border-[#b88a2e]/40 bg-[#06182c]/90 p-6 shadow-[0_18px_55px_rgba(0,0,0,0.35)] md:grid-cols-4">
         {stats.map(([value, title, text], index) => (
           <div
             key={title}
@@ -854,30 +833,29 @@ function StatStrip() {
 
 function ProblemSection() {
   return (
-    <section id="problem" className="mx-auto max-w-[1180px] px-4 pt-6">
-      <div className="grid gap-5 rounded-2xl border border-rose-400/20 bg-gradient-to-br from-[#111827]/90 to-[#071a30]/90 p-5 shadow-[0_18px_55px_rgba(0,0,0,0.35)] lg:grid-cols-[0.9fr_1.1fr]">
+    <section id="problem" className="mx-auto max-w-[1180px] px-4 pt-12 lg:pt-16">
+      <div className="grid gap-8 rounded-3xl border border-rose-400/20 bg-gradient-to-br from-[#111827]/90 to-[#071a30]/90 p-7 shadow-[0_18px_55px_rgba(0,0,0,0.35)] lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-rose-300">
             Das echte Problem
           </p>
           <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.05em] text-white">
-            Die meisten lernen viel — aber nicht gezielt genug.
+            Viele lernen viel — aber nicht gezielt genug.
           </h2>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            Fachkundeprüfungen scheitern selten nur am Fleiß. Das Problem ist meistens fehlende
-            Struktur, schwierige Sprache und zu wenig echte Prüfungspraxis.
+          <p className="mt-4 text-base leading-7 text-slate-300">
+            Viele arbeiten mit PDFs, verstreuten Notizen und zu wenig Struktur. Gleichzeitig sind deutsche Fachbegriffe, Prüfungsdruck und Rechenthemen oft die größten Hürden kurz vor dem Termin.
           </p>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {painPoints.map((point) => (
             <article
               key={point.title}
-              className="rounded-xl border border-slate-600/40 bg-[#081d36] p-4"
+              className="rounded-2xl border border-slate-600/40 bg-[#081d36] p-5"
             >
               <IconBox icon={point.icon as IconName} tone="red" />
               <h3 className="mt-4 text-base font-black text-white">{point.title}</h3>
-              <p className="mt-2 text-xs leading-5 text-slate-400">{point.text}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{point.text}</p>
             </article>
           ))}
         </div>
@@ -888,8 +866,8 @@ function ProblemSection() {
 
 function Certificates() {
   return (
-    <section id="zertifikate" className="mx-auto max-w-[1180px] px-4 pt-6">
-      <div className="mb-4 flex items-end justify-between gap-4">
+    <section id="zertifikate" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
             Zertifikate
@@ -907,11 +885,11 @@ function Certificates() {
         </a>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {certificates.map((item, index) => (
           <article
             key={item.title}
-            className={`group relative overflow-hidden rounded-2xl border bg-[#071a30]/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(56,189,248,0.14)] ${
+            className={`group relative overflow-hidden rounded-2xl border bg-[#071a30]/88 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(56,189,248,0.14)] ${
               index === 0 ? item.border : "border-slate-600/40 hover:border-sky-400/50"
             }`}
           >
@@ -947,19 +925,13 @@ function Certificates() {
               </div>
             </div>
 
-            <div className="relative mt-4 grid grid-cols-3 gap-2">
-              {[item.meta, item.level, item.languages].map((meta) => (
-                <span
-                  key={meta}
-                  className="rounded-lg bg-white/[0.055] px-2 py-2 text-[10px] font-bold text-slate-300"
-                >
-                  {meta}
-                </span>
-              ))}
+            <div className="relative mt-5 space-y-2">
+              <p className="text-sm font-semibold text-slate-300">{item.subtitle}</p>
+              <p className="text-sm leading-6 text-slate-400">{item.meta} · {item.level}</p>
             </div>
 
             <div className="relative mt-4">
-              <div className="mb-2 flex items-center justify-between text-[11px] font-bold text-slate-400">
+              <div className="mb-2 flex items-center justify-between text-sm font-bold text-slate-400">
                 <span>Beispiel für Lernfortschritt</span>
                 <span>{item.progress}</span>
               </div>
@@ -967,9 +939,9 @@ function Certificates() {
             </div>
 
             <div className="relative mt-4 flex items-center justify-between border-t border-white/10 pt-3">
-              <span className="text-[11px] font-black text-slate-500">{item.status}</span>
-              <a href={item.href} className="text-xs font-black text-slate-200 group-hover:text-yellow-300">
-                Mehr erfahren →
+              <span className="text-sm font-black text-slate-400">{item.status}</span>
+              <a href={item.href} className="text-sm font-black text-slate-200 group-hover:text-yellow-300">
+                Zur Detailseite →
               </a>
             </div>
           </article>
@@ -981,19 +953,19 @@ function Certificates() {
 
 function FeatureStrip() {
   return (
-    <section className="mx-auto max-w-[1180px] px-4 pt-4">
-      <div className="grid gap-3 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-4 md:grid-cols-3 lg:grid-cols-6">
+    <section className="mx-auto max-w-[1180px] px-4 pt-8 lg:pt-10">
+      <div className="grid gap-4 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5 md:grid-cols-3">
         {featureStrip.map(([icon, title, text], index) => (
           <div
             key={title}
             className={`flex items-start gap-3 ${
-              index !== featureStrip.length - 1 ? "lg:border-r lg:border-slate-500/35" : ""
+              index !== featureStrip.length - 1 ? "md:border-r md:border-slate-500/35 md:pr-4" : ""
             }`}
           >
             <IconBox icon={icon as IconName} />
             <div>
-              <p className="text-sm font-black leading-4 text-white">{title}</p>
-              <p className="mt-1 text-[11px] leading-4 text-slate-400">{text}</p>
+              <p className="text-base font-black leading-5 text-white">{title}</p>
+              <p className="mt-1 text-sm leading-6 text-slate-400">{text}</p>
             </div>
           </div>
         ))}
@@ -1004,8 +976,8 @@ function FeatureStrip() {
 
 function MethodSection() {
   return (
-    <section id="methode" className="mx-auto max-w-[1180px] px-4 pt-4">
-      <div className="grid gap-5 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5 lg:grid-cols-[0.8fr_1.2fr]">
+    <section id="methode" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="grid gap-8 rounded-3xl border border-slate-600/40 bg-gradient-to-br from-[#071a30] to-[#0a2038] p-7 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
             Lernmethode
@@ -1013,23 +985,23 @@ function MethodSection() {
           <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.05em] text-white">
             Aus jedem Fehler wird automatisch der nächste Lernschritt.
           </h2>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
+          <p className="mt-4 text-base leading-7 text-slate-300">
             Nicht nur lesen. FachkundePilot verbindet Erklärung, Karte, Frage und Simulation in
             einem klaren Ablauf.
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {methodSteps.map((step) => (
             <article
               key={step.title}
-              className="rounded-xl border border-slate-600/40 bg-[#081d36] p-4"
+              className="rounded-2xl border border-slate-600/40 bg-[#081d36] p-5"
             >
               <p className="w-fit rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-[10px] font-black text-yellow-300">
                 {step.number}
               </p>
               <h3 className="mt-3 text-lg font-black text-white">{step.title}</h3>
-              <p className="mt-2 text-xs leading-5 text-slate-400">{step.text}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{step.text}</p>
             </article>
           ))}
         </div>
@@ -1046,7 +1018,7 @@ function StepsAndTestimonials() {
   ] as const;
 
   return (
-    <section id="erfolge" className="mx-auto grid max-w-[1180px] gap-5 px-4 pt-4 lg:grid-cols-[0.8fr_1.2fr]">
+    <section id="erfolge" className="mx-auto grid max-w-[1180px] gap-6 px-4 pt-12 lg:pt-16 lg:grid-cols-[0.8fr_1.2fr]">
       <div className="relative overflow-hidden rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5">
         <div className="absolute bottom-4 right-7 text-[120px] font-black text-yellow-400/10">
           100
@@ -1084,7 +1056,7 @@ function StepsAndTestimonials() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5">
+      <div className="rounded-3xl border border-slate-600/40 bg-[#071a30]/88 p-7">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
@@ -1099,11 +1071,11 @@ function StepsAndTestimonials() {
           </p>
         </div>
 
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
           {testimonials.map(([initials, name, label, quote]) => (
             <article
               key={name}
-              className="rounded-xl border border-slate-600/40 bg-[#081d36] p-4 transition hover:border-sky-400/45"
+              className="rounded-2xl border border-slate-600/40 bg-[#081d36] p-5 transition hover:border-sky-400/45"
             >
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-sky-500/50 to-purple-500/40 text-sm font-black text-white">
@@ -1111,11 +1083,11 @@ function StepsAndTestimonials() {
                 </div>
                 <div>
                   <p className="text-sm font-black text-white">{name}</p>
-                  <p className="text-[10px] font-bold text-slate-400">{label}</p>
+                  <p className="text-xs font-bold text-slate-400">{label}</p>
                 </div>
               </div>
               <p className="mt-2 text-yellow-300">★★★★★</p>
-              <p className="mt-3 text-xs leading-5 text-slate-300">„{quote}“</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">„{quote}“</p>
             </article>
           ))}
         </div>
@@ -1126,8 +1098,8 @@ function StepsAndTestimonials() {
 
 function PricingSection() {
   return (
-    <section id="preise" className="mx-auto max-w-[1180px] px-4 pt-4">
-      <div className="mb-4">
+    <section id="preise" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="mb-7">
         <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
           Preise
         </p>
@@ -1139,11 +1111,11 @@ function PricingSection() {
         </p>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-4">
+      <div className="grid gap-5 lg:grid-cols-4">
         {pricingPlans.map((plan) => (
           <article
             key={plan.name}
-            className={`rounded-2xl border p-5 ${
+            className={`rounded-2xl border p-6 ${
               plan.featured
                 ? "border-yellow-400/60 bg-gradient-to-br from-yellow-400/15 to-[#081d36] shadow-[0_0_35px_rgba(246,200,79,0.18)]"
                 : "border-slate-600/40 bg-[#071a30]/88"
@@ -1160,7 +1132,7 @@ function PricingSection() {
             </p>
 
             <h3 className="mt-4 text-xl font-black text-white">{plan.name}</h3>
-            <p className="mt-2 text-xs leading-5 text-slate-400">{plan.description}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{plan.description}</p>
 
             <p className="mt-5 text-4xl font-black tracking-[-0.06em] text-white">
               {plan.price}
@@ -1171,7 +1143,7 @@ function PricingSection() {
 
             <div className="mt-5 space-y-3">
               {plan.benefits.map((benefit) => (
-                <p key={benefit} className="flex gap-2 text-xs font-bold leading-5 text-slate-300">
+                <p key={benefit} className="flex gap-2 text-sm font-bold leading-6 text-slate-300">
                   <span className="mt-0.5 text-yellow-300">✓</span>
                   {benefit}
                 </p>
@@ -1191,7 +1163,7 @@ function PricingSection() {
         ))}
       </div>
 
-      <p className="mt-4 rounded-2xl border border-slate-600/40 bg-[#071a30]/70 p-4 text-xs leading-5 text-slate-500">
+      <p className="mt-6 rounded-2xl border border-slate-600/40 bg-[#071a30]/70 p-5 text-sm leading-6 text-slate-400">
         Hinweis: FachkundePilot ist eine private Lernplattform und keine offizielle IHK-,
         Behörden- oder Prüfungsstelle. Die Inhalte sollen prüfungsorientiert und an relevanten
         Themenbereichen ausgerichtet sein.
@@ -1202,28 +1174,28 @@ function PricingSection() {
 
 function FAQSection() {
   return (
-    <section id="faq" className="mx-auto max-w-[1180px] px-4 pt-4">
-      <div className="grid gap-5 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5 lg:grid-cols-[0.7fr_1.3fr]">
+    <section id="faq" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="grid gap-7 rounded-3xl border border-slate-600/40 bg-[#071a30]/88 p-7 lg:grid-cols-[0.7fr_1.3fr]">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
             FAQ
           </p>
           <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.05em] text-white">
-            Wichtig für Vertrauen und SEO.
+            Häufige Fragen klar beantwortet.
           </h2>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
+          <p className="mt-4 text-base leading-7 text-slate-300">
             Klare Antworten verhindern falsche Erwartungen und machen die Plattform seriöser.
           </p>
         </div>
 
-        <div className="grid gap-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {faqItems.map((item) => (
             <article
               key={item.question}
-              className="rounded-xl border border-slate-600/40 bg-[#081d36] p-4"
+              className="rounded-2xl border border-slate-600/40 bg-[#081d36] p-5"
             >
               <h3 className="text-base font-black text-white">{item.question}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{item.answer}</p>
+              <p className="mt-2 text-sm leading-7 text-slate-300">{item.answer}</p>
             </article>
           ))}
         </div>
@@ -1241,21 +1213,21 @@ function Footer() {
   ] as const;
 
   return (
-    <footer id="kontakt" className="mt-4 border-t border-yellow-400/20 bg-[#041120]">
-      <div className="mx-auto grid max-w-[1180px] gap-8 px-4 py-8 text-sm text-slate-400 md:grid-cols-[1.5fr_repeat(4,1fr)]">
+    <footer id="kontakt" className="mt-16 border-t border-yellow-400/20 bg-[#041120]">
+      <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-12 text-sm text-slate-400 md:grid-cols-[1.5fr_repeat(4,1fr)]">
         <div>
           <Logo />
           <p className="mt-4 max-w-xs leading-6">
             Prüfungsorientiertes Lernen für deutsche Sach- und Fachkundeprüfungen.
           </p>
 
-          <div className="mt-4 flex gap-3">
+          <div className="mt-6 flex gap-3">
             {[["Kontakt","/kontakt"],["FAQ","/faq"],["Preise","/preise"],["Dashboard","/dashboard"]].map(([item,href]) => (
               <a
                 key={item}
                 href={href}
                 aria-label={`Zu ${item}`}
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 font-black text-white transition hover:bg-yellow-400 hover:text-[#081526]"
+                className="grid min-h-10 min-w-10 place-items-center rounded-full bg-white/10 px-3 font-black text-white transition hover:bg-yellow-400 hover:text-[#081526]"
               >
                 {item}
               </a>
@@ -1277,7 +1249,7 @@ function Footer() {
         ))}
       </div>
 
-      <div className="mx-auto max-w-[1180px] border-t border-slate-700/60 px-4 py-5 text-center text-xs text-slate-500">
+      <div className="mx-auto max-w-[1180px] border-t border-slate-700/60 px-4 py-6 text-center text-sm text-slate-500">
         © 2026 FachkundePilot. Alle Rechte vorbehalten.
       </div>
     </footer>
@@ -1294,7 +1266,7 @@ function MobileStickyCTA() {
 
 export default function Page() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#03111f] pb-20 text-white md:pb-0">
+    <main className="min-h-screen overflow-x-hidden bg-[#03111f] pb-24 text-white md:pb-0">
       <Hero />
       <StatStrip />
       <ProblemSection />
