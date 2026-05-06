@@ -4,40 +4,34 @@ const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
 
 const heroTrustItems = [
   "IHK-orientierte Struktur",
+  "Deutsch bleibt Prüfungssprache",
   "Mehrsprachige Erklärungen",
-  "Prüfungssimulation",
 ];
-
-const heroMetrics = [
-  { label: "Prüfungsreife", value: "78%", progress: "78%", tone: "blue" },
-  { label: "Lernzeit", value: "12h 45m", progress: "64%", tone: "green" },
-  { label: "Karten fällig", value: "24", progress: "42%", tone: "gold" },
-] as const;
 
 const trustStats = [
   {
     icon: "🌍",
     title: "Mehrsprachig",
     value: "DE · AR · EN · TR",
-    text: "Deutsch bleibt Prüfungssprache — deine Sprache hilft beim Verstehen.",
+    text: "Prüfungsdeutsch verstehen, ohne den deutschen Wortlaut zu verlieren.",
   },
   {
-    icon: "⭐",
-    title: "Bewertung",
-    value: "4.9/5",
-    text: "Klare Struktur, einfache Erklärungen und messbarer Fortschritt.",
+    icon: "🧪",
+    title: "Prüfungssimulation",
+    value: "Realistisch",
+    text: "Trainiere mit Zeitdruck, Auswertung und Themenanalyse.",
   },
   {
     icon: "🧠",
-    title: "Lernlogik",
-    value: "Smart Review",
-    text: "Wiederholung, Schwächenanalyse und realistische Prüfungsfragen.",
+    title: "Smart Review",
+    value: "Gezielt",
+    text: "Schwache Themen werden sichtbar und wiederholt.",
   },
   {
     icon: "🎓",
     title: "Zertifikate",
     value: "12+ geplant",
-    text: "Ein Lernsystem für mehrere deutsche Sach- und Fachkundeprüfungen.",
+    text: "Ein System für viele deutsche Sach- und Fachkundeprüfungen.",
   },
 ] as const;
 
@@ -46,132 +40,138 @@ const certificates = [
     icon: "🚕",
     title: "Taxi & Mietwagen",
     subtitle: "Fachkundeprüfung nach PBefG",
-    description: "Tarif-, Orts- und Unternehmerwissen für die Personenbeförderung.",
+    description: "Tarif-, Orts-, Unternehmer- und Kostenwissen für die Personenbeförderung.",
     stats: "12 Kapitel · 850+ Fragen",
     badge: "Beliebt",
     level: "Mittel",
     languages: "DE · AR · EN · TR",
+    readiness: "82%",
   },
   {
     icon: "🛡️",
     title: "§34a Bewachung",
     subtitle: "Sachkundeprüfung nach §34a GewO",
-    description: "Recht, Deeskalation und Praxisfälle verständlich trainieren.",
+    description: "Recht, Deeskalation, Umgang mit Menschen und Praxisfälle sicher verstehen.",
     stats: "9 Kapitel · 650+ Fragen",
     badge: "Beliebt",
     level: "Einsteiger",
     languages: "DE · AR · EN",
+    readiness: "76%",
   },
   {
     icon: "🚚",
     title: "Güterkraftverkehr",
     subtitle: "Fachkundeprüfung Güterverkehr",
-    description: "Kostenrechnung, Disposition und EU-Regeln strukturiert lernen.",
+    description: "Kostenrechnung, Disposition, Transportrecht und EU-Regeln strukturiert lernen.",
     stats: "10 Kapitel · 700+ Fragen",
     badge: "Verfügbar",
     level: "Fortgeschritten",
     languages: "DE · EN · TR",
+    readiness: "68%",
   },
   {
     icon: "📄",
     title: "Versicherung §34d",
     subtitle: "Sachkunde Versicherungsvermittlung",
-    description: "Beratungslogik, Haftung und Produktgrundlagen prüfungsnah üben.",
+    description: "Beratungslogik, Haftung, Produktgrundlagen und Regulatorik prüfungsnah üben.",
     stats: "8 Kapitel · 600+ Fragen",
     badge: "Bald verfügbar",
     level: "Mittel",
     languages: "DE · AR · EN",
+    readiness: "54%",
   },
   {
     icon: "📊",
     title: "Finanzanlagen §34f",
     subtitle: "Sachkunde Finanzanlagenvermittlung",
-    description: "Produkte, Risikoaufklärung und Regulatorik sicher verstehen.",
+    description: "Produkte, Risikoaufklärung, Geeignetheit und regulatorische Pflichten verstehen.",
     stats: "7 Kapitel · 550+ Fragen",
     badge: "Bald verfügbar",
     level: "Fortgeschritten",
     languages: "DE · EN",
+    readiness: "49%",
   },
   {
     icon: "🏛️",
     title: "Immobiliardarlehen",
     subtitle: "Sachkunde Darlehensvermittlung",
-    description: "Darlehensarten, Finanzierung und Verbraucherschutz im Blick.",
+    description: "Darlehensarten, Finanzierung, Verbraucherschutz und Beratungslogik im Blick.",
     stats: "7 Kapitel · 500+ Fragen",
     badge: "Bald verfügbar",
     level: "Mittel",
     languages: "DE · AR · TR",
+    readiness: "46%",
   },
 ] as const;
 
 const features = [
   {
-    icon: "💡",
-    title: "Deutsch verstehen",
-    text: "Prüfungsbegriffe bleiben deutsch, aber werden einfach und logisch erklärt.",
-  },
-  {
-    icon: "🧪",
-    title: "Prüfung simulieren",
-    text: "Trainiere echte Prüfungssituationen mit Zeitdruck und Auswertung.",
-  },
-  {
-    icon: "🃏",
-    title: "Lernkarten",
-    text: "Wiederhole Regeln, Begriffe und Rechenlogik mit System.",
-  },
-  {
-    icon: "📈",
-    title: "Fortschritt messen",
-    text: "Erkenne sofort, welche Themen sitzen und was noch fehlt.",
-  },
-  {
-    icon: "📱",
-    title: "Mobil lernen",
-    text: "Auf Smartphone, Tablet und Desktop — überall weiterlernen.",
+    icon: "🇩🇪",
+    title: "Deutsch als Prüfungsbasis",
+    text: "Du lernst mit deutschen Originalbegriffen, damit du die Prüfungssprache sicher verstehst.",
   },
   {
     icon: "🌐",
-    title: "Mehrsprachig",
-    text: "Arabisch, Englisch und Türkisch helfen dir beim Verstehen.",
+    title: "Erklärung in deiner Sprache",
+    text: "Arabisch, Englisch oder Türkisch helfen dir, schwierige Inhalte wirklich zu verstehen.",
+  },
+  {
+    icon: "🃏",
+    title: "Lernkarten mit System",
+    text: "Begriffe, Regeln und Rechenlogik werden wiederholt, bis sie sitzen.",
+  },
+  {
+    icon: "🧪",
+    title: "Prüfungssimulation",
+    text: "Du trainierst reale Prüfungssituationen mit Punkten, Zeit und Fehleranalyse.",
+  },
+  {
+    icon: "📈",
+    title: "Schwächenanalyse",
+    text: "Du siehst sofort, welche Themen du noch verbessern musst.",
+  },
+  {
+    icon: "📱",
+    title: "Mobile-first Lernen",
+    text: "Lerne unterwegs, auf dem Sofa oder in der Pause — ohne Chaos.",
   },
 ] as const;
 
 const learningSteps = [
   {
     number: "01",
-    title: "Zertifikat wählen",
-    text: "Wähle dein Prüfungsziel und erhalte automatisch eine klare Lernstruktur.",
+    title: "Ziel wählen",
+    text: "Wähle dein Zertifikat und erhalte eine klare Struktur mit Kapiteln, Karten und Prüfungen.",
   },
   {
     number: "02",
     title: "Deutsch verstehen",
-    text: "Lerne die offiziellen Begriffe auf Deutsch — mit einfachen Erklärungen.",
+    text: "Lerne die offiziellen deutschen Begriffe mit einfachen Erklärungen in deiner Sprache.",
   },
   {
     number: "03",
-    title: "Lernkarten trainieren",
-    text: "Wiederhole wichtige Regeln, Begriffe und Rechenlogik systematisch.",
+    title: "Gezielt trainieren",
+    text: "Arbeite mit Lernkarten, Rechenlogik, Rechtsfragen und Praxisfällen.",
   },
   {
     number: "04",
     title: "Prüfung simulieren",
-    text: "Teste dich unter realistischen Bedingungen mit Zeit, Punkten und Auswertung.",
+    text: "Teste dich unter realistischen Bedingungen und erkenne deine letzten Schwächen.",
   },
 ] as const;
 
 const comparisonRows = [
   {
-    normal: "PDFs, Bücher und Notizen sind unübersichtlich.",
-    pilot: "Klare Lernpfade mit Fortschritt, Themenlogik und Prüfungsvorbereitung.",
+    bad: "PDFs und Bücher zeigen dir nicht, was wirklich sitzt.",
+    good: "FachkundePilot zeigt Fortschritt, Schwächen und nächste Lernschritte.",
   },
   {
-    normal: "Du weißt nicht genau, was du schon kannst.",
-    pilot: "Du siehst Schwächen, Fortschritt und nächste Lernschritte sofort.",
+    bad: "Du springst zwischen Notizen, Videos und Screenshots hin und her.",
+    good: "Alles liegt in einem Lernpfad: Erklärung, Karte, Frage, Simulation.",
   },
   {
-    normal: "Prüfungen fühlen sich plötzlich und stressig an.",
-    pilot: "Simulationen bereiten dich gezielt auf echte Prüfungssituationen vor.",
+    bad: "Die Prüfung fühlt sich plötzlich und stressig an.",
+    good: "Du übst vorher mit Zeitdruck, Punkten und realistischen Prüfungsrunden.",
   },
 ] as const;
 
@@ -180,29 +180,45 @@ const testimonials = [
     initials: "MK",
     name: "Mehmet K.",
     label: "§34a Bewachung",
-    quote: "Die Lernkarten haben mir geholfen, die wichtigsten Begriffe schnell zu verstehen.",
+    quote: "Ich habe endlich verstanden, welche deutschen Begriffe wirklich wichtig sind.",
   },
   {
     initials: "SL",
     name: "Sarah L.",
     label: "Versicherung §34d",
-    quote: "Endlich eine klare Struktur. Ich wusste jeden Tag genau, was ich lernen muss.",
+    quote: "Die Struktur war der Unterschied. Ich wusste jeden Tag, was ich lernen muss.",
   },
   {
     initials: "AA",
     name: "Ahmed A.",
     label: "Taxi & Mietwagen",
-    quote: "Deutsch war schwer für mich. Die einfachen Erklärungen haben alles verändert.",
+    quote: "Deutsch war mein Problem. Die Erklärungen in meiner Sprache haben alles verändert.",
   },
 ] as const;
 
 const pricingBenefits = [
   "Alle verfügbaren Zertifikate",
+  "Mehrsprachige Erklärungen",
   "Lernkarten & Wiederholung",
   "Prüfungssimulationen",
-  "Mehrsprachige Erklärungen",
   "Fortschrittsanalyse",
+  "Mobile Nutzung",
 ];
+
+const faqItems = [
+  {
+    question: "Ist die Prüfung auf Deutsch?",
+    answer: "Ja. Deutsch bleibt die echte Prüfungssprache. Die anderen Sprachen helfen beim Verstehen.",
+  },
+  {
+    question: "Kann ich mehrere Zertifikate lernen?",
+    answer: "Ja. Die Plattform ist von Anfang an für mehrere Sach- und Fachkundeprüfungen geplant.",
+  },
+  {
+    question: "Ist das nur für Taxi & Mietwagen?",
+    answer: "Nein. Taxi & Mietwagen ist nur eines der Zertifikate. Weitere Bereiche sind vorbereitet.",
+  },
+] as const;
 
 const footerGroups = [
   {
@@ -210,16 +226,16 @@ const footerGroups = [
     links: ["Zertifikate", "Lernmethode", "Preise", "Erfolgsgeschichten"],
   },
   {
+    title: "Lernen",
+    links: ["Lernkarten", "Prüfungssimulation", "Mehrsprachigkeit", "Fortschritt"],
+  },
+  {
     title: "Unternehmen",
-    links: ["Über uns", "Karriere", "Kontakt"],
+    links: ["Über uns", "Kontakt", "Partner", "Karriere"],
   },
   {
     title: "Rechtliches",
-    links: ["Datenschutz", "Impressum", "AGB"],
-  },
-  {
-    title: "Social",
-    links: ["Instagram", "YouTube", "LinkedIn", "Facebook"],
+    links: ["Datenschutz", "Impressum", "AGB", "Cookie-Hinweise"],
   },
 ] as const;
 
@@ -232,17 +248,18 @@ function Glass({
 }) {
   return (
     <div
-      className={`border border-white/10 bg-[#081b3d]/80 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur-2xl ${className}`}
+      className={`border border-white/10 bg-[#071a3a]/78 shadow-[0_26px_100px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${className}`}
     >
       {children}
     </div>
   );
 }
 
-function Badge({ children }: { children: ReactNode }) {
+function Pill({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-[#4ea1ff]/35 bg-[#0a2452]/70 px-4 py-2 text-sm font-bold text-[#d8ebff] shadow-[0_0_35px_rgba(78,161,255,0.12)]">
-      <span className="h-2 w-2 rounded-full bg-[#4ea1ff]" />
+    <span
+      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-black text-[#d8ebff] ${className}`}
+    >
       {children}
     </span>
   );
@@ -250,7 +267,7 @@ function Badge({ children }: { children: ReactNode }) {
 
 function PrimaryButton({ children }: { children: ReactNode }) {
   return (
-    <button className="rounded-2xl bg-gradient-to-b from-[#ffd36b] to-[#f3b23c] px-7 py-4 text-base font-black text-[#07162f] shadow-[0_18px_45px_rgba(244,183,63,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(244,183,63,0.38)]">
+    <button className="rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-7 py-4 text-base font-black text-[#06122b] shadow-[0_20px_60px_rgba(244,178,60,0.34)] transition hover:-translate-y-0.5 hover:shadow-[0_25px_80px_rgba(244,178,60,0.46)]">
       {children}
     </button>
   );
@@ -258,7 +275,7 @@ function PrimaryButton({ children }: { children: ReactNode }) {
 
 function SecondaryButton({ children }: { children: ReactNode }) {
   return (
-    <button className="rounded-2xl border border-white/15 bg-white/[0.045] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
+    <button className="rounded-2xl border border-white/15 bg-white/[0.05] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
       {children}
     </button>
   );
@@ -273,9 +290,9 @@ function ProgressBar({
 }) {
   const color =
     tone === "gold"
-      ? "bg-[#f3b23c]"
+      ? "bg-gradient-to-r from-[#f3b23c] to-[#ffe08a]"
       : tone === "green"
-        ? "bg-[#34d399]"
+        ? "bg-gradient-to-r from-[#34d399] to-[#8fffe0]"
         : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
 
   return (
@@ -287,10 +304,10 @@ function ProgressBar({
 
 function Navbar() {
   return (
-    <header className="relative z-20 mx-auto max-w-[1380px] px-4 pt-5 sm:px-6 lg:px-8">
-      <nav className="flex min-h-[82px] items-center justify-between rounded-[28px] border border-white/10 bg-[#071832]/80 px-4 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:px-7">
+    <header className="relative z-20 mx-auto max-w-[1400px] px-4 pt-5 sm:px-6 lg:px-8">
+      <nav className="flex min-h-[84px] items-center justify-between rounded-[30px] border border-white/10 bg-[#061731]/82 px-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:px-7">
         <div className="flex items-center gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/40 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_32px_rgba(78,161,255,0.22)]">
+          <div className="grid h-13 w-13 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
             ✦
           </div>
           <div>
@@ -324,11 +341,11 @@ function Navbar() {
 
 function DashboardPreview() {
   return (
-    <Glass className="relative overflow-hidden rounded-[34px] border-[#4ea1ff]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_35px_110px_rgba(36,100,210,0.24)]">
-      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#4ea1ff]/20 blur-3xl" />
-      <div className="absolute -bottom-24 left-20 h-56 w-56 rounded-full bg-[#f3b23c]/10 blur-3xl" />
+    <Glass className="relative overflow-hidden rounded-[36px] border-[#4ea1ff]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_38px_120px_rgba(36,100,210,0.28)]">
+      <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#4ea1ff]/22 blur-3xl" />
+      <div className="absolute -bottom-28 left-16 h-64 w-64 rounded-full bg-[#f3b23c]/12 blur-3xl" />
 
-      <div className="relative rounded-[28px] border border-white/10 bg-[#061936]/95 p-4">
+      <div className="relative rounded-[30px] border border-white/10 bg-[#061936]/95 p-4">
         <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
           <div>
             <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
@@ -345,7 +362,7 @@ function DashboardPreview() {
           </div>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[120px_1fr]">
+        <div className="grid gap-4 lg:grid-cols-[124px_1fr]">
           <aside className="hidden rounded-2xl border border-white/10 bg-[#0a1b3f] p-2 text-xs font-bold text-[#8ea0c0] lg:block">
             {["Übersicht", "Zertifikate", "Karten", "Prüfung", "Fortschritt"].map(
               (item, index) => (
@@ -375,7 +392,11 @@ function DashboardPreview() {
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
-              {heroMetrics.map((metric) => (
+              {[
+                { label: "Prüfungsreife", value: "78%", progress: "78%", tone: "blue" },
+                { label: "Lernzeit", value: "12h", progress: "64%", tone: "green" },
+                { label: "Karten fällig", value: "24", progress: "42%", tone: "gold" },
+              ].map((metric) => (
                 <div
                   key={metric.label}
                   className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
@@ -394,7 +415,7 @@ function DashboardPreview() {
               ))}
             </div>
 
-            <div className="mt-3 grid gap-3 md:grid-cols-[1.1fr_.9fr]">
+            <div className="mt-3 grid gap-3 md:grid-cols-[1.08fr_.92fr]">
               <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <p className="text-sm font-black text-white">Aktive Zertifikate</p>
@@ -438,8 +459,8 @@ function DashboardPreview() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(78,161,255,0.3),transparent_34%),radial-gradient(circle_at_20%_30%,rgba(244,183,63,0.14),transparent_26%),linear-gradient(180deg,#06122b_0%,#07162f_62%,#06122b_100%)]" />
-      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(78,161,255,0.34),transparent_34%),radial-gradient(circle_at_20%_30%,rgba(244,183,63,0.15),transparent_26%),linear-gradient(180deg,#06122b_0%,#07162f_62%,#06122b_100%)]" />
+      <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
 
       <div className="relative">
         <Navbar />
@@ -448,7 +469,7 @@ function Hero() {
           <div>
             <Badge>Die Lernplattform für offizielle Sach- und Fachkundeprüfungen</Badge>
 
-            <h1 className="mt-6 max-w-[680px] text-[52px] font-black leading-[0.97] tracking-[-0.065em] text-white sm:text-[64px] lg:text-[72px] xl:text-[84px]">
+            <h1 className="mt-6 max-w-[690px] text-[52px] font-black leading-[0.97] tracking-[-0.065em] text-white sm:text-[64px] lg:text-[72px] xl:text-[84px]">
               Bestehe deine Prüfung.
               <br />
               Mit{" "}
@@ -577,7 +598,10 @@ function CertificatesSection() {
                 </span>
               </div>
 
-              <div className="mt-5 border-t border-white/10 pt-4">
+              <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+                <span className="text-xs font-bold text-[#8ea0c0]">
+                  Beispiel-Lernstand: {certificate.readiness}
+                </span>
                 <button className="text-sm font-black text-[#76b7ff] transition group-hover:text-[#f3b23c]">
                   Mehr erfahren →
                 </button>
@@ -615,18 +639,18 @@ function FeatureStrip() {
   );
 }
 
-function MethodAndProof() {
+function LearningEngine() {
   return (
-    <section className="mx-auto grid max-w-[1360px] gap-6 px-4 pb-20 sm:px-6 lg:px-8 xl:grid-cols-[0.95fr_1.05fr]">
+    <section className="mx-auto grid max-w-[1360px] gap-6 px-4 pb-20 sm:px-6 lg:px-8 xl:grid-cols-[0.92fr_1.08fr]">
       <Glass className="rounded-[34px] p-6 md:p-8">
         <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
           Lernlogik
         </p>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
-          So funktioniert’s
+          Von Chaos zu klarer Prüfungsvorbereitung.
         </h2>
         <p className="mt-4 text-lg leading-8 text-[#afc0da]">
-          Ein klarer Prozess: Ziel wählen, strukturiert lernen, realistisch prüfen.
+          FachkundePilot führt dich Schritt für Schritt durch deutsche Prüfungslogik.
         </p>
 
         <div className="mt-8 space-y-4">
@@ -652,29 +676,26 @@ function MethodAndProof() {
           Warum nicht einfach PDF?
         </p>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
-          Lernen mit System statt Chaos.
+          Lernen mit System statt Stapel von Unterlagen.
         </h2>
-        <p className="mt-4 text-lg leading-8 text-[#afc0da]">
-          FachkundePilot verwandelt trockene Unterlagen in einen klaren Lernprozess.
-        </p>
 
         <div className="mt-8 space-y-4">
           {comparisonRows.map((row) => (
             <div
-              key={row.normal}
+              key={row.bad}
               className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.045] p-4 md:grid-cols-2"
             >
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8ea0c0]">
-                  Bücher / PDFs
+                  Klassisch
                 </p>
-                <p className="mt-2 text-sm leading-7 text-[#afc0da]">✕ {row.normal}</p>
+                <p className="mt-2 text-sm leading-7 text-[#afc0da]">✕ {row.bad}</p>
               </div>
               <div className="rounded-2xl border border-[#f3b23c]/25 bg-[#f3b23c]/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f3b23c]">
                   FachkundePilot
                 </p>
-                <p className="mt-2 text-sm font-bold leading-7 text-white">✓ {row.pilot}</p>
+                <p className="mt-2 text-sm font-bold leading-7 text-white">✓ {row.good}</p>
               </div>
             </div>
           ))}
@@ -694,12 +715,12 @@ function Testimonials() {
               Erfolgsgeschichten
             </p>
             <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
-              Das sagen Teilnehmende
+              Lernen, verstehen, bestehen.
             </h2>
           </div>
           <p className="max-w-xl text-lg leading-8 text-[#afc0da]">
-            Klarheit, Struktur und Wiederholung machen den Unterschied — besonders wenn Deutsch
-            nicht deine Muttersprache ist.
+            Besonders hilfreich für Menschen, die die deutsche Prüfungssprache sicher verstehen
+            wollen.
           </p>
         </div>
 
@@ -728,10 +749,40 @@ function Testimonials() {
   );
 }
 
+function FAQ() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr]">
+        <div>
+          <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+            Fragen
+          </p>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+            Kurz erklärt.
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-[#afc0da]">
+            Die Plattform ist für echte deutsche Prüfungen gedacht — mit Hilfe zum besseren
+            Verstehen.
+          </p>
+        </div>
+
+        <div className="grid gap-4">
+          {faqItems.map((item) => (
+            <Glass key={item.question} className="rounded-3xl p-5">
+              <p className="text-xl font-black text-white">{item.question}</p>
+              <p className="mt-2 leading-7 text-[#afc0da]">{item.answer}</p>
+            </Glass>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalCTA() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <Glass className="overflow-hidden rounded-[36px] border-[#f3b23c]/25 p-6 md:p-8">
+      <Glass className="overflow-hidden rounded-[38px] border-[#f3b23c]/25 p-6 md:p-8">
         <div className="grid gap-8 xl:grid-cols-[1.1fr_.62fr_360px]">
           <div>
             <p className="inline-flex rounded-full border border-[#f3b23c]/40 bg-[#f3b23c]/10 px-4 py-2 text-sm font-black text-[#f3b23c]">
@@ -840,8 +891,9 @@ export default function Page() {
       <TrustStrip />
       <CertificatesSection />
       <FeatureStrip />
-      <MethodAndProof />
+      <LearningEngine />
       <Testimonials />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </div>
