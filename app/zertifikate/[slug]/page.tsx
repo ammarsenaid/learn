@@ -12,6 +12,7 @@ import {
   getLessonsByCertificateId,
   getQuestionOptionsByQuestionId,
   getQuestionsByCertificateId,
+  normalizeProgress,
 } from '@/lib/cms';
 
 const taxiMathCards = [
@@ -126,10 +127,10 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
               <div className="mt-6 space-y-2">
                 <div className="flex items-center justify-between text-sm text-slate-300">
                   <span>Prüfungsreife</span>
-                  <span>{liveCertificate.progress}%</span>
+                  <span>{normalizeProgress(liveCertificate.progress)}</span>
                 </div>
                 <div className="h-2.5 overflow-hidden rounded-full bg-slate-800">
-                  <div className="h-full rounded-full bg-gradient-to-r from-sky-400 to-yellow-400" style={{ width: `${Math.max(0, Math.min(100, liveCertificate.progress ?? 0))}%` }} />
+                  <div className="h-full rounded-full bg-gradient-to-r from-sky-400 to-yellow-400" style={{ width: normalizeProgress(liveCertificate.progress) }} />
                 </div>
               </div>
             </aside>
@@ -196,7 +197,7 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
                   <ul className="mt-4 space-y-2">
                     {questionOptions.map((option) => (
                       <li key={option.id} className={`rounded-md px-3 py-2 ${option.is_correct ? 'border border-emerald-500/60 bg-emerald-500/10 text-emerald-200' : 'border border-rose-500/50 bg-rose-500/10 text-rose-200'}`}>
-                        {option.option_de}
+                        {option.option_text_de ?? option.option_de ?? ""}
                       </li>
                     ))}
                   </ul>

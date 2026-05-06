@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageShell } from '@/components/site/PageShell';
-import { getCertificates } from '@/lib/cms';
+import { getCertificates, normalizeProgress } from '@/lib/cms';
 
 export const metadata: Metadata = {
   title: 'Zertifikate — FachkundePilot',
@@ -117,10 +117,10 @@ export default async function ZertifikatePage() {
           <div className="mt-6">
             <div className="mb-2 flex items-center justify-between text-xs text-slate-300">
               <span>Prüfungsbereitschaft</span>
-              <span>{featuredCertificate.progress}%</span>
+              <span>{normalizeProgress(featuredCertificate.progress)}</span>
             </div>
             <div className="h-2 rounded-full bg-slate-700/80">
-              <div className="h-2 rounded-full bg-gradient-to-r from-yellow-300 to-sky-300" style={{ width: `${featuredCertificate.progress}%` }} />
+              <div className="h-2 rounded-full bg-gradient-to-r from-yellow-300 to-sky-300" style={{ width: `${normalizeProgress(featuredCertificate.progress)}` }} />
             </div>
           </div>
           <Link
@@ -150,10 +150,10 @@ export default async function ZertifikatePage() {
                 <div className="mt-4">
                   <div className="mb-1 flex items-center justify-between text-xs text-slate-300">
                     <span>Fortschritt</span>
-                    <span>{certificate.progress}%</span>
+                    <span>{normalizeProgress(certificate.progress)}</span>
                   </div>
                   <div className="h-2 rounded-full bg-slate-700/80">
-                    <div className="h-2 rounded-full bg-gradient-to-r from-sky-400 to-sky-200" style={{ width: `${certificate.progress}%` }} />
+                    <div className="h-2 rounded-full bg-gradient-to-r from-sky-400 to-sky-200" style={{ width: `${normalizeProgress(certificate.progress)}` }} />
                   </div>
                 </div>
                 <Link href={certificate.href} className="mt-5 inline-flex text-sm font-semibold text-sky-200 underline-offset-4 hover:text-sky-100 hover:underline">

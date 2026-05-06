@@ -12,6 +12,7 @@ import {
   getLessonsByCertificateId,
   getQuestionsByCertificateId,
 } from '@/lib/cms';
+import { normalizeProgress } from '@/lib/cms';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -31,9 +32,9 @@ const sidebarItems: SidebarItem[] = [
   { label: 'Heute', href: '/dashboard#today' },
   { label: 'Lernkarten', href: '/dashboard#lernkarten' },
   { label: 'Simulation', href: '/dashboard#simulation' },
-  { label: 'Math Trainer', href: '/dashboard#rechnen' },
+  { label: 'Rechentrainer', href: '/dashboard#rechnen' },
   { label: 'Glossar', href: '/dashboard#glossar' },
-  { label: 'Fortschritt', href: '/dashboard#fortschritt' },
+  { label: 'Fortschritt', href: '/dashboard#lokaler-fortschritt' },
 ];
 
 const mathTopics = ['Dreisatz', 'Prozentrechnung', 'Kosten pro Tag / Jahr', 'Kosten pro Kilometer'];
@@ -158,9 +159,9 @@ export default async function DashboardPage() {
             <h2 className="text-2xl font-bold text-white">{certificate?.title ?? 'Taxi & Mietwagen'}</h2>
             <p className="mt-1 text-slate-200">{certificate?.description ?? 'Du bist auf dem Weg zur Prüfungsreife.'}</p>
             <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#15335a]">
-              <div className="h-full rounded-full bg-[#f3c76a]" style={{ width: `${certificate?.progress ?? 0}%` }} />
+              <div className="h-full rounded-full bg-[#f3c76a]" style={{ width: normalizeProgress(certificate?.progress) }} />
             </div>
-            <p className="mt-2 text-sm text-slate-200">Gesamtfortschritt: {certificate?.progress ?? 0}%</p>
+            <p className="mt-2 text-sm text-slate-200">Gesamtfortschritt: {normalizeProgress(certificate?.progress)}</p>
             <div className="mt-4 flex flex-wrap gap-2 text-sm text-slate-200">
               {nextRecommendations.length > 0 ? nextRecommendations.map((item) => <span key={item}>{item}</span>) : <span>Noch keine Lerninhalte gefunden.</span>}
             </div>
@@ -182,7 +183,7 @@ export default async function DashboardPage() {
           </section>
 
           <section id="lernpfad" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-            <h3 className="text-xl font-semibold text-white">Learning Path</h3>
+            <h3 className="text-xl font-semibold text-white">Lernpfad</h3>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {chapters.map((item) => (
                 <article key={item.id} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
@@ -201,7 +202,7 @@ export default async function DashboardPage() {
 
           
 
-          <section id="fortschritt" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
+          <section id="lokaler-fortschritt" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h3 className="text-xl font-semibold text-white">Lokaler Lernfortschritt</h3>
               <ResetProgressButton />
@@ -211,7 +212,7 @@ export default async function DashboardPage() {
             </div>
           </section>
 <section id="today" className="mb-8">
-            <h3 className="mb-3 text-xl font-semibold text-white">Today&apos;s Tasks</h3>
+            <h3 className="mb-3 text-xl font-semibold text-white">Heute empfohlen</h3>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {todayTasks.map((task) => (
                 <article key={task.title} className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-4">
@@ -224,7 +225,7 @@ export default async function DashboardPage() {
           </section>
 
           <section id="lernkarten" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-            <h3 className="text-xl font-semibold text-white">Flashcard Preview</h3>
+            <h3 className="text-xl font-semibold text-white">Lernkarten-Vorschau</h3>
             {firstFlashcard ? (
               <article className="mt-4 rounded-xl border border-[#214267] bg-[#0b2645] p-4">
                 <p className="text-sm text-slate-400">Vorderseite</p>
@@ -241,7 +242,7 @@ export default async function DashboardPage() {
           </section>
 
           <section id="simulation" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-            <h3 className="text-xl font-semibold text-white">Exam Simulation Preview</h3>
+            <h3 className="text-xl font-semibold text-white">Prüfungssimulation</h3>
             <p className="mt-2 text-slate-200">{questions.length} Fragen verfügbar</p>
             <p className="text-sm text-slate-300">Simulation vorbereiten</p>
             {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : null}
@@ -256,7 +257,7 @@ export default async function DashboardPage() {
 
           <section id="rechnen" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-xl font-semibold text-white">Math Trainer</h3>
+              <h3 className="text-xl font-semibold text-white">Rechentrainer</h3>
               {connectedMathChapter ? <span className="rounded-full border border-[#f3c76a] px-3 py-1 text-xs text-[#f3c76a]">Rechnen aktiv: {connectedMathChapter.title}</span> : null}
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -270,7 +271,7 @@ export default async function DashboardPage() {
           </section>
 
           <section id="glossar" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-            <h3 className="text-xl font-semibold text-white">Glossary Preview</h3>
+            <h3 className="text-xl font-semibold text-white">Glossar-Vorschau</h3>
             {glossary.length > 0 ? (
               <ul className="mt-4 space-y-3">
                 {glossary.slice(0, 6).map((item) => (
@@ -289,7 +290,7 @@ export default async function DashboardPage() {
 
           <section id="fortschritt" className="mb-8 grid gap-4 md:grid-cols-2">
             <article className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-5">
-              <h4 className="font-semibold text-white">Progress & Weaknesses</h4>
+              <h4 className="font-semibold text-white">Fortschritt & Schwächen</h4>
               <p className="mt-3 text-sm text-slate-200">Stärken: {strengthChapters.length > 0 ? strengthChapters.join(', ') : 'Noch keine Kapitel'}.</p>
               <p className="mt-2 text-sm text-slate-200">Schwächen: {weaknessChapters.length > 0 ? weaknessChapters.join(', ') : 'Kostenrechnung, Mietwagenregeln, Versicherungen'}.</p>
             </article>
