@@ -4,7 +4,7 @@ const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
 
 const heroTrustItems = [
   "Deutsch bleibt Prüfungssprache",
-  "Erklärungen in deiner Sprache",
+  "Arabisch / Englisch / Türkisch verstehen",
   "Prüfung realistisch trainieren",
 ];
 
@@ -163,6 +163,29 @@ const learningSteps = [
     number: "04",
     title: "Prüfung simulieren",
     text: "Teste dich mit Zeitdruck, Punkten und realistischer Fehlerauswertung.",
+  },
+] as const;
+
+const learningModes = [
+  {
+    icon: "📖",
+    title: "Lesemodus",
+    text: "Lerne Inhalte ruhig und strukturiert mit klaren Begriffen und Beispielen.",
+  },
+  {
+    icon: "🃏",
+    title: "Kartenmodus",
+    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+  },
+  {
+    icon: "🧮",
+    title: "Rechenmodus",
+    text: "Trainiere Kostenrechnung, Prozentrechnung und Prüfungsmathematik.",
+  },
+  {
+    icon: "🏁",
+    title: "Prüfungsmodus",
+    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Fehleranalyse.",
   },
 ] as const;
 
@@ -546,6 +569,39 @@ function TrustStrip() {
   );
 }
 
+function LearningModes() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pt-20 sm:px-6 lg:px-8">
+      <div className="mb-8 max-w-3xl">
+        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+          Lernsystem
+        </p>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+          Nicht nur lesen. Wirklich trainieren.
+        </h2>
+        <p className="mt-4 text-lg leading-8 text-[#afc0da]">
+          Eine starke Plattform braucht mehrere Lernmodi — nicht nur statische Texte.
+        </p>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {learningModes.map((mode) => (
+          <Glass
+            key={mode.title}
+            className="group rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
+          >
+            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
+              {mode.icon}
+            </div>
+            <h3 className="text-2xl font-black tracking-[-0.04em] text-white">{mode.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-[#afc0da]">{mode.text}</p>
+          </Glass>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CertificatesSection() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
@@ -910,6 +966,7 @@ export default function Page() {
     <div className="min-h-screen overflow-x-hidden bg-[#06122b] pb-20 text-white md:pb-0">
       <Hero />
       <TrustStrip />
+      <LearningModes />
       <CertificatesSection />
       <FeatureStrip />
       <LearningEngine />
