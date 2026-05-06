@@ -446,7 +446,7 @@ function Hero() {
             </div>
 
             <div className="mt-7 grid max-w-[610px] gap-3 sm:grid-cols-3">
-              {heroChips.map((item) => (
+              {heroTrustItems.map((item) => (
                 <div
                   key={item}
                   className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-bold text-[#d7e1f3]"
