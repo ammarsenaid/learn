@@ -145,7 +145,7 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
                     <p className="mb-3 inline-flex rounded-full border border-sky-600/70 bg-sky-900/40 px-2.5 py-1 text-xs font-semibold text-sky-200">{topic.status || 'Kapitel'}</p>
                     <h3 className="text-lg font-bold text-white">{topic.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-300">{topic.description}</p>
-                    {topic.estimated_minutes ? <p className="mt-3 text-xs text-slate-400">≈ {topic.estimated_minutes} Minuten</p> : null}
+                    {topic.estimated_minutes ? <p className="mt-3 text-xs text-slate-400">≈ {topic.estimated_minutes} Minuten</p> : null}<Link href={`/lernen/taxi-mietwagen/kapitel/${topic.slug}`} className="mt-3 inline-flex rounded-lg border border-sky-600/70 px-3 py-1.5 text-sm text-sky-200">Kapitel öffnen</Link>
                   </article>
                 ))}
               </div>
@@ -161,7 +161,7 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
                 {chapters.map((step, index) => (
                   <li key={step.id} className="flex items-start gap-3 rounded-lg border border-slate-700 bg-[#08213a] p-4">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-yellow-400/70 bg-yellow-400/10 font-bold text-yellow-300">{index + 1}</span>
-                    <p className="pt-1 font-medium text-slate-100">{step.title}</p>
+                    <div><p className="pt-1 font-medium text-slate-100">{step.title}</p><Link href={`/lernen/taxi-mietwagen/kapitel/${step.slug}`} className="mt-2 inline-flex text-sm text-sky-300">Kapitel öffnen</Link></div>
                   </li>
                 ))}
               </ol>
