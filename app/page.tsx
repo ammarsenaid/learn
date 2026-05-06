@@ -36,11 +36,11 @@ type IconName =
 type ProgressTone = "sky" | "green" | "gold" | "red" | "purple";
 
 const navItems = [
-  { label: "Zertifikate", href: "#zertifikate" },
+  { label: "Zertifikate", href: "/zertifikate" },
   { label: "Problem", href: "#problem" },
-  { label: "Methode", href: "#methode" },
-  { label: "Preise", href: "#preise" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Methode", href: "/methode" },
+  { label: "Preise", href: "/preise" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const certificates = [
@@ -424,7 +424,7 @@ function SvgIcon({
 
 function Logo() {
   return (
-    <a href="#" aria-label="FachkundePilot Startseite" className="flex items-center gap-3">
+    <a href="/" aria-label="FachkundePilot Startseite" className="flex items-center gap-3">
       <div className="relative grid h-11 w-11 place-items-center rounded-xl border border-[#f6c84f]/50 bg-[#0d1b2e] text-sm font-black text-[#f6c84f] shadow-[0_0_24px_rgba(246,200,79,0.25)]">
         FP
         <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.75)]" />
@@ -548,7 +548,7 @@ function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#methode"
+            href="/methode"
             className="hidden rounded-xl border border-slate-600/40 bg-[#07172a] px-4 py-2 text-sm font-black text-white transition hover:bg-white/10 sm:flex"
           >
             DE
@@ -696,7 +696,7 @@ function DashboardMockup() {
                   Lernkarten Recht & Kostenrechnung
                 </p>
                 <a
-                  href="#methode"
+                  href="/methode"
                   className="mt-3 block rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
                 >
                   Weiterlernen
@@ -790,7 +790,7 @@ function Hero() {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <GoldButton>Zertifikat auswählen</GoldButton>
-              <DarkButton href="#methode">Demo ansehen</DarkButton>
+              <DarkButton href="/methode">Demo ansehen</DarkButton>
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:max-w-[500px]">
@@ -901,7 +901,7 @@ function Certificates() {
           </p>
         </div>
 
-        <a href="#preise" className="hidden text-sm font-black text-sky-400 md:block">
+        <a href="/preise" className="hidden text-sm font-black text-sky-400 md:block">
           Mitgliedschaft ansehen →
         </a>
       </div>
@@ -1178,11 +1178,11 @@ function PricingSection() {
             </div>
 
             {plan.featured ? (
-              <GoldButton href="#kontakt" className="mt-6 w-full">
+              <GoldButton href="/kontakt" className="mt-6 w-full">
                 Auswählen →
               </GoldButton>
             ) : (
-              <DarkButton href="#kontakt" className="mt-6 w-full px-5">
+              <DarkButton href="/kontakt" className="mt-6 w-full px-5">
                 Auswählen →
               </DarkButton>
             )}
@@ -1233,10 +1233,10 @@ function FAQSection() {
 
 function Footer() {
   const groups = [
-    ["Produkt", "Zertifikate", "Methode", "Preise", "FAQ"],
-    ["Prüfungen", "Taxi & Mietwagen", "§34a Bewachung", "Güterkraftverkehr"],
-    ["Rechtliches", "Datenschutz", "Impressum", "AGB"],
-    ["Kontakt", "Support", "Akademien", "Partnerschaften"],
+    ["Produkt", ["Zertifikate", "/zertifikate"], ["Methode", "/methode"], ["Preise", "/preise"], ["FAQ", "/faq"]],
+    ["Prüfungen", ["Taxi & Mietwagen", "/zertifikate/taxi-mietwagen"], ["§34a Bewachung", "/zertifikate/34a-bewachung"], ["Güterkraftverkehr", "/zertifikate/gueterkraftverkehr"]],
+    ["Rechtliches", ["Datenschutz", "/kontakt"], ["Impressum", "/kontakt"], ["AGB", "/kontakt"]],
+    ["Kontakt", ["Support", "/kontakt"], ["Akademien", "/kontakt"], ["Partnerschaften", "/kontakt"]],
   ] as const;
 
   return (
@@ -1266,9 +1266,9 @@ function Footer() {
           <div key={title}>
             <p className="mb-3 font-black text-white">{title}</p>
             <div className="space-y-2">
-              {links.map((link) => (
-                <a key={link} href="#" className="block transition hover:text-white">
-                  {link}
+              {links.map(([label, href]) => (
+                <a key={label} href={href} className="block transition hover:text-white">
+                  {label}
                 </a>
               ))}
             </div>
