@@ -8,45 +8,30 @@ const heroTrustItems = [
   "Prüfung realistisch üben",
 ];
 
-const heroStats = [
-  {
-    title: "Mehrsprachig",
-    value: "DE · AR · EN · TR",
-    icon: "🌍",
-  },
-  {
-    title: "4.9/5",
-    value: "Nutzerbewertung",
-    icon: "⭐",
-  },
-  {
-    title: "78%",
-    value: "Dein Lernstand",
-    icon: "📈",
-  },
-  {
-    title: "12+",
-    value: "Zertifikate geplant",
-    icon: "🎓",
-  },
-] as const;
-
 const trustStripItems = [
   {
-    title: "12+ Zertifikate",
-    text: "Für deutsche Sach- und Fachkundeprüfungen",
+    icon: "🌍",
+    title: "Mehrsprachig",
+    value: "DE · AR · EN · TR",
+    text: "Deutsch lernen, in deiner Sprache verstehen",
   },
   {
-    title: "1 Lernsystem",
-    text: "Einheitliche Struktur für alle Prüfungen",
+    icon: "⭐",
+    title: "Nutzerbewertung",
+    value: "4.9/5",
+    text: "Klare Struktur und verständliche Erklärungen",
   },
   {
-    title: "DE / AR / EN / TR",
-    text: "Deutsch lernen, Muttersprache verstehen",
+    icon: "📈",
+    title: "Lernstand",
+    value: "78%",
+    text: "Fortschritt sichtbar und messbar",
   },
   {
-    title: "Simulation & Karten",
-    text: "Prüfungen üben und Wissen wiederholen",
+    icon: "🎓",
+    title: "Zertifikate",
+    value: "12+",
+    text: "Sach- und Fachkundeprüfungen geplant",
   },
 ] as const;
 
@@ -221,10 +206,14 @@ function SectionHeader({
             {eyebrow}
           </p>
         ) : null}
+
         <h2 className="max-w-3xl text-4xl font-black tracking-[-0.04em] text-white md:text-5xl">
           {title}
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[#AFC0DA] md:text-lg">{text}</p>
+
+        <p className="mt-4 max-w-2xl text-base leading-7 text-[#AFC0DA] md:text-lg">
+          {text}
+        </p>
       </div>
 
       {action ? (
@@ -238,12 +227,13 @@ function SectionHeader({
 
 function Navbar() {
   return (
-    <header className="mx-auto max-w-[1360px] px-4 pt-5 sm:px-6 lg:px-8">
-      <nav className="flex min-h-[82px] items-center justify-between rounded-[26px] border border-white/10 bg-[#081832]/80 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl md:px-6">
+    <header className="mx-auto max-w-[1320px] px-4 pt-5 sm:px-6 lg:px-8">
+      <nav className="flex min-h-[78px] items-center justify-between rounded-[26px] border border-white/10 bg-[#081832]/80 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl md:px-6">
         <div className="flex items-center gap-3">
           <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#F4B73F]/40 bg-gradient-to-br from-[#123C79] to-[#081832] text-xl text-[#F4B73F] shadow-[0_0_28px_rgba(78,161,255,0.18)]">
             ✦
           </div>
+
           <div>
             <p className="text-xl font-black tracking-[-0.03em] text-white md:text-2xl">
               FachkundePilot
@@ -277,138 +267,122 @@ function Navbar() {
 
 function HeroDashboard() {
   return (
-    <div className="grid items-center gap-5 xl:grid-cols-[minmax(0,1fr)_205px]">
-      <GlassPanel className="relative overflow-hidden border-[#4EA1FF]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_30px_90px_rgba(45,107,210,0.22)]">
-        <div className="absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full bg-[#4EA1FF]/20 blur-3xl" />
-        <div className="absolute bottom-[-90px] left-[20%] h-52 w-52 rounded-full bg-[#F4B73F]/10 blur-3xl" />
+    <GlassPanel className="relative w-full overflow-hidden border-[#4EA1FF]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_30px_90px_rgba(45,107,210,0.22)]">
+      <div className="absolute right-[-100px] top-[-100px] h-64 w-64 rounded-full bg-[#4EA1FF]/20 blur-3xl" />
+      <div className="absolute bottom-[-120px] left-[18%] h-56 w-56 rounded-full bg-[#F4B73F]/10 blur-3xl" />
 
-        <div className="relative rounded-[24px] border border-white/10 bg-[#071832]/95 p-3">
-          <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-            <div>
-              <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
-              <p className="text-xs text-[#8EA0C0]">Live Lernübersicht</p>
-            </div>
-            <div className="flex items-center gap-2 text-[#8EA0C0]">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">⌕</span>
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">🔔</span>
-              <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#F4B73F] to-[#4EA1FF]" />
-            </div>
+      <div className="relative rounded-[24px] border border-white/10 bg-[#071832]/95 p-3">
+        <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+          <div>
+            <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
+            <p className="text-xs text-[#8EA0C0]">Live Lernübersicht</p>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-[132px_1fr]">
-            <aside className="hidden rounded-2xl border border-white/10 bg-[#0A1B3F] p-3 text-xs font-semibold text-[#8EA0C0] lg:block">
-              {["Übersicht", "Zertifikate", "Lernkarten", "Prüfungen", "Fortschritt", "Notizen"].map(
-                (item, index) => (
-                  <div
-                    key={item}
-                    className={`mb-2 rounded-xl px-3 py-2 ${
-                      index === 0 ? "bg-[#4EA1FF]/15 text-white" : "hover:bg-white/[0.04]"
-                    }`}
-                  >
-                    {item}
-                  </div>
-                )
-              )}
-            </aside>
-
-            <main className="min-w-0">
-              <div className="mb-4">
-                <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
-                <p className="text-sm text-[#8EA0C0]">Weiter so! Du bist auf dem besten Weg.</p>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                  <p className="text-sm text-[#AFC0DA]">Dein Gesamtfortschritt</p>
-                  <div className="mt-2 flex items-end justify-between">
-                    <p className="text-5xl font-black tracking-[-0.05em] text-white">78%</p>
-                    <span className="rounded-full bg-[#3DDC97]/10 px-3 py-1 text-xs font-bold text-[#3DDC97]">
-                      +18%
-                    </span>
-                  </div>
-                  <div className="mt-4 h-2.5 rounded-full bg-black/30">
-                    <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#6EE7F9]" />
-                  </div>
-                  <p className="mt-3 text-xs text-[#8EA0C0]">Nur noch 22% bis zum Lernziel.</p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                  <p className="text-sm text-[#AFC0DA]">Lernzeit diese Woche</p>
-                  <p className="mt-2 text-4xl font-black tracking-[-0.04em] text-white">12 h 45</p>
-                  <p className="mt-2 text-xs font-semibold text-[#3DDC97]">
-                    +2 h 15 min gegenüber letzter Woche
-                  </p>
-                  <div className="mt-4 grid grid-cols-7 gap-1">
-                    {[35, 52, 68, 44, 78, 62, 88].map((height, index) => (
-                      <span
-                        key={index}
-                        className="rounded-full bg-[#4EA1FF]/80"
-                        style={{ height: `${height}px` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-3 grid gap-3 md:grid-cols-[1.1fr_.9fr]">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-black text-white">Aktive Zertifikate</p>
-                    <span className="text-xs text-[#76B7FF]">3 aktiv</span>
-                  </div>
-
-                  {[
-                    ["Taxi & Mietwagen", "82%"],
-                    ["§34a Bewachung", "65%"],
-                    ["Güterkraftverkehr", "74%"],
-                  ].map(([name, progress]) => (
-                    <div key={name} className="mb-3">
-                      <div className="mb-1 flex items-center justify-between text-xs">
-                        <span className="text-[#AFC0DA]">{name}</span>
-                        <span className="font-bold text-white">{progress}</span>
-                      </div>
-                      <div className="h-1.5 rounded-full bg-black/30">
-                        <div
-                          className="h-full rounded-full bg-[#F4B73F]"
-                          style={{ width: progress }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-2xl border border-[#F4B73F]/25 bg-[#F4B73F]/10 p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#F4B73F]">
-                    Heute empfohlen
-                  </p>
-                  <p className="mt-2 text-sm font-bold text-white">
-                    20 Min. Lernkarten: Recht & Kostenrechnung
-                  </p>
-                  <button className="mt-4 rounded-xl bg-[#F4B73F] px-4 py-2 text-xs font-black text-[#07162F]">
-                    Weiterlernen
-                  </button>
-                </div>
-              </div>
-            </main>
+          <div className="flex items-center gap-2 text-[#8EA0C0]">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">⌕</span>
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">🔔</span>
+            <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#F4B73F] to-[#4EA1FF]" />
           </div>
         </div>
-      </GlassPanel>
 
-      <div className="grid grid-cols-2 gap-3 xl:grid-cols-1">
-        {heroStats.map((stat) => (
-          <div
-            key={stat.title}
-            className="rounded-[22px] border border-white/10 bg-[#081B3D]/85 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl transition hover:border-[#4EA1FF]/35 hover:bg-[#0A2452]"
-          >
-            <div className="mb-3 grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-lg">
-              {stat.icon}
+        <div className="grid gap-4 lg:grid-cols-[118px_1fr]">
+          <aside className="hidden rounded-2xl border border-white/10 bg-[#0A1B3F] p-2 text-xs font-semibold text-[#8EA0C0] lg:block">
+            {["Übersicht", "Zertifikate", "Karten", "Prüfungen", "Fortschritt"].map(
+              (item, index) => (
+                <div
+                  key={item}
+                  className={`mb-2 rounded-xl px-3 py-2 ${
+                    index === 0 ? "bg-[#4EA1FF]/15 text-white" : "hover:bg-white/[0.04]"
+                  }`}
+                >
+                  {item}
+                </div>
+              )
+            )}
+          </aside>
+
+          <main className="min-w-0">
+            <div className="mb-4">
+              <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
+              <p className="text-sm text-[#8EA0C0]">Weiter so! Du bist auf dem besten Weg.</p>
             </div>
-            <p className="text-2xl font-black tracking-[-0.04em] text-white">{stat.title}</p>
-            <p className="mt-1 text-sm font-medium text-[#AFC0DA]">{stat.value}</p>
-          </div>
-        ))}
+
+            <div className="grid gap-3 md:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                <p className="text-sm text-[#AFC0DA]">Dein Gesamtfortschritt</p>
+                <div className="mt-2 flex items-end justify-between">
+                  <p className="text-5xl font-black tracking-[-0.05em] text-white">78%</p>
+                  <span className="rounded-full bg-[#3DDC97]/10 px-3 py-1 text-xs font-bold text-[#3DDC97]">
+                    +18%
+                  </span>
+                </div>
+                <div className="mt-4 h-2.5 rounded-full bg-black/30">
+                  <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#6EE7F9]" />
+                </div>
+                <p className="mt-3 text-xs text-[#8EA0C0]">Nur noch 22% bis zum Lernziel.</p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                <p className="text-sm text-[#AFC0DA]">Lernzeit heute</p>
+                <p className="mt-2 text-4xl font-black tracking-[-0.04em] text-white">45 min</p>
+                <p className="mt-2 text-xs font-semibold text-[#3DDC97]">
+                  +12 min gegenüber gestern
+                </p>
+                <div className="mt-4 grid h-16 grid-cols-7 items-end gap-1">
+                  {[35, 52, 68, 44, 78, 62, 88].map((height, index) => (
+                    <span
+                      key={index}
+                      className="rounded-full bg-[#4EA1FF]/80"
+                      style={{ height: `${height}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 grid gap-3 md:grid-cols-[1.05fr_.95fr]">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="text-sm font-black text-white">Aktive Zertifikate</p>
+                  <span className="text-xs text-[#76B7FF]">3 aktiv</span>
+                </div>
+
+                {[
+                  ["Taxi & Mietwagen", "82%"],
+                  ["§34a Bewachung", "65%"],
+                  ["Güterkraftverkehr", "74%"],
+                ].map(([name, progress]) => (
+                  <div key={name} className="mb-3">
+                    <div className="mb-1 flex items-center justify-between text-xs">
+                      <span className="text-[#AFC0DA]">{name}</span>
+                      <span className="font-bold text-white">{progress}</span>
+                    </div>
+                    <div className="h-1.5 rounded-full bg-black/30">
+                      <div
+                        className="h-full rounded-full bg-[#F4B73F]"
+                        style={{ width: progress }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-[#F4B73F]/25 bg-[#F4B73F]/10 p-4">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#F4B73F]">
+                  Heute empfohlen
+                </p>
+                <p className="mt-2 text-sm font-bold text-white">
+                  20 Min. Lernkarten: Recht & Kostenrechnung
+                </p>
+                <button className="mt-4 rounded-xl bg-[#F4B73F] px-4 py-2 text-xs font-black text-[#07162F]">
+                  Weiterlernen
+                </button>
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </GlassPanel>
   );
 }
 
@@ -421,39 +395,39 @@ function Hero() {
       <div className="relative">
         <Navbar />
 
-        <div className="mx-auto grid max-w-[1360px] items-center gap-12 px-4 pb-20 pt-12 sm:px-6 lg:grid-cols-[0.92fr_1.18fr] lg:px-8 lg:pb-24 lg:pt-16">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-12 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(520px,1.04fr)] lg:px-8 lg:pb-20 lg:pt-14 xl:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/40 bg-[#081B3D]/80 px-4 py-2 text-sm font-bold text-[#CFE4FF] shadow-[0_0_30px_rgba(78,161,255,0.12)]">
               <span className="h-2 w-2 rounded-full bg-[#4EA1FF]" />
               Die Lernplattform für offizielle Sach- und Fachkundeprüfungen
             </div>
 
-            <h1 className="mt-6 max-w-[660px] text-[56px] font-black leading-[0.98] tracking-[-0.065em] text-white sm:text-[68px] lg:text-[76px] xl:text-[86px]">
+            <h1 className="mt-6 max-w-[650px] text-[52px] font-black leading-[0.97] tracking-[-0.06em] text-white sm:text-[64px] lg:text-[72px] xl:text-[82px]">
               Bestehe deine Prüfung.
               <br />
               Mit{" "}
               <span className="bg-gradient-to-r from-[#F4B73F] to-[#FFE39A] bg-clip-text text-transparent">
-                Klarheit,
+                Klarheit, Struktur
                 <br />
-                Struktur und System.
+                und System.
               </span>
             </h1>
 
-            <p className="mt-7 max-w-[610px] text-lg leading-8 text-[#C7D2E5] md:text-xl">
+            <p className="mt-6 max-w-[560px] text-lg leading-8 text-[#C7D2E5]">
               Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische
               Prüfungen und mobiles Lernen — alles an einem Ort.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <button className="rounded-2xl bg-[#F4B73F] px-7 py-4 text-base font-black text-[#07162F] shadow-[0_18px_44px_rgba(244,183,63,0.26)] transition hover:bg-[#E7A928]">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <button className="rounded-2xl bg-[#F4B73F] px-6 py-3.5 text-base font-black text-[#07162F] shadow-[0_18px_44px_rgba(244,183,63,0.26)] transition hover:bg-[#E7A928]">
                 Jetzt starten →
               </button>
-              <button className="rounded-2xl border border-white/15 bg-white/[0.04] px-7 py-4 text-base font-bold text-white transition hover:border-[#76B7FF]/45 hover:bg-[#76B7FF]/10">
+              <button className="rounded-2xl border border-white/15 bg-white/[0.04] px-6 py-3.5 text-base font-bold text-white transition hover:border-[#76B7FF]/45 hover:bg-[#76B7FF]/10">
                 Alle Zertifikate ansehen
               </button>
             </div>
 
-            <div className="mt-7 grid max-w-[620px] gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid max-w-[590px] gap-3 sm:grid-cols-3">
               {heroTrustItems.map((item) => (
                 <div
                   key={item}
@@ -475,18 +449,24 @@ function Hero() {
 
 function TrustStrip() {
   return (
-    <section className="relative mx-auto -mt-8 max-w-[1320px] px-4 sm:px-6 lg:px-8">
-      <GlassPanel className="p-5">
+    <section className="relative mx-auto -mt-5 max-w-[1320px] px-4 sm:px-6 lg:px-8">
+      <GlassPanel className="p-4 md:p-5">
         <div className="grid gap-4 md:grid-cols-4">
           {trustStripItems.map((item, index) => (
             <div
               key={item.title}
-              className={`px-3 ${
+              className={`flex gap-4 px-3 py-2 ${
                 index < trustStripItems.length - 1 ? "md:border-r md:border-white/10" : ""
               }`}
             >
-              <p className="text-xl font-black text-white">{item.title}</p>
-              <p className="mt-1 text-sm leading-6 text-[#8EA0C0]">{item.text}</p>
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-xl">
+                {item.icon}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#8EA0C0]">{item.title}</p>
+                <p className="text-2xl font-black tracking-[-0.04em] text-white">{item.value}</p>
+                <p className="mt-1 text-xs leading-5 text-[#8EA0C0]">{item.text}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -497,7 +477,7 @@ function TrustStrip() {
 
 function CertificatesSection() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-[1360px] px-4 py-18 sm:px-6 lg:px-8">
       <GlassPanel className="p-5 md:p-8">
         <SectionHeader
           eyebrow="Zertifikate"
@@ -513,7 +493,7 @@ function CertificatesSection() {
               className="group flex min-h-[270px] flex-col rounded-[26px] border border-white/10 bg-[#0A1B3F]/82 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4EA1FF]/40 hover:shadow-[0_24px_60px_rgba(78,161,255,0.12)]"
             >
               <div className="mb-5 flex items-center justify-between">
-                <div className="grid h-13 w-13 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
                   {certificate.icon}
                 </div>
                 <span className="rounded-full border border-[#F4B73F]/25 bg-[#F4B73F]/10 px-3 py-1 text-xs font-black text-[#F4B73F]">
@@ -580,7 +560,10 @@ function HowItWorksAndTestimonials() {
 
         <div className="space-y-5">
           {steps.map((step, index) => (
-            <div key={step.title} className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <div
+              key={step.title}
+              className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+            >
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#F4B73F] text-lg font-black text-[#07162F]">
                 {index + 1}
               </div>
@@ -661,7 +644,10 @@ function FinalCTA() {
 
             <ul className="mt-7 grid gap-3 sm:grid-cols-2">
               {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-center gap-3 text-sm font-semibold text-[#D7E1F3]">
+                <li
+                  key={benefit}
+                  className="flex items-center gap-3 text-sm font-semibold text-[#D7E1F3]"
+                >
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-[#3DDC97]/15 text-[#3DDC97]">
                     ✓
                   </span>
@@ -673,7 +659,10 @@ function FinalCTA() {
 
           <div className="space-y-3 self-center">
             {reassurance.map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm font-bold text-[#D7E1F3]">
+              <div
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm font-bold text-[#D7E1F3]"
+              >
                 {item}
               </div>
             ))}
