@@ -1,10 +1,25 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
+type Tone = "blue" | "gold" | "green" | "red";
+
+export const metadata: Metadata = {
+  title: "FachkundePilot — Prüfungsorientiertes Lernen",
+  description:
+    "Lerne deutsche Sach- und Fachkundeprüfungen mit klaren Lernpfaden, Lernkarten, Prüfungssimulation und mehrsprachigen Erklärungen.",
+};
+
+const navItems = [
+  { label: "Zertifikate", href: "#zertifikate" },
+  { label: "Lernmethode", href: "#lernmethode" },
+  { label: "Simulation", href: "#simulation" },
+  { label: "Preise", href: "#preise" },
+  { label: "Kontakt", href: "#kontakt" },
+];
 
 const heroTrustItems = [
   "Deutsch bleibt Prüfungssprache",
-  "Arabisch / Englisch / Türkisch verstehen",
+  "Erklärungen in AR / EN / TR",
   "Prüfung realistisch trainieren",
 ];
 
@@ -31,7 +46,7 @@ const trustStats = [
     icon: "🧠",
     title: "Smart Review",
     value: "Gezielt",
-    text: "Schwache Themen werden sichtbar und wiederholt.",
+    text: "Schwache Themen werden sichtbar und automatisch wiederholt.",
   },
   {
     icon: "🎓",
@@ -110,6 +125,29 @@ const certificates = [
   },
 ] as const;
 
+const learningModes = [
+  {
+    icon: "📖",
+    title: "Lesemodus",
+    text: "Lerne offizielle Begriffe strukturiert, ohne dich in PDFs zu verlieren.",
+  },
+  {
+    icon: "🃏",
+    title: "Kartenmodus",
+    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+  },
+  {
+    icon: "🧮",
+    title: "Rechenmodus",
+    text: "Trainiere Kostenrechnung, Prozentrechnung und typische Prüfungsaufgaben.",
+  },
+  {
+    icon: "🏁",
+    title: "Prüfungsmodus",
+    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Auswertung.",
+  },
+] as const;
+
 const features = [
   {
     icon: "🇩🇪",
@@ -166,26 +204,49 @@ const learningSteps = [
   },
 ] as const;
 
-const learningModes = [
+const learningTimeline = [
+  { day: "Tag 1–3", title: "Grundlagen verstehen", progress: "28%" },
+  { day: "Tag 4–10", title: "Karten & Fragen trainieren", progress: "52%" },
+  { day: "Tag 11–18", title: "Schwächen schließen", progress: "74%" },
+  { day: "Tag 19+", title: "Prüfung simulieren", progress: "92%" },
+] as const;
+
+const languageExamples = [
   {
-    icon: "📖",
-    title: "Lesemodus",
-    text: "Lerne Inhalte ruhig und strukturiert mit klaren Begriffen und Beispielen.",
+    term: "Betriebssitz",
+    de: "Offizieller Sitz des Unternehmens.",
+    ar: "المكان الرسمي المسجل للشركة.",
+    tag: "Recht",
   },
   {
-    icon: "🃏",
-    title: "Kartenmodus",
-    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+    term: "Bereitstellungspflicht",
+    de: "Pflicht, Taxi-Verkehr ordnungsgemäß bereitzuhalten.",
+    ar: "واجب توفير خدمة التاكسي بشكل منظم.",
+    tag: "Taxi",
   },
   {
-    icon: "🧮",
-    title: "Rechenmodus",
-    text: "Trainiere Kostenrechnung, Prozentrechnung und Prüfungsmathematik.",
+    term: "Kostendeckung",
+    de: "Einnahmen müssen Kosten langfristig tragen.",
+    ar: "الإيرادات يجب أن تغطي التكاليف على المدى الطويل.",
+    tag: "Rechnen",
+  },
+] as const;
+
+const intelligenceItems = [
+  {
+    title: "Fehler werden zu Lernaufgaben",
+    text: "Falsch beantwortete Fragen erscheinen später wieder als Karte, Erklärung und Mini-Test.",
+    stat: "Auto-Review",
   },
   {
-    icon: "🏁",
-    title: "Prüfungsmodus",
-    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Fehleranalyse.",
+    title: "Kapitel werden nach Risiko sortiert",
+    text: "Themen mit niedriger Trefferquote werden höher priorisiert als Themen, die schon sitzen.",
+    stat: "Priorität",
+  },
+  {
+    title: "Prüfungsreife statt nur Fortschritt",
+    text: "Nicht nur gelesen: Die Plattform zeigt, ob du die Inhalte unter Prüfungsdruck kannst.",
+    stat: "Readiness",
   },
 ] as const;
 
@@ -202,6 +263,12 @@ const comparisonRows = [
     bad: "Die Prüfung fühlt sich plötzlich und stressig an.",
     good: "Du übst vorher mit Zeitdruck, Punkten und echten Prüfungsrunden.",
   },
+] as const;
+
+const examOptions = [
+  { label: "Kfz-Haftpflichtversicherung", state: "correct" },
+  { label: "Gesetzliche Unfallversicherung", state: "wrong" },
+  { label: "Betriebshaftpflicht des Unternehmers", state: "wrong" },
 ] as const;
 
 const testimonials = [
@@ -296,19 +363,33 @@ function Badge({ children }: { children: ReactNode }) {
   );
 }
 
+function SectionKicker({ children }: { children: ReactNode }) {
+  return (
+    <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+      {children}
+    </p>
+  );
+}
+
 function PrimaryButton({ children }: { children: ReactNode }) {
   return (
-    <button className="rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-7 py-4 text-base font-black text-[#06122b] shadow-[0_20px_60px_rgba(244,178,60,0.34)] transition hover:-translate-y-0.5 hover:shadow-[0_25px_80px_rgba(244,178,60,0.46)]">
+    <a
+      href="#preise"
+      className="inline-flex justify-center rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-7 py-4 text-base font-black text-[#06122b] shadow-[0_20px_60px_rgba(244,178,60,0.34)] transition hover:-translate-y-0.5 hover:shadow-[0_25px_80px_rgba(244,178,60,0.46)]"
+    >
       {children}
-    </button>
+    </a>
   );
 }
 
 function SecondaryButton({ children }: { children: ReactNode }) {
   return (
-    <button className="rounded-2xl border border-white/15 bg-white/[0.05] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
+    <a
+      href="#zertifikate"
+      className="inline-flex justify-center rounded-2xl border border-white/15 bg-white/[0.05] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10"
+    >
       {children}
-    </button>
+    </a>
   );
 }
 
@@ -317,14 +398,16 @@ function ProgressBar({
   tone = "blue",
 }: {
   value: string;
-  tone?: "blue" | "gold" | "green";
+  tone?: Tone;
 }) {
   const color =
     tone === "gold"
       ? "bg-gradient-to-r from-[#f3b23c] to-[#ffe08a]"
       : tone === "green"
         ? "bg-gradient-to-r from-[#34d399] to-[#8fffe0]"
-        : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
+        : tone === "red"
+          ? "bg-gradient-to-r from-[#fb7185] to-[#fda4af]"
+          : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
 
   return (
     <div className="h-2 rounded-full bg-black/30">
@@ -337,7 +420,7 @@ function Navbar() {
   return (
     <header className="relative z-20 mx-auto max-w-[1400px] px-4 pt-5 sm:px-6 lg:px-8">
       <nav className="flex min-h-[84px] items-center justify-between rounded-[30px] border border-white/10 bg-[#061731]/82 px-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:px-7">
-        <div className="flex items-center gap-3">
+        <a href="#" className="flex items-center gap-3">
           <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
             ✦
           </div>
@@ -350,12 +433,12 @@ function Navbar() {
               Prüfungsorientiertes Lernen
             </p>
           </div>
-        </div>
+        </a>
 
         <div className="hidden items-center gap-8 text-sm font-semibold text-[#c7d2e5] lg:flex">
           {navItems.map((item) => (
-            <a key={item} href="#" className="transition hover:text-white">
-              {item}
+            <a key={item.label} href={item.href} className="transition hover:text-white">
+              {item.label}
             </a>
           ))}
         </div>
@@ -435,10 +518,7 @@ function DashboardPreview() {
                     {metric.value}
                   </p>
                   <div className="mt-4">
-                    <ProgressBar
-                      value={metric.progress}
-                      tone={metric.tone as "blue" | "gold" | "green"}
-                    />
+                    <ProgressBar value={metric.progress} tone={metric.tone} />
                   </div>
                 </div>
               ))}
@@ -571,11 +651,9 @@ function TrustStrip() {
 
 function LearningModes() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 pt-20 sm:px-6 lg:px-8">
+    <section id="lernmethode" className="mx-auto max-w-[1360px] px-4 pt-20 sm:px-6 lg:px-8">
       <div className="mb-8 max-w-3xl">
-        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-          Lernsystem
-        </p>
+        <SectionKicker>Lernsystem</SectionKicker>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
           Nicht nur lesen. Wirklich trainieren.
         </h2>
@@ -602,15 +680,113 @@ function LearningModes() {
   );
 }
 
-function CertificatesSection() {
+function LanguageBridge() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <SectionKicker>Sprachbrücke</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            Deutsch bleibt. Verständnis wird einfacher.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+            Die Prüfung ist deutsch. Deshalb lernt der Nutzer die deutschen Begriffe zuerst —
+            bekommt aber sofort eine verständliche Erklärung in seiner Sprache.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            {["DE Original", "AR Erklärung", "EN Hilfe", "TR Hilfe"].map((item) => (
+              <span
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-black text-[#d7e1f3]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <Glass className="rounded-[34px] p-5 md:p-7">
+          <div className="grid gap-4">
+            {languageExamples.map((item) => (
+              <article
+                key={item.term}
+                className="rounded-3xl border border-white/10 bg-white/[0.045] p-5"
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-2xl font-black text-white">{item.term}</h3>
+                  <span className="rounded-full border border-[#f3b23c]/25 bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
+                    {item.tag}
+                  </span>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-[#061936]/70 p-4">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#76b7ff]">
+                      Deutsch
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-[#c7d2e5]">{item.de}</p>
+                  </div>
+                  <div className="rounded-2xl border border-[#34d399]/20 bg-[#34d399]/10 p-4">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#34d399]">
+                      Arabisch erklärt
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-white">{item.ar}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Glass>
+      </div>
+    </section>
+  );
+}
+
+function IntelligenceLayer() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <Glass className="relative overflow-hidden rounded-[38px] border-[#4ea1ff]/20 p-6 md:p-8">
+        <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#4ea1ff]/15 blur-3xl" />
+        <div className="relative grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <SectionKicker>Lernintelligenz</SectionKicker>
+            <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+              Die Plattform merkt, wo du wirklich schwach bist.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+              Gute Prüfungsvorbereitung ist nicht nur Inhalt. Sie erkennt Muster, Fehler und
+              Wiederholungsbedarf.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {intelligenceItems.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-white/10 bg-white/[0.045] p-5"
+              >
+                <p className="mb-4 inline-flex rounded-full bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
+                  {item.stat}
+                </p>
+                <h3 className="text-xl font-black text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[#afc0da]">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Glass>
+    </section>
+  );
+}
+
+function CertificatesSection() {
+  return (
+    <section id="zertifikate" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <Glass className="rounded-[34px] p-5 md:p-8">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-              Zertifikate
-            </p>
+            <SectionKicker>Zertifikate</SectionKicker>
             <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
               Zertifikate entdecken
             </h2>
@@ -710,9 +886,7 @@ function LearningEngine() {
   return (
     <section className="mx-auto grid max-w-[1360px] gap-6 px-4 pb-20 sm:px-6 lg:px-8 xl:grid-cols-[0.92fr_1.08fr]">
       <Glass className="rounded-[34px] p-6 md:p-8">
-        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-          Lernlogik
-        </p>
+        <SectionKicker>Lernlogik</SectionKicker>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
           Von Chaos zu klarer Prüfungsvorbereitung.
         </h2>
@@ -739,14 +913,109 @@ function LearningEngine() {
       </Glass>
 
       <Glass className="rounded-[34px] p-6 md:p-8">
-        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-          Warum nicht einfach PDF?
-        </p>
+        <SectionKicker>Lernplan</SectionKicker>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
-          Lernen mit System statt Stapel von Unterlagen.
+          Ein Weg bis zur Prüfungsreife.
         </h2>
 
         <div className="mt-8 space-y-4">
+          {learningTimeline.map((item) => (
+            <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4">
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f3b23c]">
+                    {item.day}
+                  </p>
+                  <p className="mt-1 text-lg font-black text-white">{item.title}</p>
+                </div>
+                <span className="text-sm font-black text-white">{item.progress}</span>
+              </div>
+              <ProgressBar value={item.progress} tone="blue" />
+            </div>
+          ))}
+        </div>
+      </Glass>
+    </section>
+  );
+}
+
+function ExamSimulation() {
+  return (
+    <section id="simulation" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+        <div>
+          <SectionKicker>Prüfungssimulation</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            Nicht nur wissen. Unter Prüfungsdruck können.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+            Lernende müssen nicht nur Inhalte kennen. Sie müssen Fragen lesen, Zeitdruck aushalten
+            und die richtige Antwort sicher erkennen.
+          </p>
+        </div>
+
+        <Glass className="rounded-[34px] p-5 md:p-7">
+          <div className="mb-5 flex flex-col justify-between gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center">
+            <div>
+              <p className="text-sm font-black text-[#f3b23c]">Beispielfrage</p>
+              <h3 className="mt-1 text-2xl font-black text-white">Unfall mit Fahrgast</h3>
+            </div>
+            <div className="flex gap-2">
+              <span className="rounded-full bg-white/[0.05] px-3 py-1 text-xs font-black text-[#c7d2e5]">
+                01:28
+              </span>
+              <span className="rounded-full bg-[#4ea1ff]/15 px-3 py-1 text-xs font-black text-[#76b7ff]">
+                Recht
+              </span>
+            </div>
+          </div>
+
+          <p className="text-lg leading-8 text-[#d7e1f3]">
+            Sie befördern einen Fahrgast und es passiert ein Unfall. Ihr Fahrgast ist verletzt.
+            Wer übernimmt die Kosten?
+          </p>
+
+          <div className="mt-6 grid gap-3">
+            {examOptions.map((option) => (
+              <div
+                key={option.label}
+                className={`rounded-2xl border p-4 text-sm font-black ${
+                  option.state === "correct"
+                    ? "border-[#34d399]/30 bg-[#34d399]/10 text-[#bfffe9]"
+                    : "border-white/10 bg-white/[0.045] text-[#c7d2e5]"
+                }`}
+              >
+                <span className="mr-3">{option.state === "correct" ? "✓" : "✕"}</span>
+                {option.label}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-[#f3b23c]/25 bg-[#f3b23c]/10 p-4">
+            <p className="text-sm font-black text-[#f3b23c]">Warum?</p>
+            <p className="mt-2 text-sm leading-7 text-white">
+              Bei Schäden aus dem Betrieb des Fahrzeugs ist die Kfz-Haftpflichtversicherung der
+              zentrale Schutz für geschädigte Personen.
+            </p>
+          </div>
+        </Glass>
+      </div>
+    </section>
+  );
+}
+
+function Comparison() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <Glass className="rounded-[34px] p-6 md:p-8">
+        <div className="mb-8 max-w-3xl">
+          <SectionKicker>Warum nicht einfach PDF?</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+            Lernen mit System statt Stapel von Unterlagen.
+          </h2>
+        </div>
+
+        <div className="space-y-4">
           {comparisonRows.map((row) => (
             <div
               key={row.bad}
@@ -774,13 +1043,11 @@ function LearningEngine() {
 
 function Testimonials() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+    <section id="erfolge" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <Glass className="rounded-[34px] p-6 md:p-8">
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-              Erfolgsgeschichten
-            </p>
+            <SectionKicker>Erfolgsgeschichten</SectionKicker>
             <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
               Lernen, verstehen, bestehen.
             </h2>
@@ -821,9 +1088,7 @@ function FAQ() {
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <div className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
-            Fragen
-          </p>
+          <SectionKicker>Fragen</SectionKicker>
           <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
             Kurz erklärt.
           </h2>
@@ -848,7 +1113,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+    <section id="preise" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <Glass className="overflow-hidden rounded-[38px] border-[#f3b23c]/25 p-6 md:p-8">
         <div className="grid gap-8 xl:grid-cols-[1.1fr_.62fr_360px]">
           <div>
@@ -916,7 +1181,7 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#050f24]">
+    <footer id="kontakt" className="border-t border-white/10 bg-[#050f24]">
       <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-12 text-[#afc0da] sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
@@ -954,27 +1219,34 @@ function Footer() {
 function MobileStickyCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#06122b]/90 p-3 backdrop-blur-xl md:hidden">
-      <button className="w-full rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-5 py-4 text-sm font-black text-[#06122b] shadow-[0_14px_40px_rgba(244,178,60,0.34)]">
+      <a
+        href="#preise"
+        className="block w-full rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-5 py-4 text-center text-sm font-black text-[#06122b] shadow-[0_14px_40px_rgba(244,178,60,0.34)]"
+      >
         Kostenlos starten →
-      </button>
+      </a>
     </div>
   );
 }
 
 export default function Page() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#06122b] pb-20 text-white md:pb-0">
+    <main className="min-h-screen overflow-x-hidden bg-[#06122b] pb-20 text-white md:pb-0">
       <Hero />
       <TrustStrip />
       <LearningModes />
+      <LanguageBridge />
+      <IntelligenceLayer />
       <CertificatesSection />
       <FeatureStrip />
       <LearningEngine />
+      <ExamSimulation />
+      <Comparison />
       <Testimonials />
       <FAQ />
       <FinalCTA />
       <Footer />
       <MobileStickyCTA />
-    </div>
+    </main>
   );
 }
