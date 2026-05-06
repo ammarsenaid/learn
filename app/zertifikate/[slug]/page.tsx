@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageShell } from '@/components/site/PageShell';
-import { certificates } from '@/lib/fachkunde-data';
+import { getCertificates } from '@/lib/cms';
 
 const taxiTopicCards = [
   {
@@ -85,8 +85,12 @@ const taxiMathCards = [
   },
 ];
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const certificates = await getCertificates();
   const certificate = certificates.find((c) => c.slug === slug);
 
   if (slug === 'taxi-mietwagen') {
@@ -105,6 +109,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ZertifikatDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const certificates = await getCertificates();
   const certificate = certificates.find((c) => c.slug === slug);
 
   if (!certificate) return notFound();
@@ -317,6 +322,3 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
   );
 }
 
-export function generateStaticParams() {
-  return certificates.map((c) => ({ slug: c.slug }));
-}
