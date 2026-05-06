@@ -6,7 +6,7 @@ type Tone = "blue" | "gold" | "green" | "red";
 export const metadata: Metadata = {
   title: "FachkundePilot — Prüfungsorientiertes Lernen",
   description:
-    "Lerne deutsche Sach- und Fachkundeprüfungen mit Lernpfaden, Lernkarten, Prüfungssimulation, Admin-System und mehrsprachigen Erklärungen.",
+    "FachkundePilot ist eine moderne Lernplattform für deutsche Sach- und Fachkundeprüfungen mit Lernpfaden, Lernkarten, Prüfungssimulation, Admin-System und mehrsprachigen Erklärungen.",
 };
 
 const navItems = [
@@ -148,6 +148,15 @@ const certificates = [
   },
 ] as const;
 
+const curriculumFlow = [
+  { step: "01", title: "Zertifikat", text: "Taxi, §34a, Güterverkehr oder weitere Prüfungen." },
+  { step: "02", title: "Kapitel", text: "Offizielle Themenbereiche sauber strukturiert." },
+  { step: "03", title: "Lektionen", text: "Lerninhalte mit Beispielen und Mehrsprachigkeit." },
+  { step: "04", title: "Lernkarten", text: "Wiederholung für Begriffe, Regeln und Formeln." },
+  { step: "05", title: "Fragen", text: "Prüfungsnahe Aufgaben mit Erklärung." },
+  { step: "06", title: "Simulation", text: "Realistischer Test mit Punkten und Zeitdruck." },
+] as const;
+
 const languageExamples = [
   {
     term: "Betriebssitz",
@@ -187,70 +196,29 @@ const intelligenceItems = [
   },
 ] as const;
 
-const curriculumFlow = [
+const platformRoles = [
   {
-    step: "01",
-    title: "Zertifikat",
-    text: "Taxi, §34a, Güterverkehr oder weitere Prüfungen.",
+    icon: "👤",
+    title: "Lernende",
+    text: "Lernen, Karten üben, Prüfungen simulieren, Fortschritt sehen.",
   },
   {
-    step: "02",
-    title: "Kapitel",
-    text: "Offizielle Themenbereiche sauber strukturiert.",
+    icon: "🧑‍🏫",
+    title: "Dozenten",
+    text: "Kapitel, Fragen, Erklärungen und Lernlogik kuratieren.",
   },
   {
-    step: "03",
-    title: "Lektionen",
-    text: "Lerninhalte mit Beispielen und Mehrsprachigkeit.",
-  },
-  {
-    step: "04",
-    title: "Lernkarten",
-    text: "Wiederholung für Begriffe, Regeln und Formeln.",
-  },
-  {
-    step: "05",
-    title: "Fragen",
-    text: "Prüfungsnahe Aufgaben mit Erklärung.",
-  },
-  {
-    step: "06",
-    title: "Simulation",
-    text: "Realistischer Test mit Punkten und Zeitdruck.",
+    icon: "🛡️",
+    title: "Admin",
+    text: "Zertifikate, Sprachen, Inhalte, Nutzer und Veröffentlichungen verwalten.",
   },
 ] as const;
 
-const features = [
-  {
-    icon: "🇩🇪",
-    title: "Deutsch als Prüfungsbasis",
-    text: "Du lernst mit deutschen Originalbegriffen, damit du die Prüfungssprache sicher verstehst.",
-  },
-  {
-    icon: "🌐",
-    title: "Erklärung in deiner Sprache",
-    text: "Arabisch, Englisch oder Türkisch helfen dir, schwierige Inhalte wirklich zu verstehen.",
-  },
-  {
-    icon: "🃏",
-    title: "Lernkarten mit System",
-    text: "Begriffe, Regeln und Rechenlogik werden wiederholt, bis sie sitzen.",
-  },
-  {
-    icon: "🧪",
-    title: "Prüfungssimulation",
-    text: "Du trainierst reale Prüfungssituationen mit Punkten, Zeit und Fehleranalyse.",
-  },
-  {
-    icon: "📈",
-    title: "Schwächenanalyse",
-    text: "Du siehst sofort, welche Themen du noch verbessern musst.",
-  },
-  {
-    icon: "📱",
-    title: "Mobile-first Lernen",
-    text: "Lerne unterwegs, auf dem Sofa oder in der Pause — ohne Chaos.",
-  },
+const adminPreview = [
+  { label: "Zertifikate", value: "12", progress: "88%" },
+  { label: "Lektionen", value: "248", progress: "72%" },
+  { label: "Fragen", value: "4.2k", progress: "64%" },
+  { label: "Sprachen", value: "4", progress: "96%" },
 ] as const;
 
 const learningSteps = [
@@ -283,29 +251,41 @@ const learningTimeline = [
   { day: "Tag 19+", title: "Prüfung simulieren", progress: "92%" },
 ] as const;
 
-const platformRoles = [
+const seoPages = [
   {
-    icon: "👤",
-    title: "Lernende",
-    text: "Lernen, Karten üben, Prüfungen simulieren, Fortschritt sehen.",
+    title: "Zertifikat-Seiten",
+    text: "Jede Prüfung bekommt eine eigene indexierbare Seite mit Struktur, FAQ und Lernpfad.",
   },
   {
-    icon: "🧑‍🏫",
-    title: "Dozenten",
-    text: "Kapitel, Fragen, Erklärungen und Lernlogik kuratieren.",
+    title: "Kapitel-Seiten",
+    text: "Themen wie Recht, Betrieb, Kostenrechnung oder Vorschriften können eigene SEO-Seiten werden.",
   },
   {
-    icon: "🛡️",
-    title: "Admin",
-    text: "Zertifikate, Sprachen, Inhalte, Nutzer und Veröffentlichungen verwalten.",
+    title: "Glossar-Seiten",
+    text: "Deutsche Fachbegriffe können einzeln erklärt und langfristig über Google gefunden werden.",
+  },
+  {
+    title: "Fragen-Seiten",
+    text: "Prüfungsnahe Fragen können später als Lern- und Suchseiten funktionieren.",
   },
 ] as const;
 
-const adminPreview = [
-  { label: "Zertifikate", value: "12", progress: "88%" },
-  { label: "Lektionen", value: "248", progress: "72%" },
-  { label: "Fragen", value: "4.2k", progress: "64%" },
-  { label: "Sprachen", value: "4", progress: "96%" },
+const learnerPersonas = [
+  {
+    icon: "🧑‍💼",
+    title: "Berufsumsteiger",
+    text: "Brauchen klare Struktur, einfache Sprache und schnelle Orientierung.",
+  },
+  {
+    icon: "🌍",
+    title: "Mehrsprachige Lernende",
+    text: "Müssen deutsche Begriffe behalten, aber in der eigenen Sprache verstehen.",
+  },
+  {
+    icon: "🏢",
+    title: "Schulen & Anbieter",
+    text: "Brauchen Inhalte, Nutzerverwaltung, Fortschritt und skalierbare Lernpfade.",
+  },
 ] as const;
 
 const examOptions = [
@@ -329,25 +309,6 @@ const comparisonRows = [
   },
 ] as const;
 
-const seoPages = [
-  {
-    title: "Zertifikat-Seiten",
-    text: "Jede Prüfung bekommt eine eigene indexierbare Seite mit Struktur, FAQ und Lernpfad.",
-  },
-  {
-    title: "Kapitel-Seiten",
-    text: "Themen wie Recht, Betrieb, Kostenrechnung oder Vorschriften können eigene SEO-Seiten werden.",
-  },
-  {
-    title: "Glossar-Seiten",
-    text: "Deutsche Fachbegriffe können einzeln erklärt und langfristig über Google gefunden werden.",
-  },
-  {
-    title: "Fragen-Seiten",
-    text: "Prüfungsnahe Fragen können später als Lern- und Suchseiten funktionieren.",
-  },
-] as const;
-
 const conversionReasons = [
   {
     title: "Für Lernende",
@@ -360,6 +321,36 @@ const conversionReasons = [
   {
     title: "Für SEO",
     text: "Jede Prüfung, jedes Kapitel und jede Frage kann später indexierbar werden.",
+  },
+] as const;
+
+const pricingPlans = [
+  {
+    name: "Starter",
+    price: "0 €",
+    description: "Zum Testen der Plattform und Lernlogik.",
+    benefits: ["Demo-Lektionen", "Beispiel-Lernkarten", "Einblicke in Prüfungssimulation"],
+    highlighted: false,
+  },
+  {
+    name: "Premium",
+    price: "9,90 €",
+    description: "Für ernsthafte Prüfungsvorbereitung.",
+    benefits: [
+      "Alle verfügbaren Zertifikate",
+      "Lernkarten & Wiederholung",
+      "Prüfungssimulationen",
+      "Mehrsprachige Erklärungen",
+      "Fortschrittsanalyse",
+    ],
+    highlighted: true,
+  },
+  {
+    name: "Akademie",
+    price: "Individuell",
+    description: "Für Schulen, Anbieter und Teams.",
+    benefits: ["Admin-Zugriff", "Nutzerverwaltung", "Content-Pflege", "Mehrere Lernende"],
+    highlighted: false,
   },
 ] as const;
 
@@ -383,15 +374,6 @@ const testimonials = [
     quote: "Deutsch war mein Problem. Die Erklärungen in meiner Sprache haben alles verändert.",
   },
 ] as const;
-
-const pricingBenefits = [
-  "Alle verfügbaren Zertifikate",
-  "Mehrsprachige Erklärungen",
-  "Lernkarten & Wiederholung",
-  "Prüfungssimulationen",
-  "Fortschrittsanalyse",
-  "Mobile Nutzung",
-];
 
 const faqItems = [
   {
@@ -516,7 +498,6 @@ function Navbar() {
           <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
             ✦
           </div>
-
           <div>
             <p className="text-xl font-black tracking-[-0.04em] text-white md:text-2xl">
               FachkundePilot
@@ -772,9 +753,38 @@ function LearningModes() {
   );
 }
 
-function CurriculumSystem() {
+function AudienceSection() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mb-8 max-w-4xl">
+        <SectionKicker>Zielgruppen</SectionKicker>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+          Eine Plattform für echte Lernprobleme.
+        </h2>
+        <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+          Das Design richtet sich nicht nur an hübsche Screens, sondern an Menschen, die unter
+          Zeitdruck eine deutsche Prüfung bestehen müssen.
+        </p>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-3">
+        {learnerPersonas.map((person) => (
+          <Glass key={person.title} className="rounded-[30px] p-6">
+            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
+              {person.icon}
+            </div>
+            <h3 className="text-2xl font-black text-white">{person.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-[#afc0da]">{person.text}</p>
+          </Glass>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CurriculumSystem() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <div className="mb-8 max-w-4xl">
         <SectionKicker>Content-System</SectionKicker>
         <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
@@ -1038,31 +1048,6 @@ function CertificatesSection() {
   );
 }
 
-function FeatureStrip() {
-  return (
-    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <Glass className="rounded-[30px] p-5 md:p-7">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className={`rounded-2xl p-4 ${
-                index < features.length - 1 ? "xl:border-r xl:border-white/10" : ""
-              }`}
-            >
-              <div className="mb-4 grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-xl">
-                {feature.icon}
-              </div>
-              <p className="text-base font-black text-white">{feature.title}</p>
-              <p className="mt-2 text-sm leading-6 text-[#8ea0c0]">{feature.text}</p>
-            </div>
-          ))}
-        </div>
-      </Glass>
-    </section>
-  );
-}
-
 function AdminPanelPreview() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
@@ -1080,7 +1065,10 @@ function AdminPanelPreview() {
 
           <div className="grid gap-4 md:grid-cols-2">
             {adminPreview.map((item) => (
-              <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-5">
+              <div
+                key={item.label}
+                className="rounded-3xl border border-white/10 bg-white/[0.045] p-5"
+              >
                 <p className="text-sm font-bold text-[#8ea0c0]">{item.label}</p>
                 <p className="mt-2 text-4xl font-black text-white">{item.value}</p>
                 <div className="mt-4">
@@ -1098,7 +1086,7 @@ function AdminPanelPreview() {
           </h2>
           <p className="mt-5 text-lg leading-8 text-[#afc0da]">
             Zertifikate, Kapitel, Fragen, Lernkarten, Erklärungen und Sprachen müssen langfristig
-            über ein Admin-System verwaltet werden. Die Landing Page verkauft genau dieses System.
+            über ein Admin-System verwaltet werden.
           </p>
         </div>
       </div>
@@ -1144,7 +1132,10 @@ function LearningEngine() {
 
         <div className="mt-8 space-y-4">
           {learningTimeline.map((item) => (
-            <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4">
+            <div
+              key={item.title}
+              className="rounded-3xl border border-white/10 bg-white/[0.045] p-4"
+            >
               <div className="mb-3 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f3b23c]">
@@ -1287,6 +1278,77 @@ function ConversionLayer() {
   );
 }
 
+function PricingSection() {
+  return (
+    <section id="preise" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="mb-8 max-w-4xl">
+        <SectionKicker>Preise</SectionKicker>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+          Ein Einstieg für Lernende. Ein System für Wachstum.
+        </h2>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-3">
+        {pricingPlans.map((plan) => (
+          <div
+            key={plan.name}
+            className={`rounded-[34px] border p-6 ${
+              plan.highlighted
+                ? "border-[#f3b23c]/45 bg-[#f8f3e8] text-[#07162f] shadow-[0_24px_70px_rgba(244,183,63,0.18)]"
+                : "border-white/10 bg-[#071a3a]/78 text-white shadow-[0_26px_100px_rgba(0,0,0,0.4)]"
+            }`}
+          >
+            <p
+              className={`inline-flex rounded-full px-4 py-1.5 text-sm font-black ${
+                plan.highlighted
+                  ? "bg-[#f3b23c] text-[#07162f]"
+                  : "border border-white/10 bg-white/[0.05] text-[#f3b23c]"
+              }`}
+            >
+              {plan.name}
+            </p>
+
+            <p className="mt-6 text-5xl font-black tracking-[-0.06em]">{plan.price}</p>
+            <p
+              className={`mt-3 text-sm leading-7 ${
+                plan.highlighted ? "text-[#4a5568]" : "text-[#afc0da]"
+              }`}
+            >
+              {plan.description}
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {plan.benefits.map((benefit) => (
+                <p key={benefit} className="flex items-center gap-3 text-sm font-bold">
+                  <span
+                    className={`grid h-6 w-6 place-items-center rounded-full ${
+                      plan.highlighted ? "bg-[#07162f] text-white" : "bg-[#34d399]/15 text-[#34d399]"
+                    }`}
+                  >
+                    ✓
+                  </span>
+                  {benefit}
+                </p>
+              ))}
+            </div>
+
+            <a
+              href="#kontakt"
+              className={`mt-7 block rounded-2xl px-5 py-4 text-center text-base font-black ${
+                plan.highlighted
+                  ? "bg-[#07162f] text-white"
+                  : "bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] text-[#07162f]"
+              }`}
+            >
+              Jetzt starten →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Testimonials() {
   return (
     <section id="erfolge" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
@@ -1359,7 +1421,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section id="preise" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <Glass className="overflow-hidden rounded-[38px] border-[#f3b23c]/25 p-6 md:p-8">
         <div className="grid gap-8 xl:grid-cols-[1.1fr_.62fr_360px]">
           <div>
@@ -1373,20 +1435,6 @@ function FinalCTA() {
               Lerne mit klaren Lernpfaden, smarten Lernkarten und realistischen Prüfungen — für
               deinen sicheren Erfolg.
             </p>
-
-            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-              {pricingBenefits.map((benefit) => (
-                <li
-                  key={benefit}
-                  className="flex items-center gap-3 text-sm font-bold text-[#d7e1f3]"
-                >
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-[#34d399]/15 text-[#34d399]">
-                    ✓
-                  </span>
-                  {benefit}
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className="space-y-3 self-center">
@@ -1411,10 +1459,12 @@ function FinalCTA() {
               Ab 9,90 €
               <span className="text-base font-bold tracking-normal"> / Monat</span>
             </p>
-            <p className="mt-2 text-sm font-bold text-[#4a5568]">Monatlich kündbar</p>
-            <button className="mt-6 w-full rounded-2xl bg-[#07162f] px-5 py-4 text-base font-black text-white transition hover:bg-[#10244d]">
+            <a
+              href="#kontakt"
+              className="mt-6 block w-full rounded-2xl bg-[#07162f] px-5 py-4 text-center text-base font-black text-white transition hover:bg-[#10244d]"
+            >
               Jetzt starten →
-            </button>
+            </a>
             <p className="mt-3 text-center text-sm font-bold text-[#4a5568]">
               7 Tage kostenlos testen
             </p>
@@ -1481,18 +1531,19 @@ export default function Page() {
       <Hero />
       <TrustStrip />
       <LearningModes />
+      <AudienceSection />
       <CurriculumSystem />
       <LanguageBridge />
       <IntelligenceLayer />
       <SEOScaleSection />
       <PlatformSection />
       <CertificatesSection />
-      <FeatureStrip />
       <AdminPanelPreview />
       <LearningEngine />
       <ExamSimulation />
       <Comparison />
       <ConversionLayer />
+      <PricingSection />
       <Testimonials />
       <FAQ />
       <FinalCTA />
