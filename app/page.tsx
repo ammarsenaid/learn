@@ -128,12 +128,12 @@ export default function HomePage() {
             </div>
           </nav>
 
-          <div className="grid items-center gap-10 lg:min-h-[calc(100vh-160px)] lg:max-h-[760px] lg:grid-cols-[minmax(0,0.95fr)_minmax(520px,1.05fr)] lg:gap-12 xl:gap-16">
-            <div className="max-w-[620px]">
+          <div className="grid items-center gap-10 pt-14 pb-[72px] lg:min-h-[760px] lg:max-h-[880px] lg:grid-cols-12 lg:gap-12">
+            <div className="max-w-[620px] lg:col-span-5">
               <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/35 bg-[rgba(9,24,56,0.72)] px-4 py-2.5 text-sm text-[#D7E1F3] shadow-[0_0_0_1px_rgba(78,161,255,0.12)]">
                 ✨ Die Lernplattform für offizielle Sach- und Fachkundeprüfungen
               </p>
-              <h1 className="max-w-[620px] text-[clamp(2.75rem,9vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em] md:text-[clamp(3.1rem,8vw,4rem)] lg:text-[clamp(3.5rem,5vw,5.4rem)] lg:leading-[0.98]">
+              <h1 className="max-w-[560px] text-[clamp(2.7rem,12vw,3.6rem)] font-semibold leading-[0.95] tracking-[-0.055em] lg:text-[clamp(3.7rem,5.4vw,5.4rem)]">
                 Bestehe deine Prüfung.
                 <br />
                 Mit <span className="bg-gradient-to-r from-[#f7c664] to-[#F3B23C] bg-clip-text text-transparent">Klarheit, Struktur</span>
@@ -161,20 +161,30 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative w-full max-w-[660px] lg:ml-auto">
+            <div className="relative w-full min-w-0 lg:col-span-7">
               <div className="absolute -inset-3 -z-10 rounded-[32px] bg-[radial-gradient(circle,rgba(78,161,255,.24),transparent_68%)]" />
-              <div className="relative max-h-[520px] overflow-hidden rounded-[30px] border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)] md:p-5">
-                <div className="mb-5 flex items-center justify-between rounded-2xl border border-white/10 bg-[#081735] px-4 py-3 text-sm text-[#9FB0CC]">
-                  <span>FachkundePilot Dashboard</span>
-                  <span>⌕ 🔔 ● ● ●</span>
+              <div className="grid min-w-0 items-center gap-5 min-[1101px]:grid-cols-[210px_minmax(0,1fr)] min-[1101px]:gap-6">
+                <div className="grid grid-cols-2 gap-3 min-[1101px]:grid-cols-1 min-[1101px]:gap-3">
+                  {[["🌍","Mehrsprachig","DE · AR · EN · TR"],["⭐","4.9/5","Nutzerbewertung"],["📈","78%","Dein Lernstand"],["📜","12+","Zertifikate verfügbar"]].map(([i,t,s]) => (
+                    <div key={t} className="min-h-[78px] w-full rounded-[20px] border border-white/[0.12] bg-[rgba(8,24,58,0.78)] px-4 py-4 text-sm text-[#D7E1F3] shadow-[0_12px_30px_rgba(0,0,0,0.24)] transition-colors duration-200 hover:border-white/25 hover:bg-[rgba(10,28,66,0.86)] hover:shadow-[0_16px_34px_rgba(0,0,0,0.32)]">
+                      <p>{i} <span className="font-semibold">{t}</span></p>
+                      <p className="text-xs text-[#9FB0CC]">{s}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="grid gap-3 md:grid-cols-[146px_1fr]">
-                  <aside className="rounded-2xl border border-white/10 bg-[#081735] p-3 text-[13px] text-[#9FB0CC]">
-                    {['Übersicht','Zertifikate','Lernkarten','Prüfungen','Fortschritt','Einstellungen'].map((s, i) => <p key={s} className={i===0 ? 'mb-3 rounded-lg bg-white/10 px-2 py-1 text-[#F8FAFC]' : 'mb-3'}>{s}</p>)}
-                  </aside>
-                    <div className="space-y-3.5">
+
+                <div className="min-w-0 overflow-hidden rounded-[30px] border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)] md:p-5">
+                  <div className="mb-5 flex items-center justify-between rounded-2xl border border-white/10 bg-[#081735] px-4 py-3 text-sm text-[#9FB0CC]">
+                    <span>FachkundePilot Dashboard</span>
+                    <span>⌕ 🔔 ● ● ●</span>
+                  </div>
+                  <div className="grid min-w-0 gap-3 min-[420px]:grid-cols-[126px_minmax(0,1fr)] md:grid-cols-[132px_minmax(0,1fr)]">
+                    <aside className="rounded-2xl border border-white/10 bg-[#081735] p-3 text-[12px] text-[#9FB0CC]">
+                      {['Übersicht','Zertifikate','Lernkarten','Prüfungen','Fortschritt','Einstellungen'].map((s, i) => <p key={s} className={i===0 ? 'mb-3 rounded-lg bg-white/10 px-2 py-1 text-[#F8FAFC]' : 'mb-3'}>{s}</p>)}
+                    </aside>
+                    <div className="min-w-0 space-y-3.5">
                       <div>
-                        <p className="text-lg font-semibold">Guten Abend, Ahmet 👋</p>
+                        <p className="text-base font-semibold sm:text-lg">Guten Abend, Ahmet 👋</p>
                         <p className="text-sm text-[#9FB0CC]">Weiter so! Du bist auf dem besten Weg.</p>
                       </div>
                       <div className="grid gap-3 md:grid-cols-2">
@@ -194,14 +204,11 @@ export default function HomePage() {
                     </div>
                     <div className="rounded-[20px] border border-[#F3B23C]/35 bg-[rgba(243,178,60,0.12)] p-3.5">
                       <p className="text-sm text-[#F8FAFC]">Heute empfohlen</p><p className="text-sm text-[#D7E1F3]">20 Min. Lernkarten: Recht & Kostenrechnung</p>
-                      <button className="mt-3 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-xs text-[#F8FAFC] transition hover:-translate-y-0.5">Weiterlernen</button>
+                      <button className="mt-3 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-xs text-[#F8FAFC] transition-colors hover:bg-white/15">Weiterlernen</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-3 md:mt-0 md:grid-cols-2 lg:absolute lg:left-0 lg:top-0 lg:z-10 lg:grid-cols-1 lg:gap-2.5">
-                {[['🌍','Mehrsprachig','DE · AR · EN · TR'],['⭐','4.9/5','Nutzerbewertung'],['📈','78%','Dein Lernstand'],['📜','12+','Zertifikate verfügbar']].map(([i,t,s], idx) => <div key={t} className={`rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] px-3.5 py-3 text-sm text-[#D7E1F3] shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 lg:w-[206px] ${idx === 0 ? 'lg:translate-x-[-20px] lg:translate-y-[50px]' : ''} ${idx === 1 ? 'lg:translate-x-[-20px] lg:translate-y-[58px]' : ''} ${idx === 2 ? 'lg:translate-x-[-20px] lg:translate-y-[64px]' : ''} ${idx === 3 ? 'lg:translate-x-[-20px] lg:translate-y-[70px]' : ''}`}><p>{i} <span className='font-semibold'>{t}</span></p><p className='text-xs text-[#9FB0CC]'>{s}</p></div>)}
-              </div>
+              </div>              </div>
             </div>
           </div>
         </div>
