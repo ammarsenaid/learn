@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageShell } from '@/components/site/PageShell';
-import { certificates } from '@/lib/fachkunde-data';
+import { getCertificates } from '@/lib/cms';
 
 export const metadata: Metadata = {
   title: 'Zertifikate — FachkundePilot',
@@ -29,20 +29,25 @@ const codeBySlug: Record<string, string> = {
   immobiliardarlehen: 'IM',
 };
 
-const featuredCertificate = certificates.find((c) => c.slug === 'taxi-mietwagen');
-const otherCertificates = certificates.filter((c) => c.slug !== 'taxi-mietwagen');
 
 function statusClasses(status: string) {
   if (status === 'Aktiv') return 'border-emerald-400/40 bg-emerald-500/15 text-emerald-200';
   return 'border-amber-400/40 bg-amber-500/15 text-amber-200';
 }
 
-export default function ZertifikatePage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function ZertifikatePage() {
+  const certificates = await getCertificates();
+  const featuredCertificate = certificates.find((c) => c.slug === 'taxi-mietwagen') ?? certificates[0];
   if (!featuredCertificate) return null;
+  const otherCertificates = certificates.filter((c) => c.slug !== featuredCertificate.slug);
 
   return (
     <PageShell>
       <main className="mx-auto max-w-6xl px-5 py-10 md:py-14">
+        <p className="text-xs text-slate-500">CMS connected</p>
         <section className="grid gap-8 rounded-3xl border border-sky-400/15 bg-[#071a2e] p-6 md:grid-cols-[1.35fr_0.95fr] md:p-8">
           <div>
             <p className="text-sm font-medium tracking-[0.14em] text-sky-300">Zertifikate</p>
