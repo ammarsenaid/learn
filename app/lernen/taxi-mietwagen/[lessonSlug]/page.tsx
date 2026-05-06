@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCertificateBySlug, getChapterById, getFlashcardsByLessonId, getLessonBySlug, getQuestionsByChapterId } from '@/lib/cms';
+import MarkLessonCompleteButton from '@/components/learning/MarkLessonCompleteButton';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -29,6 +30,7 @@ export default async function LessonDetailPage({ params }: { params: Promise<{ l
         <h1 className="text-3xl font-bold text-white">{lesson.title}</h1>
         {lesson.summary ? <p className="mt-2 text-slate-300">{lesson.summary}</p> : null}
         {chapter ? <p className="mt-3 text-sm text-sky-200">Kapitel: {chapter.title}</p> : null}
+        <div className="mt-4"><MarkLessonCompleteButton lessonId={lesson.id} title={lesson.title} href={`/lernen/taxi-mietwagen/${lesson.slug}`} /></div>
       </article>
       {lesson.content_de ? <section className="rounded-xl border border-[#214267] bg-[#0b2645] p-5"><h2 className="text-xl text-[#f3c76a]">Deutsch</h2><div className="mt-2 whitespace-pre-wrap text-slate-200">{lesson.content_de}</div></section> : null}
       {lesson.content_ar ? <section className="rounded-xl border border-[#214267] bg-[#0b2645] p-5"><h2 className="text-xl text-[#f3c76a]">العربية</h2><div className="mt-2 whitespace-pre-wrap text-slate-200">{lesson.content_ar}</div></section> : null}

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import ProgressSummaryClient from '@/components/learning/ProgressSummaryClient';
+import ResetProgressButton from '@/components/learning/ResetProgressButton';
+
 import {
   getCertificateBySlug,
   getChaptersByCertificateId,
@@ -196,7 +199,18 @@ export default async function DashboardPage() {
             </div>
           </section>
 
-          <section id="today" className="mb-8">
+          
+
+          <section id="fortschritt" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h3 className="text-xl font-semibold text-white">Lokaler Lernfortschritt</h3>
+              <ResetProgressButton />
+            </div>
+            <div className="mt-4">
+              <ProgressSummaryClient />
+            </div>
+          </section>
+<section id="today" className="mb-8">
             <h3 className="mb-3 text-xl font-semibold text-white">Today&apos;s Tasks</h3>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {todayTasks.map((task) => (

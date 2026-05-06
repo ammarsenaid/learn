@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getFlashcardById, getLessonBySlug, getLessonsByCertificateId, getCertificateBySlug } from '@/lib/cms';
+import { getFlashcardById, getLessonsByCertificateId, getCertificateBySlug } from '@/lib/cms';
+import FlashcardActionButtons from '@/components/learning/FlashcardActionButtons';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -30,7 +31,7 @@ export default async function FlashcardDetailPage({ params }: { params: Promise<
     {card.explanation_ar ? <p className="mt-4 text-slate-200">{card.explanation_ar}</p> : null}
     <p className="mt-3 text-sm text-slate-300">Schwierigkeit: {card.difficulty ?? 'mittel'}</p>
     {toTags(card.tags).length > 0 ? <p className="mt-1 text-sm text-sky-200">Tags: {toTags(card.tags).join(', ')}</p> : null}
-    <div className="mt-5 flex flex-wrap gap-3"><button className="rounded-lg bg-[#f3c76a] px-4 py-2 font-semibold text-[#03111f]">Gewusst</button><button className="rounded-lg border border-[#f3c76a] px-4 py-2 text-[#f3c76a]">Wiederholen</button><button className="rounded-lg border border-sky-400 px-4 py-2 text-sky-200">Als Frage üben</button></div></article>
+    <FlashcardActionButtons cardId={card.id} title={card.front_de} href={`/lernen/taxi-mietwagen/karten/${card.id}`} /></article>
     <div className="flex flex-wrap gap-3"><Link href="/lernen/taxi-mietwagen/karten" className="rounded-lg border border-sky-400 px-4 py-2 text-sky-200">Zurück zu allen Karten</Link><Link href="/dashboard" className="rounded-lg border border-[#2a4c77] px-4 py-2">Zurück zum Dashboard</Link>{lesson ? <Link href={`/lernen/taxi-mietwagen/${lesson.slug}`} className="rounded-lg border border-[#2a4c77] px-4 py-2">Zurück zur Lektion</Link> : null}</div>
   </div></main>;
 }
