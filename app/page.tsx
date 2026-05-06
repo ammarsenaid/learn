@@ -586,8 +586,8 @@ function DashboardMockup() {
   const bars = [35, 50, 42, 65, 48, 78, 92] as const;
 
   return (
-    <div className="relative rounded-[26px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
-      <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/70 blur-xl" />
+    <div className="relative rounded-[24px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
+      <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/60 blur-xl" />
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
 
       <div className="relative rounded-2xl border border-slate-600/35 bg-[#07172a] p-3">
@@ -607,7 +607,7 @@ function DashboardMockup() {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-[124px_1fr]">
+        <div className="grid gap-3 md:grid-cols-[118px_1fr]">
           <aside className="hidden rounded-xl border border-slate-600/30 bg-[#061326] p-2 text-[11px] font-bold text-slate-400 md:block">
             {["Übersicht", "Zertifikate", "Lernkarten", "Prüfungen", "Analyse", "Einstellungen"].map(
               (item, index) => (
@@ -624,13 +624,13 @@ function DashboardMockup() {
               ),
             )}
 
-            <div className="mt-16 rounded-lg px-3 py-2 text-slate-500">Abmelden</div>
+            <div className="mt-10 rounded-lg px-3 py-2 text-slate-500">Abmelden</div>
           </aside>
 
           <main>
             <div className="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
               <div>
-                <p className="text-lg font-black text-white">Guten Abend, Ahmet</p>
+                <p className="text-base font-black text-white sm:text-lg">Guten Abend, Ahmet</p>
                 <p className="text-[11px] text-slate-400">
                   Prüfung in 14 Tagen · Heute: 24 Karten fällig
                 </p>
@@ -641,22 +641,24 @@ function DashboardMockup() {
             </div>
 
             <div className="grid gap-3 md:grid-cols-2">
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
+              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
                 <p className="text-xs font-semibold text-slate-400">Prüfungsreife</p>
-                <p className="mt-1 text-4xl font-black tracking-[-0.06em] text-white">78%</p>
-                <div className="mt-3">
+                <p className="mt-1 text-3xl font-black tracking-[-0.06em] text-white sm:text-4xl">
+                  78%
+                </p>
+                <div className="mt-2">
                   <Progress value="78%" />
                 </div>
                 <p className="mt-2 text-[10px] text-slate-500">
-                  Nächstes Ziel: Kostenrechnung verbessern
+                  Nächstes Ziel: Kostenrechnung
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
+              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
                 <p className="text-xs font-semibold text-slate-400">Lernzeit heute</p>
                 <div className="mt-2 flex items-end justify-between gap-4">
                   <p className="text-3xl font-black tracking-[-0.06em] text-white">42m</p>
-                  <div className="flex h-10 flex-1 items-end gap-1">
+                  <div className="flex h-9 flex-1 items-end gap-1">
                     {bars.map((h) => (
                       <span
                         key={h}
@@ -671,8 +673,8 @@ function DashboardMockup() {
             </div>
 
             <div className="mt-3 grid gap-3 md:grid-cols-[1.18fr_.82fr]">
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
-                <p className="mb-3 text-sm font-black text-white">Aktive Zertifikate</p>
+              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
+                <p className="mb-2 text-sm font-black text-white">Aktive Zertifikate</p>
 
                 {activeCerts.map(([name, progress, tone]) => (
                   <div
@@ -685,24 +687,24 @@ function DashboardMockup() {
                 ))}
               </div>
 
-              <div className="rounded-xl border border-yellow-400/25 bg-yellow-400/10 p-4">
+              <div className="rounded-xl border border-yellow-400/25 bg-yellow-400/10 p-3">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-yellow-300">
                   Heute empfohlen
                 </p>
-                <p className="mt-3 text-2xl font-black text-white">20 Min.</p>
+                <p className="mt-2 text-2xl font-black text-white">20 Min.</p>
                 <p className="mt-1 text-[11px] leading-5 text-slate-300">
                   Lernkarten Recht & Kostenrechnung
                 </p>
                 <a
                   href="#methode"
-                  className="mt-4 block rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
+                  className="mt-3 block rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
                 >
                   Weiterlernen
                 </a>
               </div>
             </div>
 
-            <div className="mt-3 rounded-xl border border-slate-600/35 bg-[#061326] p-3">
+            <div className="mt-3 rounded-xl border border-slate-600/35 bg-[#061326] p-2.5">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.14em] text-sky-300">
@@ -737,12 +739,12 @@ function SideStats() {
       {items.map(([icon, value, text]) => (
         <div
           key={value}
-          className="rounded-2xl border border-slate-500/40 bg-[#071a30]/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-sky-400/45 hover:bg-sky-400/10"
+          className="rounded-2xl border border-slate-500/40 bg-[#071a30]/80 p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-sky-400/45 hover:bg-sky-400/10"
         >
           <div className="flex items-center gap-3">
             <IconBox icon={icon as IconName} />
             <div>
-              <p className="text-lg font-black leading-none text-white">{value}</p>
+              <p className="text-base font-black leading-none text-white">{value}</p>
               <p className="mt-1 text-[11px] font-semibold text-slate-400">{text}</p>
             </div>
           </div>
@@ -756,7 +758,7 @@ function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 bg-[#03111f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_56%_28%,rgba(34,139,230,0.28),transparent_34%),radial-gradient(circle_at_18%_18%,rgba(246,200,79,0.12),transparent_28%),linear-gradient(180deg,#03111f_0%,#05172a_64%,#03111f_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_28%,rgba(34,139,230,0.28),transparent_34%),radial-gradient(circle_at_18%_18%,rgba(246,200,79,0.12),transparent_28%),linear-gradient(180deg,#03111f_0%,#05172a_64%,#03111f_100%)]" />
       <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(86,161,220,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(86,161,220,.12)_1px,transparent_1px)] [background-size:58px_58px]" />
 
       <div className="absolute left-1/2 top-24 -z-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-sky-500/10 blur-3xl" />
@@ -765,34 +767,33 @@ function Hero() {
       <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1240px] gap-10 px-4 pb-16 pt-10 lg:grid-cols-[minmax(0,430px)_minmax(0,1fr)] lg:items-center lg:pb-24 xl:gap-14">
+        <div className="mx-auto grid max-w-[1240px] gap-9 px-4 pb-12 pt-7 lg:grid-cols-[minmax(0,500px)_minmax(0,1fr)] lg:items-center lg:pb-16 lg:pt-9 xl:gap-12">
           <div>
-            <p className="mb-5 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
+            <p className="mb-4 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="text-[42px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[58px] lg:text-[62px]">
+            <h1 className="max-w-[540px] text-[38px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[50px] lg:text-[56px] xl:text-[62px]">
               Deutsch lernen.
               <br />
-              In deiner Sprache{" "}
-              <span className="bg-gradient-to-r from-[#ffe27a] to-[#f3ad24] bg-clip-text text-transparent">
-                verstehen.
+              <span className="bg-gradient-to-r from-white via-[#ffe27a] to-[#f3ad24] bg-clip-text text-transparent">
+                In deiner Sprache verstehen.
                 <br />
                 Sicher bestehen.
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[430px] text-base font-medium leading-7 text-slate-300">
+            <p className="mt-5 max-w-[500px] text-base font-medium leading-7 text-slate-300">
               FachkundePilot hilft dir, deutsche Prüfungsbegriffe zu verstehen, mit Lernkarten zu
               sichern und echte Prüfungssituationen zu trainieren.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <GoldButton>Zertifikat auswählen</GoldButton>
               <DarkButton href="#methode">Demo ansehen</DarkButton>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:max-w-[430px]">
+            <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:max-w-[500px]">
               {[
                 ["check", "An offiziellen Themen orientiert"],
                 ["cards", "Lernkarten & Wiederholung"],
