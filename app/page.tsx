@@ -1,14 +1,8 @@
 import type { ReactNode } from "react";
 
-const navItems = ["Zertifikate", "So funktioniert’s", "Preise", "Erfolgsgeschichten", "Kontakt"];
+const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
 
-const heroTrustItems = [
-  "IHK-orientierte Struktur",
-  "Mehrsprachig lernen",
-  "Prüfung realistisch üben",
-];
-
-const trustStripItems = [
+const trustStats = [
   {
     icon: "🌍",
     title: "Mehrsprachig",
@@ -17,9 +11,9 @@ const trustStripItems = [
   },
   {
     icon: "⭐",
-    title: "Nutzerbewertung",
+    title: "Bewertung",
     value: "4.9/5",
-    text: "Klare Struktur und verständliche Erklärungen",
+    text: "Klare Struktur, einfache Erklärungen",
   },
   {
     icon: "📈",
@@ -35,127 +29,153 @@ const trustStripItems = [
   },
 ] as const;
 
+const heroChips = [
+  "IHK-orientierte Struktur",
+  "Lernkarten & Prüfungssimulation",
+  "DSGVO-konform",
+];
+
 const certificates = [
   {
+    icon: "🚕",
     title: "Taxi & Mietwagen",
     subtitle: "Fachkundeprüfung nach PBefG",
-    description: "Lerne Tarif-, Orts- und Unternehmerwissen für deine Personenbeförderung.",
+    description: "Tarif-, Orts- und Unternehmerwissen für deine Personenbeförderung.",
     stats: "12 Kapitel · 850+ Fragen",
     badge: "Beliebt",
-    icon: "🚕",
+    level: "Mittel",
   },
   {
+    icon: "🛡️",
     title: "§34a Bewachung",
     subtitle: "Sachkundeprüfung nach §34a GewO",
-    description: "Verstehe Recht, Deeskalation und Praxisfälle sicher anwenden.",
+    description: "Recht, Deeskalation und Praxisfälle verständlich trainieren.",
     stats: "9 Kapitel · 650+ Fragen",
     badge: "Beliebt",
-    icon: "🛡️",
+    level: "Einsteiger",
   },
   {
+    icon: "🚚",
     title: "Güterkraftverkehr",
     subtitle: "Fachkundeprüfung Güterverkehr",
-    description: "Kostenrechnung, Disposition und EU-Regeln für Güterverkehr im Griff.",
+    description: "Kostenrechnung, Disposition und EU-Regeln strukturiert lernen.",
     stats: "10 Kapitel · 700+ Fragen",
     badge: "Verfügbar",
-    icon: "🚚",
+    level: "Fortgeschritten",
   },
   {
-    title: "Versicherung §34d",
-    subtitle: "Sachkundeprüfung Versicherungsvermittlung",
-    description: "Beratungslogik, Haftung und Produktgrundlagen sicher verstehen.",
-    stats: "8 Kapitel · 600+ Fragen",
-    badge: "Verfügbar",
     icon: "📄",
+    title: "Versicherung §34d",
+    subtitle: "Sachkunde Versicherungsvermittlung",
+    description: "Beratungslogik, Haftung und Produktgrundlagen prüfungsnah üben.",
+    stats: "8 Kapitel · 600+ Fragen",
+    badge: "Bald verfügbar",
+    level: "Mittel",
   },
   {
-    title: "Finanzanlagen §34f",
-    subtitle: "Sachkundeprüfung Finanzanlagenvermittlung",
-    description: "Produkte, Risikoaufklärung und Regulatorik sicher beherrschen.",
-    stats: "7 Kapitel · 550+ Fragen",
-    badge: "Verfügbar",
     icon: "📊",
+    title: "Finanzanlagen §34f",
+    subtitle: "Sachkunde Finanzanlagenvermittlung",
+    description: "Produkte, Risikoaufklärung und Regulatorik sicher verstehen.",
+    stats: "7 Kapitel · 550+ Fragen",
+    badge: "Bald verfügbar",
+    level: "Fortgeschritten",
   },
   {
+    icon: "🏛️",
     title: "Immobiliardarlehen",
-    subtitle: "Sachkundeprüfung Darlehensvermittlung",
+    subtitle: "Sachkunde Darlehensvermittlung",
     description: "Darlehensarten, Finanzierung und Verbraucherschutz im Blick.",
     stats: "7 Kapitel · 500+ Fragen",
-    badge: "Verfügbar",
-    icon: "🏛️",
+    badge: "Bald verfügbar",
+    level: "Mittel",
   },
 ] as const;
 
 const features = [
   {
-    title: "Verständliche Erklärungen",
-    text: "Komplexe deutsche Prüfungsbegriffe einfach erklärt.",
     icon: "💡",
+    title: "Verständliche Erklärungen",
+    text: "Komplexe deutsche Prüfungsbegriffe einfach erklärt — ohne trockenes Auswendiglernen.",
   },
   {
-    title: "Prüfungssimulation",
-    text: "Realistische Tests mit klarer Auswertung.",
     icon: "🧪",
+    title: "Prüfungssimulation",
+    text: "Trainiere realistische Prüfungen mit Zeitdruck, Ergebnis und Fehleranalyse.",
   },
   {
-    title: "Lernkarten",
-    text: "Smarte Wiederholung für dauerhaftes Wissen.",
     icon: "🃏",
+    title: "Smarte Lernkarten",
+    text: "Wiederhole wichtige Begriffe, Regeln und Rechenlogik mit System.",
   },
   {
-    title: "Fortschritt verfolgen",
-    text: "Lernstand, Schwächen und Ziele immer sichtbar.",
     icon: "📈",
+    title: "Fortschritt sichtbar",
+    text: "Sieh sofort, welche Themen sitzen und wo du noch üben musst.",
   },
   {
-    title: "Mobil lernen",
-    text: "Auf Smartphone, Tablet und Desktop nutzbar.",
     icon: "📱",
+    title: "Mobil lernen",
+    text: "Lerne unterwegs, zu Hause oder in der Pause — auf jedem Gerät.",
   },
   {
-    title: "Mehrsprachig",
-    text: "Deutsch lernen, in deiner Sprache verstehen.",
     icon: "🌐",
+    title: "Mehrsprachige Hilfe",
+    text: "Deutsch bleibt Prüfungssprache, Erklärungen helfen dir beim Verstehen.",
   },
 ] as const;
 
 const steps = [
   {
+    number: "01",
     title: "Zertifikat wählen",
-    text: "Wähle dein Prüfungsziel und erhalte einen klaren Lernpfad.",
+    text: "Wähle dein Prüfungsziel und starte mit einem klaren Lernpfad.",
   },
   {
-    title: "Lernen & üben",
-    text: "Trainiere mit Erklärungen, Lernkarten und Übungsfragen.",
+    number: "02",
+    title: "Deutsch verstehen",
+    text: "Lerne deutsche Fachbegriffe mit einfachen Erklärungen in deiner Sprache.",
   },
   {
-    title: "Prüfung bestehen",
-    text: "Simuliere die Prüfung und gehe vorbereitet in den echten Termin.",
+    number: "03",
+    title: "Trainieren & bestehen",
+    text: "Übe mit Lernkarten, Fragen und Prüfungssimulationen bis du sicher bist.",
   },
 ] as const;
 
 const testimonials = [
   {
+    initials: "MK",
     name: "Mehmet K.",
     label: "§34a Bewachung",
-    quote: "Dank FachkundePilot habe ich die Prüfung beim ersten Versuch bestanden. Die Lernkarten sind Gold wert.",
+    quote: "Die Lernkarten haben mir geholfen, die wichtigsten Begriffe schnell zu verstehen.",
   },
   {
+    initials: "SL",
     name: "Sarah L.",
     label: "Versicherung §34d",
-    quote: "Die Struktur ist sehr klar. Ich wusste jeden Tag genau, was ich lernen muss.",
+    quote: "Endlich eine klare Struktur. Ich wusste jeden Tag genau, was ich lernen muss.",
   },
   {
+    initials: "AA",
     name: "Ahmed A.",
     label: "Taxi & Mietwagen",
-    quote: "Endlich eine Plattform, die deutsche Prüfungsbegriffe verständlich macht.",
+    quote: "Deutsch war schwer für mich. Die einfachen Erklärungen haben alles verändert.",
   },
 ] as const;
+
+const pricingBenefits = [
+  "Alle verfügbaren Zertifikate",
+  "Lernkarten & Wiederholung",
+  "Prüfungssimulationen",
+  "Mehrsprachige Erklärungen",
+  "Fortschrittsanalyse",
+];
 
 const footerGroups = [
   {
     title: "Produkt",
-    links: ["Zertifikate", "So funktioniert’s", "Preise", "Erfolgsgeschichten"],
+    links: ["Zertifikate", "Lernmethode", "Preise", "Erfolgsgeschichten"],
   },
   {
     title: "Unternehmen",
@@ -166,12 +186,12 @@ const footerGroups = [
     links: ["Datenschutz", "Impressum", "AGB"],
   },
   {
-    title: "Folge uns",
+    title: "Social",
     links: ["Instagram", "YouTube", "LinkedIn", "Facebook"],
   },
 ] as const;
 
-function GlassPanel({
+function Glass({
   children,
   className = "",
 }: {
@@ -179,120 +199,107 @@ function GlassPanel({
   className?: string;
 }) {
   return (
-    <section
-      className={`rounded-[30px] border border-white/10 bg-[#081b3d]/80 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl ${className}`}
+    <div
+      className={`border border-white/10 bg-[#081b3d]/80 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur-2xl ${className}`}
     >
       {children}
-    </section>
+    </div>
   );
 }
 
-function SectionHeader({
-  eyebrow,
-  title,
-  text,
-  action,
-}: {
-  eyebrow?: string;
-  title: string;
-  text: string;
-  action?: string;
-}) {
+function Badge({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div>
-        {eyebrow ? (
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#F4B73F]">
-            {eyebrow}
-          </p>
-        ) : null}
+    <span className="inline-flex items-center gap-2 rounded-full border border-[#4ea1ff]/35 bg-[#0a2452]/70 px-4 py-2 text-sm font-bold text-[#d8ebff] shadow-[0_0_35px_rgba(78,161,255,0.12)]">
+      <span className="h-2 w-2 rounded-full bg-[#4ea1ff]" />
+      {children}
+    </span>
+  );
+}
 
-        <h2 className="max-w-3xl text-4xl font-black tracking-[-0.04em] text-white md:text-5xl">
-          {title}
-        </h2>
+function PrimaryButton({ children }: { children: ReactNode }) {
+  return (
+    <button className="rounded-2xl bg-gradient-to-b from-[#ffd36b] to-[#f3b23c] px-7 py-4 text-base font-black text-[#07162f] shadow-[0_18px_45px_rgba(244,183,63,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(244,183,63,0.38)]">
+      {children}
+    </button>
+  );
+}
 
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[#AFC0DA] md:text-lg">
-          {text}
-        </p>
-      </div>
-
-      {action ? (
-        <button className="w-fit rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-[#76B7FF] transition hover:border-[#76B7FF]/50 hover:bg-[#76B7FF]/10">
-          {action}
-        </button>
-      ) : null}
-    </div>
+function SecondaryButton({ children }: { children: ReactNode }) {
+  return (
+    <button className="rounded-2xl border border-white/15 bg-white/[0.045] px-7 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
+      {children}
+    </button>
   );
 }
 
 function Navbar() {
   return (
-    <header className="mx-auto max-w-[1320px] px-4 pt-5 sm:px-6 lg:px-8">
-      <nav className="flex min-h-[78px] items-center justify-between rounded-[26px] border border-white/10 bg-[#081832]/80 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl md:px-6">
+    <header className="relative z-20 mx-auto max-w-[1380px] px-4 pt-5 sm:px-6 lg:px-8">
+      <nav className="flex min-h-[82px] items-center justify-between rounded-[28px] border border-white/10 bg-[#071832]/80 px-4 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:px-7">
         <div className="flex items-center gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#F4B73F]/40 bg-gradient-to-br from-[#123C79] to-[#081832] text-xl text-[#F4B73F] shadow-[0_0_28px_rgba(78,161,255,0.18)]">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/40 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_32px_rgba(78,161,255,0.22)]">
             ✦
           </div>
-
           <div>
-            <p className="text-xl font-black tracking-[-0.03em] text-white md:text-2xl">
+            <p className="text-xl font-black tracking-[-0.04em] text-white md:text-2xl">
               FachkundePilot
             </p>
-            <p className="hidden text-xs font-medium text-[#8EA0C0] sm:block">
+            <p className="hidden text-xs font-semibold text-[#8ea0c0] sm:block">
               Prüfungsorientiertes Lernen
             </p>
           </div>
         </div>
 
-        <div className="hidden items-center gap-8 text-sm font-medium text-[#C7D2E5] lg:flex">
+        <div className="hidden items-center gap-8 text-sm font-semibold text-[#c7d2e5] lg:flex">
           {navItems.map((item) => (
-            <a key={item} className="transition hover:text-white" href="#">
+            <a key={item} href="#" className="transition hover:text-white">
               {item}
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="hidden rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.08] sm:block">
+          <button className="hidden rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-black text-white transition hover:bg-white/[0.1] sm:block">
             DE
           </button>
-          <button className="rounded-2xl bg-[#F4B73F] px-5 py-3 text-sm font-black text-[#07162F] shadow-[0_12px_35px_rgba(244,183,63,0.25)] transition hover:bg-[#E7A928] md:px-7">
-            Jetzt starten
-          </button>
+          <PrimaryButton>Jetzt starten</PrimaryButton>
         </div>
       </nav>
     </header>
   );
 }
 
-function HeroDashboard() {
+function DashboardPreview() {
   return (
-    <GlassPanel className="relative w-full overflow-hidden border-[#4EA1FF]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_30px_90px_rgba(45,107,210,0.22)]">
-      <div className="absolute right-[-100px] top-[-100px] h-64 w-64 rounded-full bg-[#4EA1FF]/20 blur-3xl" />
-      <div className="absolute bottom-[-120px] left-[18%] h-56 w-56 rounded-full bg-[#F4B73F]/10 blur-3xl" />
+    <Glass className="relative overflow-hidden rounded-[34px] border-[#4ea1ff]/25 p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.14),0_35px_110px_rgba(36,100,210,0.24)]">
+      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#4ea1ff]/20 blur-3xl" />
+      <div className="absolute -bottom-24 left-20 h-56 w-56 rounded-full bg-[#f3b23c]/10 blur-3xl" />
 
-      <div className="relative rounded-[24px] border border-white/10 bg-[#071832]/95 p-3">
-        <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+      <div className="relative rounded-[28px] border border-white/10 bg-[#061936]/95 p-4">
+        <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
           <div>
             <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
-            <p className="text-xs text-[#8EA0C0]">Live Lernübersicht</p>
+            <p className="text-xs font-medium text-[#8ea0c0]">Live Lernübersicht</p>
           </div>
-
-          <div className="flex items-center gap-2 text-[#8EA0C0]">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">⌕</span>
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.05]">🔔</span>
-            <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#F4B73F] to-[#4EA1FF]" />
+          <div className="flex items-center gap-2">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06] text-[#9fb0cc]">
+              ⌕
+            </span>
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06]">
+              🔔
+            </span>
+            <span className="h-8 w-8 rounded-full bg-gradient-to-br from-[#f3b23c] to-[#4ea1ff]" />
           </div>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[118px_1fr]">
-          <aside className="hidden rounded-2xl border border-white/10 bg-[#0A1B3F] p-2 text-xs font-semibold text-[#8EA0C0] lg:block">
+        <div className="grid gap-4 lg:grid-cols-[120px_1fr]">
+          <aside className="hidden rounded-2xl border border-white/10 bg-[#0a1b3f] p-2 text-xs font-bold text-[#8ea0c0] lg:block">
             {["Übersicht", "Zertifikate", "Karten", "Prüfungen", "Fortschritt"].map(
               (item, index) => (
                 <div
                   key={item}
                   className={`mb-2 rounded-xl px-3 py-2 ${
-                    index === 0 ? "bg-[#4EA1FF]/15 text-white" : "hover:bg-white/[0.04]"
+                    index === 0 ? "bg-[#4ea1ff]/15 text-white" : ""
                   }`}
                 >
                   {item}
@@ -304,35 +311,39 @@ function HeroDashboard() {
           <main className="min-w-0">
             <div className="mb-4">
               <p className="text-xl font-black text-white">Guten Abend, Ahmet 👋</p>
-              <p className="text-sm text-[#8EA0C0]">Weiter so! Du bist auf dem besten Weg.</p>
+              <p className="text-sm leading-6 text-[#8ea0c0]">
+                Du bist auf dem besten Weg zur Prüfung.
+              </p>
             </div>
 
             <div className="grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-sm text-[#AFC0DA]">Dein Gesamtfortschritt</p>
+                <p className="text-sm text-[#afc0da]">Gesamtfortschritt</p>
                 <div className="mt-2 flex items-end justify-between">
-                  <p className="text-5xl font-black tracking-[-0.05em] text-white">78%</p>
-                  <span className="rounded-full bg-[#3DDC97]/10 px-3 py-1 text-xs font-bold text-[#3DDC97]">
+                  <p className="text-5xl font-black tracking-[-0.06em] text-white">78%</p>
+                  <span className="rounded-full bg-[#34d399]/10 px-3 py-1 text-xs font-black text-[#34d399]">
                     +18%
                   </span>
                 </div>
                 <div className="mt-4 h-2.5 rounded-full bg-black/30">
-                  <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#6EE7F9]" />
+                  <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]" />
                 </div>
-                <p className="mt-3 text-xs text-[#8EA0C0]">Nur noch 22% bis zum Lernziel.</p>
+                <p className="mt-3 text-xs text-[#8ea0c0]">Nur noch 22% bis zum Lernziel.</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-sm text-[#AFC0DA]">Lernzeit heute</p>
-                <p className="mt-2 text-4xl font-black tracking-[-0.04em] text-white">45 min</p>
-                <p className="mt-2 text-xs font-semibold text-[#3DDC97]">
+                <p className="text-sm text-[#afc0da]">Lernzeit heute</p>
+                <p className="mt-2 text-4xl font-black tracking-[-0.05em] text-white">
+                  45 min
+                </p>
+                <p className="mt-2 text-xs font-black text-[#34d399]">
                   +12 min gegenüber gestern
                 </p>
                 <div className="mt-4 grid h-16 grid-cols-7 items-end gap-1">
-                  {[35, 52, 68, 44, 78, 62, 88].map((height, index) => (
+                  {[45, 62, 78, 50, 88, 70, 96].map((height, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-[#4EA1FF]/80"
+                      className="rounded-full bg-gradient-to-t from-[#4ea1ff] to-[#6ee7f9]"
                       style={{ height: `${height}%` }}
                     />
                   ))}
@@ -344,7 +355,7 @@ function HeroDashboard() {
               <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <p className="text-sm font-black text-white">Aktive Zertifikate</p>
-                  <span className="text-xs text-[#76B7FF]">3 aktiv</span>
+                  <span className="text-xs font-bold text-[#76b7ff]">3 aktiv</span>
                 </div>
 
                 {[
@@ -354,12 +365,12 @@ function HeroDashboard() {
                 ].map(([name, progress]) => (
                   <div key={name} className="mb-3">
                     <div className="mb-1 flex items-center justify-between text-xs">
-                      <span className="text-[#AFC0DA]">{name}</span>
-                      <span className="font-bold text-white">{progress}</span>
+                      <span className="text-[#afc0da]">{name}</span>
+                      <span className="font-black text-white">{progress}</span>
                     </div>
                     <div className="h-1.5 rounded-full bg-black/30">
                       <div
-                        className="h-full rounded-full bg-[#F4B73F]"
+                        className="h-full rounded-full bg-[#f3b23c]"
                         style={{ width: progress }}
                       />
                     </div>
@@ -367,14 +378,14 @@ function HeroDashboard() {
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-[#F4B73F]/25 bg-[#F4B73F]/10 p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#F4B73F]">
+              <div className="rounded-2xl border border-[#f3b23c]/25 bg-[#f3b23c]/10 p-4">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#f3b23c]">
                   Heute empfohlen
                 </p>
                 <p className="mt-2 text-sm font-bold text-white">
                   20 Min. Lernkarten: Recht & Kostenrechnung
                 </p>
-                <button className="mt-4 rounded-xl bg-[#F4B73F] px-4 py-2 text-xs font-black text-[#07162F]">
+                <button className="mt-4 rounded-xl bg-[#f3b23c] px-4 py-2 text-xs font-black text-[#07162f]">
                   Weiterlernen
                 </button>
               </div>
@@ -382,65 +393,58 @@ function HeroDashboard() {
           </main>
         </div>
       </div>
-    </GlassPanel>
+    </Glass>
   );
 }
 
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_24%,rgba(78,161,255,0.28),transparent_34%),radial-gradient(circle_at_24%_34%,rgba(244,183,63,0.11),transparent_28%),linear-gradient(180deg,#06122B_0%,#07162F_58%,#06122B_100%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(78,161,255,0.28),transparent_34%),radial-gradient(circle_at_20%_30%,rgba(244,183,63,0.12),transparent_26%),linear-gradient(180deg,#06122b_0%,#07162f_60%,#06122b_100%)]" />
+      <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:80px_80px]" />
 
       <div className="relative">
         <Navbar />
 
-        <div className="mx-auto grid max-w-[1320px] items-center gap-12 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(520px,1.04fr)] lg:px-8 lg:pb-20 lg:pt-14 xl:gap-16">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-12 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[minmax(0,0.98fr)_minmax(520px,1.02fr)] lg:px-8 lg:pb-20 lg:pt-14 xl:gap-16">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/40 bg-[#081B3D]/80 px-4 py-2 text-sm font-bold text-[#CFE4FF] shadow-[0_0_30px_rgba(78,161,255,0.12)]">
-              <span className="h-2 w-2 rounded-full bg-[#4EA1FF]" />
-              Die Lernplattform für offizielle Sach- und Fachkundeprüfungen
-            </div>
+            <Badge>Die Lernplattform für offizielle Sach- und Fachkundeprüfungen</Badge>
 
-            <h1 className="mt-6 max-w-[650px] text-[52px] font-black leading-[0.97] tracking-[-0.06em] text-white sm:text-[64px] lg:text-[72px] xl:text-[82px]">
+            <h1 className="mt-6 max-w-[660px] text-[52px] font-black leading-[0.97] tracking-[-0.065em] text-white sm:text-[64px] lg:text-[72px] xl:text-[82px]">
               Bestehe deine Prüfung.
               <br />
               Mit{" "}
-              <span className="bg-gradient-to-r from-[#F4B73F] to-[#FFE39A] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#f3b23c] to-[#ffe39a] bg-clip-text text-transparent">
                 Klarheit, Struktur
                 <br />
                 und System.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-[560px] text-lg leading-8 text-[#C7D2E5]">
+            <p className="mt-6 max-w-[575px] text-lg leading-8 text-[#c7d2e5]">
               Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische
               Prüfungen und mobiles Lernen — alles an einem Ort.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <button className="rounded-2xl bg-[#F4B73F] px-6 py-3.5 text-base font-black text-[#07162F] shadow-[0_18px_44px_rgba(244,183,63,0.26)] transition hover:bg-[#E7A928]">
-                Jetzt starten →
-              </button>
-              <button className="rounded-2xl border border-white/15 bg-white/[0.04] px-6 py-3.5 text-base font-bold text-white transition hover:border-[#76B7FF]/45 hover:bg-[#76B7FF]/10">
-                Alle Zertifikate ansehen
-              </button>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <PrimaryButton>Jetzt starten →</PrimaryButton>
+              <SecondaryButton>Alle Zertifikate ansehen</SecondaryButton>
             </div>
 
-            <div className="mt-6 grid max-w-[590px] gap-3 sm:grid-cols-3">
-              {heroTrustItems.map((item) => (
+            <div className="mt-7 grid max-w-[600px] gap-3 sm:grid-cols-3">
+              {heroChips.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-semibold text-[#D7E1F3]"
+                  className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-bold text-[#d7e1f3]"
                 >
-                  <span className="mr-2 text-[#3DDC97]">✓</span>
+                  <span className="mr-2 text-[#34d399]">✓</span>
                   {item}
                 </div>
               ))}
             </div>
           </div>
 
-          <HeroDashboard />
+          <DashboardPreview />
         </div>
       </div>
     </section>
@@ -449,54 +453,68 @@ function Hero() {
 
 function TrustStrip() {
   return (
-    <section className="relative mx-auto -mt-5 max-w-[1320px] px-4 sm:px-6 lg:px-8">
-      <GlassPanel className="p-4 md:p-5">
+    <section className="relative mx-auto -mt-6 max-w-[1320px] px-4 sm:px-6 lg:px-8">
+      <Glass className="rounded-[28px] p-4 md:p-5">
         <div className="grid gap-4 md:grid-cols-4">
-          {trustStripItems.map((item, index) => (
+          {trustStats.map((item, index) => (
             <div
               key={item.title}
-              className={`flex gap-4 px-3 py-2 ${
-                index < trustStripItems.length - 1 ? "md:border-r md:border-white/10" : ""
+              className={`flex gap-4 rounded-2xl px-3 py-2 ${
+                index < trustStats.length - 1 ? "md:border-r md:border-white/10" : ""
               }`}
             >
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-xl">
                 {item.icon}
               </div>
               <div>
-                <p className="text-sm font-semibold text-[#8EA0C0]">{item.title}</p>
-                <p className="text-2xl font-black tracking-[-0.04em] text-white">{item.value}</p>
-                <p className="mt-1 text-xs leading-5 text-[#8EA0C0]">{item.text}</p>
+                <p className="text-sm font-bold text-[#8ea0c0]">{item.title}</p>
+                <p className="text-2xl font-black tracking-[-0.04em] text-white">
+                  {item.value}
+                </p>
+                <p className="mt-1 text-xs leading-5 text-[#8ea0c0]">{item.text}</p>
               </div>
             </div>
           ))}
         </div>
-      </GlassPanel>
+      </Glass>
     </section>
   );
 }
 
 function CertificatesSection() {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 py-18 sm:px-6 lg:px-8">
-      <GlassPanel className="p-5 md:p-8">
-        <SectionHeader
-          eyebrow="Zertifikate"
-          title="Zertifikate entdecken"
-          text="Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung. Jedes Zertifikat folgt derselben starken Lernlogik."
-          action="Alle Zertifikate ansehen →"
-        />
+    <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
+      <Glass className="rounded-[34px] p-5 md:p-8">
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+              Zertifikate
+            </p>
+            <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+              Zertifikate entdecken
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-[#afc0da]">
+              Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung. Jedes Zertifikat
+              folgt derselben starken Lernlogik.
+            </p>
+          </div>
+
+          <button className="w-fit rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-[#76b7ff] transition hover:border-[#76b7ff]/50 hover:bg-[#76b7ff]/10">
+            Alle Zertifikate ansehen →
+          </button>
+        </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {certificates.map((certificate) => (
             <article
               key={certificate.title}
-              className="group flex min-h-[270px] flex-col rounded-[26px] border border-white/10 bg-[#0A1B3F]/82 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4EA1FF]/40 hover:shadow-[0_24px_60px_rgba(78,161,255,0.12)]"
+              className="group flex min-h-[290px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
             >
               <div className="mb-5 flex items-center justify-between">
-                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
+                <div className="grid h-13 w-13 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
                   {certificate.icon}
                 </div>
-                <span className="rounded-full border border-[#F4B73F]/25 bg-[#F4B73F]/10 px-3 py-1 text-xs font-black text-[#F4B73F]">
+                <span className="rounded-full border border-[#f3b23c]/25 bg-[#f3b23c]/10 px-3 py-1 text-xs font-black text-[#f3b23c]">
                   {certificate.badge}
                 </span>
               </div>
@@ -504,21 +522,29 @@ function CertificatesSection() {
               <h3 className="text-2xl font-black tracking-[-0.04em] text-white">
                 {certificate.title}
               </h3>
-              <p className="mt-1 text-sm font-semibold text-[#76B7FF]">{certificate.subtitle}</p>
-              <p className="mt-4 flex-1 text-sm leading-7 text-[#AFC0DA]">
+              <p className="mt-1 text-sm font-bold text-[#76b7ff]">{certificate.subtitle}</p>
+              <p className="mt-4 flex-1 text-sm leading-7 text-[#afc0da]">
                 {certificate.description}
               </p>
 
-              <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-                <p className="text-sm font-semibold text-[#C7D2E5]">{certificate.stats}</p>
-                <button className="text-sm font-black text-[#76B7FF] transition group-hover:text-[#F4B73F]">
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="rounded-full bg-white/[0.05] px-3 py-1 text-xs font-bold text-[#c7d2e5]">
+                  {certificate.stats}
+                </span>
+                <span className="rounded-full bg-white/[0.05] px-3 py-1 text-xs font-bold text-[#c7d2e5]">
+                  {certificate.level}
+                </span>
+              </div>
+
+              <div className="mt-5 border-t border-white/10 pt-4">
+                <button className="text-sm font-black text-[#76b7ff] transition group-hover:text-[#f3b23c]">
                   Mehr erfahren →
                 </button>
               </div>
             </article>
           ))}
         </div>
-      </GlassPanel>
+      </Glass>
     </section>
   );
 }
@@ -526,7 +552,7 @@ function CertificatesSection() {
 function FeatureStrip() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <GlassPanel className="p-5 md:p-7">
+      <Glass className="rounded-[30px] p-5 md:p-7">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           {features.map((feature, index) => (
             <div
@@ -539,116 +565,107 @@ function FeatureStrip() {
                 {feature.icon}
               </div>
               <p className="text-base font-black text-white">{feature.title}</p>
-              <p className="mt-2 text-sm leading-6 text-[#8EA0C0]">{feature.text}</p>
+              <p className="mt-2 text-sm leading-6 text-[#8ea0c0]">{feature.text}</p>
             </div>
           ))}
         </div>
-      </GlassPanel>
+      </Glass>
     </section>
   );
 }
 
-function HowItWorksAndTestimonials() {
+function MethodAndProof() {
   return (
     <section className="mx-auto grid max-w-[1360px] gap-6 px-4 pb-20 sm:px-6 lg:px-8 xl:grid-cols-[0.95fr_1.05fr]">
-      <GlassPanel className="p-6 md:p-8">
-        <SectionHeader
-          eyebrow="Lernlogik"
-          title="So funktioniert’s"
-          text="Ein klarer Prozess: Ziel wählen, systematisch lernen, realistisch prüfen."
-        />
+      <Glass className="rounded-[34px] p-6 md:p-8">
+        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+          Lernlogik
+        </p>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+          So funktioniert’s
+        </h2>
+        <p className="mt-4 text-lg leading-8 text-[#afc0da]">
+          Ein klarer Prozess: Ziel wählen, strukturiert lernen, realistisch prüfen.
+        </p>
 
-        <div className="space-y-5">
-          {steps.map((step, index) => (
+        <div className="mt-8 space-y-4">
+          {steps.map((step) => (
             <div
               key={step.title}
-              className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+              className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4"
             >
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#F4B73F] text-lg font-black text-[#07162F]">
-                {index + 1}
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#f3b23c] text-sm font-black text-[#07162f]">
+                {step.number}
               </div>
               <div>
                 <p className="text-xl font-black text-white">{step.title}</p>
-                <p className="mt-2 leading-7 text-[#AFC0DA]">{step.text}</p>
+                <p className="mt-2 leading-7 text-[#afc0da]">{step.text}</p>
               </div>
             </div>
           ))}
         </div>
-      </GlassPanel>
+      </Glass>
 
-      <GlassPanel className="p-6 md:p-8">
-        <SectionHeader
-          eyebrow="Erfolgsgeschichten"
-          title="Das sagen unsere Teilnehmenden"
-          text="Klarheit, Struktur und Wiederholung machen den Unterschied."
-        />
+      <Glass className="rounded-[34px] p-6 md:p-8">
+        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-[#f3b23c]">
+          Erfolgsgeschichten
+        </p>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+          Das sagen Teilnehmende
+        </h2>
+        <p className="mt-4 text-lg leading-8 text-[#afc0da]">
+          Klarheit, Struktur und Wiederholung machen den Unterschied.
+        </p>
 
-        <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-1">
+        <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-1">
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
               className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
             >
               <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-[#F4B73F] to-[#4EA1FF] text-sm font-black text-[#07162F]">
-                  {testimonial.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")}
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#f3b23c] to-[#4ea1ff] text-sm font-black text-[#07162f]">
+                  {testimonial.initials}
                 </div>
                 <div>
                   <p className="font-black text-white">{testimonial.name}</p>
-                  <p className="text-xs font-semibold text-[#76B7FF]">{testimonial.label}</p>
+                  <p className="text-xs font-bold text-[#76b7ff]">{testimonial.label}</p>
                 </div>
               </div>
-              <p className="mt-3 text-[#F4B73F]">★★★★★</p>
-              <p className="mt-3 text-sm leading-7 text-[#C7D2E5]">“{testimonial.quote}”</p>
+              <p className="mt-3 text-[#f3b23c]">★★★★★</p>
+              <p className="mt-3 text-sm leading-7 text-[#c7d2e5]">“{testimonial.quote}”</p>
             </article>
           ))}
         </div>
-      </GlassPanel>
+      </Glass>
     </section>
   );
 }
 
 function FinalCTA() {
-  const benefits = [
-    "Zugriff auf alle Kurse & Zertifikate",
-    "Prüfungssimulationen & Lernkarten",
-    "Mehrsprachige Inhalte",
-    "Lernen auf allen Geräten",
-    "DSGVO-konform & sicher",
-  ];
-
-  const reassurance = [
-    "14 Tage Geld-zurück-Garantie",
-    "Jederzeit kündbar",
-    "Sofortiger Zugriff nach Registrierung",
-  ];
-
   return (
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
-      <GlassPanel className="overflow-hidden border-[#F4B73F]/25 p-6 md:p-8">
-        <div className="grid gap-8 xl:grid-cols-[1.1fr_.65fr_360px]">
+      <Glass className="overflow-hidden rounded-[36px] border-[#f3b23c]/25 p-6 md:p-8">
+        <div className="grid gap-8 xl:grid-cols-[1.1fr_.62fr_360px]">
           <div>
-            <p className="inline-flex rounded-full border border-[#F4B73F]/40 bg-[#F4B73F]/10 px-4 py-2 text-sm font-black text-[#F4B73F]">
+            <p className="inline-flex rounded-full border border-[#f3b23c]/40 bg-[#f3b23c]/10 px-4 py-2 text-sm font-black text-[#f3b23c]">
               Dein Erfolg beginnt jetzt
             </p>
-            <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            <h2 className="mt-5 text-4xl font-black tracking-[-0.055em] text-white md:text-6xl">
               Starte heute mit deiner Prüfungsvorbereitung.
             </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#C7D2E5]">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#c7d2e5]">
               Lerne mit klaren Lernpfaden, smarten Lernkarten und realistischen Prüfungen — für
               deinen sicheren Erfolg.
             </p>
 
             <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-              {benefits.map((benefit) => (
+              {pricingBenefits.map((benefit) => (
                 <li
                   key={benefit}
-                  className="flex items-center gap-3 text-sm font-semibold text-[#D7E1F3]"
+                  className="flex items-center gap-3 text-sm font-bold text-[#d7e1f3]"
                 >
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-[#3DDC97]/15 text-[#3DDC97]">
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-[#34d399]/15 text-[#34d399]">
                     ✓
                   </span>
                   {benefit}
@@ -658,18 +675,20 @@ function FinalCTA() {
           </div>
 
           <div className="space-y-3 self-center">
-            {reassurance.map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm font-bold text-[#D7E1F3]"
-              >
-                {item}
-              </div>
-            ))}
+            {["14 Tage Geld-zurück-Garantie", "Jederzeit kündbar", "Sofortiger Zugriff"].map(
+              (item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm font-black text-[#d7e1f3]"
+                >
+                  {item}
+                </div>
+              )
+            )}
           </div>
 
-          <div className="rounded-[28px] border border-[#F4B73F]/35 bg-[#F8F3E8] p-6 text-[#07162F] shadow-[0_24px_70px_rgba(244,183,63,0.18)]">
-            <p className="inline-flex rounded-full bg-[#F4B73F] px-4 py-1.5 text-sm font-black">
+          <div className="rounded-[28px] border border-[#f3b23c]/35 bg-[#f8f3e8] p-6 text-[#07162f] shadow-[0_24px_70px_rgba(244,183,63,0.18)]">
+            <p className="inline-flex rounded-full bg-[#f3b23c] px-4 py-1.5 text-sm font-black">
               Premium
             </p>
             <p className="mt-5 text-xl font-black">Alles inklusive für deinen Prüfungserfolg</p>
@@ -677,27 +696,27 @@ function FinalCTA() {
               Ab 9,90 €
               <span className="text-base font-bold tracking-normal"> / Monat</span>
             </p>
-            <p className="mt-2 text-sm font-semibold text-[#4A5568]">Monatlich kündbar</p>
-            <button className="mt-6 w-full rounded-2xl bg-[#07162F] px-5 py-4 text-base font-black text-white transition hover:bg-[#10244D]">
+            <p className="mt-2 text-sm font-bold text-[#4a5568]">Monatlich kündbar</p>
+            <button className="mt-6 w-full rounded-2xl bg-[#07162f] px-5 py-4 text-base font-black text-white transition hover:bg-[#10244d]">
               Jetzt starten →
             </button>
-            <p className="mt-3 text-center text-sm font-semibold text-[#4A5568]">
+            <p className="mt-3 text-center text-sm font-bold text-[#4a5568]">
               7 Tage kostenlos testen
             </p>
           </div>
         </div>
-      </GlassPanel>
+      </Glass>
     </section>
   );
 }
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#050F24]">
-      <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-12 text-[#AFC0DA] sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)] lg:px-8">
+    <footer className="border-t border-white/10 bg-[#050f24]">
+      <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-12 text-[#afc0da] sm:px-6 md:grid-cols-[1.3fr_repeat(4,1fr)] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#F4B73F]/30 bg-[#081B3D] text-[#F4B73F]">
+            <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#f3b23c]/30 bg-[#081b3d] text-[#f3b23c]">
               ✦
             </div>
             <p className="text-2xl font-black text-white">FachkundePilot</p>
@@ -721,7 +740,7 @@ function Footer() {
         ))}
       </div>
 
-      <p className="border-t border-white/10 px-4 py-7 text-center text-sm text-[#7E8FB0]">
+      <p className="border-t border-white/10 px-4 py-7 text-center text-sm text-[#7e8fb0]">
         © 2026 FachkundePilot. Alle Rechte vorbehalten.
       </p>
     </footer>
@@ -730,12 +749,12 @@ function Footer() {
 
 export default function Page() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#06122B] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#06122b] text-white">
       <Hero />
       <TrustStrip />
       <CertificatesSection />
       <FeatureStrip />
-      <HowItWorksAndTestimonials />
+      <MethodAndProof />
       <FinalCTA />
       <Footer />
     </div>
