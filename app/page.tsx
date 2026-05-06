@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+type ProgressTone = "sky" | "green" | "gold";
 
 export const metadata: Metadata = {
   title: "FachkundePilot — Prüfungsorientiertes Lernen",
@@ -7,17 +10,17 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  "Zertifikate",
-  "So funktioniert’s",
-  "Preise",
-  "Erfolgsgeschichten",
-  "Kontakt",
-];
+  { label: "Zertifikate", href: "#zertifikate" },
+  { label: "So funktioniert’s", href: "#so-funktionierts" },
+  { label: "Preise", href: "#preise" },
+  { label: "Erfolgsgeschichten", href: "#erfolgsgeschichten" },
+  { label: "Kontakt", href: "#kontakt" },
+] as const;
 
 const certificates = [
   {
-    icon: "🚕",
-    title: "1. Taxi & Mietwagen",
+    code: "TM",
+    title: "Taxi & Mietwagen",
     subtitle: "Fachkundeprüfung nach PBefG",
     text: "Meistere Tarif-, Orts- und Unternehmerwissen für deine Personenbeförderung.",
     meta: "12 Kapitel · 850+ Fragen",
@@ -25,8 +28,8 @@ const certificates = [
     color: "from-yellow-500/35 to-yellow-300/10",
   },
   {
-    icon: "🛡️",
-    title: "2. §34a Bewachung",
+    code: "34A",
+    title: "§34a Bewachung",
     subtitle: "Sachkundeprüfung nach §34a GewO",
     text: "Recht, Deeskalation und Praxisfälle sicher verstehen und anwenden.",
     meta: "9 Kapitel · 650+ Fragen",
@@ -34,8 +37,8 @@ const certificates = [
     color: "from-purple-500/35 to-purple-300/10",
   },
   {
-    icon: "🚚",
-    title: "3. Güterkraftverkehr",
+    code: "GV",
+    title: "Güterkraftverkehr",
     subtitle: "Fachkundeprüfung Güterverkehr",
     text: "Kostenrechnung, Disposition und EU-Regeln für Güterverkehr im Griff.",
     meta: "10 Kapitel · 700+ Fragen",
@@ -43,8 +46,8 @@ const certificates = [
     color: "from-blue-500/35 to-cyan-300/10",
   },
   {
-    icon: "🪪",
-    title: "4. Versicherung §34d",
+    code: "34D",
+    title: "Versicherung §34d",
     subtitle: "Sachkundeprüfung Versicherungsvermittlung",
     text: "Beratungslogik, Haftung und Produktgrundlagen verstehen.",
     meta: "8 Kapitel · 600+ Fragen",
@@ -52,8 +55,8 @@ const certificates = [
     color: "from-emerald-500/35 to-emerald-300/10",
   },
   {
-    icon: "📈",
-    title: "5. Finanzanlagen §34f",
+    code: "34F",
+    title: "Finanzanlagen §34f",
     subtitle: "Sachkundeprüfung Finanzanlagenvermittlung",
     text: "Produkte, Risikoaufklärung und Regulatorik sicher beherrschen.",
     meta: "7 Kapitel · 550+ Fragen",
@@ -61,42 +64,52 @@ const certificates = [
     color: "from-orange-500/35 to-orange-300/10",
   },
   {
-    icon: "🏠",
-    title: "6. Immobiliardarlehen",
+    code: "IM",
+    title: "Immobiliardarlehen",
     subtitle: "Sachkundeprüfung Darlehensvermittlung",
     text: "Darlehensarten, Finanzierung und Verbraucherschutz im Blick.",
     meta: "7 Kapitel · 500+ Fragen",
     badge: "Verfügbar",
     color: "from-rose-500/35 to-rose-300/10",
   },
-];
+] as const;
 
 const features = [
-  ["📖", "Verständliche Erklärungen", "Komplexe Themen einfach erklärt."],
-  ["🎯", "Prüfungssimulation", "Realistische Prüfungen unter echten Bedingungen."],
-  ["🃏", "Lernkarten", "Smarte Wiederholung für maximalen Lernerfolg."],
-  ["📊", "Fortschritt verfolgen", "Deinen Lernstand im Blick."],
-  ["📱", "Mobil lernen", "Jederzeit auf allen Geräten."],
-  ["🌍", "Mehrsprachige Unterstützung", "In deiner Sprache verstehen."],
-];
+  ["DE", "Verständliche Erklärungen", "Komplexe Themen einfach erklärt."],
+  ["SIM", "Prüfungssimulation", "Realistische Prüfungen unter echten Bedingungen."],
+  ["CARD", "Lernkarten", "Smarte Wiederholung für maximalen Lernerfolg."],
+  ["DATA", "Fortschritt verfolgen", "Deinen Lernstand jederzeit im Blick."],
+  ["MOB", "Mobil lernen", "Jederzeit auf allen Geräten."],
+  ["LANG", "Mehrsprachige Unterstützung", "In deiner Sprache verstehen."],
+] as const;
 
 const steps = [
   ["1", "Zertifikat wählen", "Wähle das Zertifikat, das zu deinem Ziel passt."],
   ["2", "Lernen & üben", "Lerne mit Erklärungen, Lernkarten und Fragen."],
   ["3", "Prüfung bestehen", "Teste dein Wissen realistisch und sicher."],
-];
+] as const;
 
 const testimonials = [
-  ["MK", "Mehmet K.", "Taxi & Mietwagen", "Dank FachkundePilot habe ich meine Prüfung beim ersten Versuch bestanden."],
-  ["SL", "Sarah L.", "§34a", "Die Erklärungen sind super verständlich und die Simulationen realitätsnah."],
+  [
+    "MK",
+    "Mehmet K.",
+    "Taxi & Mietwagen",
+    "Dank FachkundePilot habe ich meine Prüfung beim ersten Versuch bestanden.",
+  ],
+  [
+    "SL",
+    "Sarah L.",
+    "§34a",
+    "Die Erklärungen sind verständlich und die Simulationen realitätsnah.",
+  ],
   ["AA", "Ahmed A.", "Taxi", "Endlich eine Plattform, die alles an einem Ort bietet."],
-];
+] as const;
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-3">
-      <div className="grid h-11 w-11 place-items-center rounded-xl border border-[#f6c84f]/50 bg-[#0d1b2e] text-2xl shadow-[0_0_24px_rgba(246,200,79,0.25)]">
-        🪽
+    <a href="#" aria-label="FachkundePilot Startseite" className="flex items-center gap-3">
+      <div className="grid h-11 w-11 place-items-center rounded-xl border border-[#f6c84f]/50 bg-[#0d1b2e] text-sm font-black text-[#f6c84f] shadow-[0_0_24px_rgba(246,200,79,0.25)]">
+        FP
       </div>
       <div>
         <p className="text-xl font-black leading-none tracking-[-0.04em] text-white">
@@ -110,29 +123,53 @@ function Logo() {
   );
 }
 
-function GoldButton({ children }: { children: React.ReactNode }) {
+function GoldButton({
+  children,
+  href = "#preise",
+  className = "",
+}: {
+  children: ReactNode;
+  href?: string;
+  className?: string;
+}) {
   return (
     <a
-      href="#preise"
-      className="inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition hover:-translate-y-0.5"
+      href={href}
+      className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-yellow-300/70 ${className}`}
     >
       {children}
     </a>
   );
 }
 
-function DarkButton({ children }: { children: React.ReactNode }) {
+function DarkButton({
+  children,
+  href = "#zertifikate",
+  className = "",
+}: {
+  children: ReactNode;
+  href?: string;
+  className?: string;
+}) {
   return (
     <a
-      href="#zertifikate"
-      className="inline-flex items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-sky-400/60"
+      href={href}
+      className={`inline-flex items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:-translate-y-0.5 hover:border-sky-400/60 focus:outline-none focus:ring-2 focus:ring-sky-300/50 ${className}`}
     >
       {children}
     </a>
   );
 }
 
-function Progress({ value, color = "sky" }: { value: string; color?: "sky" | "green" | "gold" }) {
+function CodeBadge({ children }: { children: ReactNode }) {
+  return (
+    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-[11px] font-black tracking-[-0.03em] text-[#f6c84f] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+      {children}
+    </div>
+  );
+}
+
+function Progress({ value, color = "sky" }: { value: string; color?: ProgressTone }) {
   const bg =
     color === "green"
       ? "from-emerald-400 to-lime-300"
@@ -141,7 +178,7 @@ function Progress({ value, color = "sky" }: { value: string; color?: "sky" | "gr
         : "from-sky-400 to-blue-500";
 
   return (
-    <div className="h-2 rounded-full bg-black/35">
+    <div className="h-2 overflow-hidden rounded-full bg-black/35">
       <div className={`h-full rounded-full bg-gradient-to-r ${bg}`} style={{ width: value }} />
     </div>
   );
@@ -155,12 +192,15 @@ function DashboardMockup() {
       <div className="rounded-xl border border-slate-600/35 bg-[#07172a] p-3">
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-black text-white">
-            <span className="text-yellow-400">🪽</span> FachkundePilot
+            <span className="grid h-6 w-6 place-items-center rounded-lg bg-yellow-400 text-[10px] text-[#071526]">
+              FP
+            </span>
+            FachkundePilot
           </div>
-          <div className="flex gap-3 text-xs text-slate-300">
-            <span>⌕</span>
-            <span>🔔</span>
-            <span className="grid h-5 w-5 place-items-center rounded-full bg-white text-[10px] text-[#07172a]">
+          <div className="flex gap-2 text-xs text-slate-300">
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-white/10">S</span>
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-white/10">N</span>
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-white text-[10px] text-[#07172a]">
               A
             </span>
           </div>
@@ -178,18 +218,17 @@ function DashboardMockup() {
                       : ""
                   }`}
                 >
-                  {index === 0 ? "🏠" : index === 1 ? "📚" : index === 2 ? "🃏" : index === 3 ? "🧪" : index === 4 ? "📈" : "⚙️"}{" "}
                   {item}
                 </div>
               ),
             )}
 
-            <div className="mt-14 rounded-lg px-3 py-2 text-slate-500">↩ Abmelden</div>
+            <div className="mt-14 rounded-lg px-3 py-2 text-slate-500">Abmelden</div>
           </aside>
 
           <main>
             <div className="mb-3">
-              <p className="text-lg font-black text-white">Guten Abend, Ahmet 👋</p>
+              <p className="text-lg font-black text-white">Guten Abend, Ahmet</p>
               <p className="text-[11px] text-slate-400">
                 Schön, dass du weiter an deinem Ziel arbeitest.
               </p>
@@ -202,7 +241,7 @@ function DashboardMockup() {
                 <div className="mt-3">
                   <Progress value="78%" />
                 </div>
-                <p className="mt-2 text-[10px] text-slate-500">Sehr gut! Weiter so.</p>
+                <p className="mt-2 text-[10px] text-slate-500">Sehr gut. Weiter so.</p>
               </div>
 
               <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
@@ -228,16 +267,18 @@ function DashboardMockup() {
                 <p className="mb-3 text-sm font-black text-white">Aktive Zertifikate</p>
 
                 {[
-                  ["🚕", "Taxi & Mietwagen", "85%", "green"],
-                  ["🛡️", "§34a Bewachung", "62%", "green"],
-                  ["🚚", "Güterkraftverkehr", "40%", "gold"],
-                ].map(([icon, name, progress, tone]) => (
+                  ["TM", "Taxi & Mietwagen", "85%", "green"],
+                  ["34A", "§34a Bewachung", "62%", "green"],
+                  ["GV", "Güterkraftverkehr", "40%", "gold"],
+                ].map(([code, name, progress, tone]) => (
                   <div
                     key={name}
                     className="mb-2 grid grid-cols-[1fr_70px] items-center gap-3 rounded-lg bg-[#061326] px-3 py-2"
                   >
                     <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
-                      <span>{icon}</span>
+                      <span className="rounded-md bg-white/10 px-1.5 py-0.5 text-[9px] text-yellow-300">
+                        {code}
+                      </span>
                       {name}
                     </div>
                     <Progress value={progress} color={tone === "gold" ? "gold" : "green"} />
@@ -251,9 +292,12 @@ function DashboardMockup() {
                 <p className="mt-1 text-[11px] leading-5 text-slate-400">
                   Lernkarten Recht & Kostenrechnung
                 </p>
-                <button className="mt-4 w-full rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-xs font-black text-white">
+                <a
+                  href="#so-funktionierts"
+                  className="mt-4 block w-full rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
+                >
                   Weiterlernen
-                </button>
+                </a>
               </div>
             </div>
           </main>
@@ -265,23 +309,21 @@ function DashboardMockup() {
 
 function SideStats() {
   const items = [
-    ["🌐", "Mehrsprachig", "DE · AR · EN · TR"],
-    ["⭐", "4,9/5", "Nutzerbewertung"],
-    ["◔", "78%", "Dein Lernstand"],
-    ["🎓", "12+", "Zertifikate verfügbar"],
-  ];
+    ["LANG", "Mehrsprachig", "DE · AR · EN · TR"],
+    ["4.9", "4,9/5", "Nutzerbewertung"],
+    ["78%", "78%", "Dein Lernstand"],
+    ["12+", "12+", "Zertifikate verfügbar"],
+  ] as const;
 
   return (
     <div className="grid gap-3 lg:w-[170px]">
-      {items.map(([icon, value, text]) => (
+      {items.map(([code, value, text]) => (
         <div
           key={value}
           className="rounded-2xl border border-slate-500/40 bg-[#071a30]/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
         >
           <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-full border border-sky-400/30 bg-sky-400/10 text-2xl">
-              {icon}
-            </div>
+            <CodeBadge>{code}</CodeBadge>
             <div>
               <p className="text-lg font-black leading-none text-white">{value}</p>
               <p className="mt-1 text-[11px] font-semibold text-slate-400">{text}</p>
@@ -296,23 +338,44 @@ function SideStats() {
 function Header() {
   return (
     <header className="mx-auto max-w-[1130px] px-4 pt-4">
-      <nav className="flex min-h-[68px] items-center justify-between rounded-2xl border border-slate-600/40 bg-[#06172a]/88 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:px-5">
+      <nav
+        aria-label="Hauptnavigation"
+        className="flex min-h-[68px] items-center justify-between rounded-2xl border border-slate-600/40 bg-[#06172a]/88 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:px-5"
+      >
         <Logo />
 
         <div className="hidden items-center gap-8 text-sm font-bold text-slate-300 lg:flex">
           {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase().replaceAll(" ", "-")}`} className="hover:text-white">
-              {item}
+            <a key={item.label} href={item.href} className="hover:text-white">
+              {item.label}
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="hidden rounded-xl border border-slate-600/40 bg-[#07172a] px-4 py-2 text-sm font-black text-white sm:flex">
-            DE⌄
-          </button>
-          <GoldButton>Jetzt starten</GoldButton>
+          <a
+            href="#sprache"
+            className="hidden rounded-xl border border-slate-600/40 bg-[#07172a] px-4 py-2 text-sm font-black text-white sm:flex"
+          >
+            DE
+          </a>
+          <GoldButton href="#preise">Jetzt starten</GoldButton>
         </div>
+      </nav>
+
+      <nav
+        aria-label="Mobile Navigation"
+        className="mt-3 flex gap-2 overflow-x-auto rounded-2xl border border-slate-600/40 bg-[#06172a]/80 p-2 lg:hidden"
+      >
+        {navItems.map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            className="shrink-0 rounded-xl bg-white/[0.06] px-4 py-2 text-xs font-black text-slate-300"
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );
@@ -352,21 +415,21 @@ function Hero() {
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <GoldButton>Jetzt starten</GoldButton>
-              <DarkButton>Alle Zertifikate ansehen</DarkButton>
+              <GoldButton href="#preise">Jetzt starten</GoldButton>
+              <DarkButton href="#zertifikate">Alle Zertifikate ansehen</DarkButton>
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-3">
               {[
-                ["🛡️", "Offizieller Prüfungsstoff"],
-                ["📚", "Tausende Übungsfragen"],
-                ["🔒", "Sicher & DSGVO-konform"],
-              ].map(([icon, text]) => (
+                ["STOFF", "Offizieller Prüfungsstoff"],
+                ["FRAGEN", "Tausende Übungsfragen"],
+                ["DSGVO", "Sicher & DSGVO-konform"],
+              ].map(([code, text]) => (
                 <div
                   key={text}
                   className="rounded-xl border border-slate-600/35 bg-[#071a30]/80 p-3 text-[11px] font-bold leading-4 text-slate-300"
                 >
-                  <span className="mb-1 block text-xl">{icon}</span>
+                  <span className="mb-1 block text-xs font-black text-yellow-300">{code}</span>
                   {text}
                 </div>
               ))}
@@ -386,20 +449,18 @@ function StatStrip() {
     <section className="mx-auto max-w-[1130px] px-4">
       <div className="grid gap-3 rounded-2xl border border-[#b88a2e]/40 bg-[#06182c]/90 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.35)] md:grid-cols-4">
         {[
-          ["🏆", "12+", "Zertifikate geplant"],
-          ["👥", "1", "Plattform für alle Lernpfade"],
-          ["🌐", "DE / AR / EN / TR", "Mehrsprachige Inhalte"],
-          ["🗂️", "Prüfungssimulation &", "Lernkarten"],
-        ].map(([icon, value, text], index) => (
+          ["12+", "12+", "Zertifikate geplant"],
+          ["ONE", "1", "Plattform für alle Lernpfade"],
+          ["LANG", "DE / AR / EN / TR", "Mehrsprachige Inhalte"],
+          ["SIM", "Prüfungssimulation", "und Lernkarten"],
+        ].map(([code, value, text], index) => (
           <div
             key={value}
             className={`flex items-center gap-4 px-3 ${
               index !== 3 ? "md:border-r md:border-slate-500/35" : ""
             }`}
           >
-            <div className="grid h-11 w-11 place-items-center rounded-full border border-yellow-400/30 bg-yellow-400/10 text-xl">
-              {icon}
-            </div>
+            <CodeBadge>{code}</CodeBadge>
             <div>
               <p className="text-2xl font-black leading-none text-white">{value}</p>
               <p className="mt-1 text-xs font-semibold text-slate-400">{text}</p>
@@ -424,8 +485,8 @@ function Certificates() {
           </p>
         </div>
 
-        <a href="#" className="hidden text-sm font-black text-sky-400 md:block">
-          Alle Zertifikate ansehen →
+        <a href="#preise" className="hidden text-sm font-black text-sky-400 md:block">
+          Mitgliedschaft ansehen →
         </a>
       </div>
 
@@ -437,9 +498,9 @@ function Certificates() {
           >
             <div className="flex gap-4">
               <div
-                className={`grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-white/10 bg-gradient-to-br ${item.color} text-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]`}
+                className={`grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-white/10 bg-gradient-to-br ${item.color} text-xs font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]`}
               >
-                {item.icon}
+                {item.code}
               </div>
 
               <div className="min-w-0 flex-1">
@@ -463,7 +524,10 @@ function Certificates() {
             </div>
 
             <div className="mt-3 flex justify-end">
-              <a href="#" className="text-xs font-black text-slate-200 group-hover:text-yellow-300">
+              <a
+                href="#preise"
+                className="text-xs font-black text-slate-200 group-hover:text-yellow-300"
+              >
                 Mehr erfahren →
               </a>
             </div>
@@ -478,16 +542,14 @@ function FeatureStrip() {
   return (
     <section className="mx-auto max-w-[1130px] px-4 pt-4">
       <div className="grid gap-3 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-4 md:grid-cols-3 lg:grid-cols-6">
-        {features.map(([icon, title, text], index) => (
+        {features.map(([code, title, text], index) => (
           <div
             key={title}
             className={`flex items-start gap-3 ${
               index !== features.length - 1 ? "lg:border-r lg:border-slate-500/35" : ""
             }`}
           >
-            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-xl">
-              {icon}
-            </div>
+            <CodeBadge>{code}</CodeBadge>
             <div>
               <p className="text-sm font-black leading-4 text-white">{title}</p>
               <p className="mt-1 text-[11px] leading-4 text-slate-400">{text}</p>
@@ -501,9 +563,14 @@ function FeatureStrip() {
 
 function StepsAndTestimonials() {
   return (
-    <section className="mx-auto grid max-w-[1130px] gap-5 px-4 pt-4 lg:grid-cols-[.8fr_1.2fr]">
+    <section
+      id="so-funktionierts"
+      className="mx-auto grid max-w-[1130px] gap-5 px-4 pt-4 lg:grid-cols-[.8fr_1.2fr]"
+    >
       <div className="relative overflow-hidden rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5">
-        <div className="absolute bottom-4 right-7 text-8xl opacity-70">🏆</div>
+        <div className="absolute bottom-4 right-7 text-8xl font-black text-yellow-400/10">
+          100%
+        </div>
         <div className="relative">
           <h2 className="text-2xl font-black tracking-[-0.04em] text-white">
             So funktioniert’s
@@ -530,7 +597,7 @@ function StepsAndTestimonials() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5">
+      <div id="erfolgsgeschichten" className="rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5">
         <h2 className="text-2xl font-black tracking-[-0.04em] text-white">
           Das sagen unsere Teilnehmenden
         </h2>
@@ -554,12 +621,6 @@ function StepsAndTestimonials() {
               <p className="mt-3 text-xs leading-5 text-slate-300">„{quote}“</p>
             </article>
           ))}
-        </div>
-
-        <div className="mt-4 flex justify-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-sky-400" />
-          <span className="h-2 w-2 rounded-full bg-slate-600" />
-          <span className="h-2 w-2 rounded-full bg-slate-600" />
         </div>
       </div>
     </section>
@@ -608,7 +669,9 @@ function CTA() {
             9,90 €<span className="text-sm text-slate-300"> / Monat</span>
           </p>
           <p className="text-xs font-bold text-slate-500">Monatlich kündbar</p>
-          <GoldButton>Jetzt starten →</GoldButton>
+          <GoldButton href="#kontakt" className="mt-4 w-full">
+            Jetzt starten →
+          </GoldButton>
           <p className="mt-3 text-xs font-bold text-slate-400">7 Tage kostenlos testen</p>
         </div>
       </div>
@@ -627,10 +690,10 @@ function Footer() {
           </p>
 
           <div className="mt-4 flex gap-3">
-            {["f", "◎", "▶", "in"].map((item) => (
+            {["FB", "IG", "YT", "IN"].map((item) => (
               <span
                 key={item}
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 font-black text-white"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-xs font-black text-white"
               >
                 {item}
               </span>
@@ -674,7 +737,9 @@ export default function Page() {
       <Footer />
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#061526]/90 p-3 backdrop-blur-xl md:hidden">
-        <GoldButton>Kostenlos starten →</GoldButton>
+        <GoldButton href="#preise" className="w-full">
+          Kostenlos starten →
+        </GoldButton>
       </div>
     </main>
   );
