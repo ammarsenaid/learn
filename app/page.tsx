@@ -6,13 +6,13 @@ type Tone = "blue" | "gold" | "green" | "red";
 export const metadata: Metadata = {
   title: "FachkundePilot — Prüfungsorientiertes Lernen",
   description:
-    "Lerne deutsche Sach- und Fachkundeprüfungen mit klaren Lernpfaden, Lernkarten, Prüfungssimulation und mehrsprachigen Erklärungen.",
+    "Lerne deutsche Sach- und Fachkundeprüfungen mit Lernpfaden, Lernkarten, Prüfungssimulation, Admin-System und mehrsprachigen Erklärungen.",
 };
 
 const navItems = [
   { label: "Zertifikate", href: "#zertifikate" },
-  { label: "Lernmethode", href: "#lernmethode" },
-  { label: "Simulation", href: "#simulation" },
+  { label: "Methode", href: "#lernmethode" },
+  { label: "Plattform", href: "#plattform" },
   { label: "Preise", href: "#preise" },
   { label: "Kontakt", href: "#kontakt" },
 ];
@@ -49,10 +49,33 @@ const trustStats = [
     text: "Schwache Themen werden sichtbar und automatisch wiederholt.",
   },
   {
-    icon: "🎓",
-    title: "Zertifikate",
-    value: "12+ geplant",
-    text: "Ein System für viele deutsche Sach- und Fachkundeprüfungen.",
+    icon: "🛠️",
+    title: "Admin-ready",
+    value: "CMS-Logik",
+    text: "Inhalte, Karten, Fragen und Zertifikate später sauber pflegen.",
+  },
+] as const;
+
+const learningModes = [
+  {
+    icon: "📖",
+    title: "Lesemodus",
+    text: "Lerne offizielle Begriffe strukturiert, ohne dich in PDFs zu verlieren.",
+  },
+  {
+    icon: "🃏",
+    title: "Kartenmodus",
+    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+  },
+  {
+    icon: "🧮",
+    title: "Rechenmodus",
+    text: "Trainiere Kostenrechnung, Prozentrechnung und typische Prüfungsaufgaben.",
+  },
+  {
+    icon: "🏁",
+    title: "Prüfungsmodus",
+    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Auswertung.",
   },
 ] as const;
 
@@ -125,26 +148,75 @@ const certificates = [
   },
 ] as const;
 
-const learningModes = [
+const languageExamples = [
   {
-    icon: "📖",
-    title: "Lesemodus",
-    text: "Lerne offizielle Begriffe strukturiert, ohne dich in PDFs zu verlieren.",
+    term: "Betriebssitz",
+    de: "Offizieller Sitz des Unternehmens.",
+    ar: "المكان الرسمي المسجل للشركة.",
+    tag: "Recht",
   },
   {
-    icon: "🃏",
-    title: "Kartenmodus",
-    text: "Wiederhole prüfungsrelevante Regeln, Definitionen und Falllogik.",
+    term: "Bereitstellungspflicht",
+    de: "Pflicht, Taxi-Verkehr ordnungsgemäß bereitzuhalten.",
+    ar: "واجب توفير خدمة التاكسي بشكل منظم.",
+    tag: "Taxi",
   },
   {
-    icon: "🧮",
-    title: "Rechenmodus",
-    text: "Trainiere Kostenrechnung, Prozentrechnung und typische Prüfungsaufgaben.",
+    term: "Kostendeckung",
+    de: "Einnahmen müssen Kosten langfristig tragen.",
+    ar: "الإيرادات يجب أن تغطي التكاليف على المدى الطويل.",
+    tag: "Rechnen",
+  },
+] as const;
+
+const intelligenceItems = [
+  {
+    title: "Fehler werden zu Lernaufgaben",
+    text: "Falsch beantwortete Fragen erscheinen später wieder als Karte, Erklärung und Mini-Test.",
+    stat: "Auto-Review",
   },
   {
-    icon: "🏁",
-    title: "Prüfungsmodus",
-    text: "Simuliere echte Prüfungssituationen mit Zeit, Punkten und Auswertung.",
+    title: "Kapitel werden nach Risiko sortiert",
+    text: "Themen mit niedriger Trefferquote werden höher priorisiert als Themen, die schon sitzen.",
+    stat: "Priorität",
+  },
+  {
+    title: "Prüfungsreife statt nur Fortschritt",
+    text: "Nicht nur gelesen: Die Plattform zeigt, ob du die Inhalte unter Prüfungsdruck kannst.",
+    stat: "Readiness",
+  },
+] as const;
+
+const curriculumFlow = [
+  {
+    step: "01",
+    title: "Zertifikat",
+    text: "Taxi, §34a, Güterverkehr oder weitere Prüfungen.",
+  },
+  {
+    step: "02",
+    title: "Kapitel",
+    text: "Offizielle Themenbereiche sauber strukturiert.",
+  },
+  {
+    step: "03",
+    title: "Lektionen",
+    text: "Lerninhalte mit Beispielen und Mehrsprachigkeit.",
+  },
+  {
+    step: "04",
+    title: "Lernkarten",
+    text: "Wiederholung für Begriffe, Regeln und Formeln.",
+  },
+  {
+    step: "05",
+    title: "Fragen",
+    text: "Prüfungsnahe Aufgaben mit Erklärung.",
+  },
+  {
+    step: "06",
+    title: "Simulation",
+    text: "Realistischer Test mit Punkten und Zeitdruck.",
   },
 ] as const;
 
@@ -211,43 +283,35 @@ const learningTimeline = [
   { day: "Tag 19+", title: "Prüfung simulieren", progress: "92%" },
 ] as const;
 
-const languageExamples = [
+const platformRoles = [
   {
-    term: "Betriebssitz",
-    de: "Offizieller Sitz des Unternehmens.",
-    ar: "المكان الرسمي المسجل للشركة.",
-    tag: "Recht",
+    icon: "👤",
+    title: "Lernende",
+    text: "Lernen, Karten üben, Prüfungen simulieren, Fortschritt sehen.",
   },
   {
-    term: "Bereitstellungspflicht",
-    de: "Pflicht, Taxi-Verkehr ordnungsgemäß bereitzuhalten.",
-    ar: "واجب توفير خدمة التاكسي بشكل منظم.",
-    tag: "Taxi",
+    icon: "🧑‍🏫",
+    title: "Dozenten",
+    text: "Kapitel, Fragen, Erklärungen und Lernlogik kuratieren.",
   },
   {
-    term: "Kostendeckung",
-    de: "Einnahmen müssen Kosten langfristig tragen.",
-    ar: "الإيرادات يجب أن تغطي التكاليف على المدى الطويل.",
-    tag: "Rechnen",
+    icon: "🛡️",
+    title: "Admin",
+    text: "Zertifikate, Sprachen, Inhalte, Nutzer und Veröffentlichungen verwalten.",
   },
 ] as const;
 
-const intelligenceItems = [
-  {
-    title: "Fehler werden zu Lernaufgaben",
-    text: "Falsch beantwortete Fragen erscheinen später wieder als Karte, Erklärung und Mini-Test.",
-    stat: "Auto-Review",
-  },
-  {
-    title: "Kapitel werden nach Risiko sortiert",
-    text: "Themen mit niedriger Trefferquote werden höher priorisiert als Themen, die schon sitzen.",
-    stat: "Priorität",
-  },
-  {
-    title: "Prüfungsreife statt nur Fortschritt",
-    text: "Nicht nur gelesen: Die Plattform zeigt, ob du die Inhalte unter Prüfungsdruck kannst.",
-    stat: "Readiness",
-  },
+const adminPreview = [
+  { label: "Zertifikate", value: "12", progress: "88%" },
+  { label: "Lektionen", value: "248", progress: "72%" },
+  { label: "Fragen", value: "4.2k", progress: "64%" },
+  { label: "Sprachen", value: "4", progress: "96%" },
+] as const;
+
+const examOptions = [
+  { label: "Kfz-Haftpflichtversicherung", state: "correct" },
+  { label: "Gesetzliche Unfallversicherung", state: "wrong" },
+  { label: "Betriebshaftpflicht des Unternehmers", state: "wrong" },
 ] as const;
 
 const comparisonRows = [
@@ -265,10 +329,19 @@ const comparisonRows = [
   },
 ] as const;
 
-const examOptions = [
-  { label: "Kfz-Haftpflichtversicherung", state: "correct" },
-  { label: "Gesetzliche Unfallversicherung", state: "wrong" },
-  { label: "Betriebshaftpflicht des Unternehmers", state: "wrong" },
+const conversionReasons = [
+  {
+    title: "Für Lernende",
+    text: "Weniger Chaos, mehr Sicherheit, bessere Wiederholung.",
+  },
+  {
+    title: "Für Betreiber",
+    text: "Inhalte skalieren über Zertifikate, Sprachen und Rollen.",
+  },
+  {
+    title: "Für SEO",
+    text: "Jede Prüfung, jedes Kapitel und jede Frage kann später indexierbar werden.",
+  },
 ] as const;
 
 const testimonials = [
@@ -329,8 +402,8 @@ const footerGroups = [
     links: ["Lernkarten", "Prüfungssimulation", "Mehrsprachigkeit", "Fortschritt"],
   },
   {
-    title: "Unternehmen",
-    links: ["Über uns", "Kontakt", "Partner", "Karriere"],
+    title: "Plattform",
+    links: ["Admin Panel", "CMS", "Rollen", "Sprachen"],
   },
   {
     title: "Rechtliches",
@@ -436,7 +509,13 @@ function Navbar() {
         </a>
 
         <div className="hidden items-center gap-8 text-sm font-semibold text-[#c7d2e5] lg:flex">
-          {navItems.map((item) => (
+          {[
+            { label: "Zertifikate", href: "#zertifikate" },
+            { label: "Methode", href: "#lernmethode" },
+            { label: "Plattform", href: "#plattform" },
+            { label: "Preise", href: "#preise" },
+            { label: "Kontakt", href: "#kontakt" },
+          ].map((item) => (
             <a key={item.label} href={item.href} className="transition hover:text-white">
               {item.label}
             </a>
@@ -680,9 +759,38 @@ function LearningModes() {
   );
 }
 
-function LanguageBridge() {
+function CurriculumSystem() {
   return (
     <section className="mx-auto max-w-[1360px] px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mb-8 max-w-4xl">
+        <SectionKicker>Content-System</SectionKicker>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+          Jedes Zertifikat wird wie ein Produkt gebaut.
+        </h2>
+        <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+          Die Plattform braucht eine klare Datenlogik: von Zertifikat bis Prüfungssimulation. Das
+          macht sie skalierbar, sauber und später SEO-fähig.
+        </p>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+        {curriculumFlow.map((item) => (
+          <Glass key={item.title} className="rounded-[28px] p-5">
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-[#f3b23c]">
+              {item.step}
+            </p>
+            <h3 className="text-xl font-black text-white">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-[#afc0da]">{item.text}</p>
+          </Glass>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LanguageBridge() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionKicker>Sprachbrücke</SectionKicker>
@@ -748,6 +856,7 @@ function IntelligenceLayer() {
     <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
       <Glass className="relative overflow-hidden rounded-[38px] border-[#4ea1ff]/20 p-6 md:p-8">
         <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#4ea1ff]/15 blur-3xl" />
+
         <div className="relative grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
           <div>
             <SectionKicker>Lernintelligenz</SectionKicker>
@@ -776,6 +885,37 @@ function IntelligenceLayer() {
           </div>
         </div>
       </Glass>
+    </section>
+  );
+}
+
+function PlatformSection() {
+  return (
+    <section id="plattform" className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[0.82fr_1.18fr]">
+        <div>
+          <SectionKicker>Plattform-Architektur</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            Nicht nur Landing Page. Ein echtes Lernsystem.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+            Die UI ist vorbereitet für Rollen, Inhalte, Admin-Workflows, Sprachen und echte
+            Lernpfade. So wächst das Projekt später sauber weiter.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {platformRoles.map((role) => (
+            <Glass key={role.title} className="rounded-[30px] p-5">
+              <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.055] text-2xl">
+                {role.icon}
+              </div>
+              <h3 className="text-2xl font-black text-white">{role.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-[#afc0da]">{role.text}</p>
+            </Glass>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
@@ -878,6 +1018,49 @@ function FeatureStrip() {
           ))}
         </div>
       </Glass>
+    </section>
+  );
+}
+
+function AdminPanelPreview() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="grid gap-6 xl:grid-cols-[1.05fr_.95fr]">
+        <Glass className="rounded-[36px] p-5 md:p-7">
+          <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-5">
+            <div>
+              <p className="text-sm font-black text-[#f3b23c]">Admin Console</p>
+              <h3 className="mt-1 text-2xl font-black text-white">Content Management</h3>
+            </div>
+            <span className="rounded-full bg-[#34d399]/10 px-3 py-1 text-xs font-black text-[#34d399]">
+              Live-ready
+            </span>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {adminPreview.map((item) => (
+              <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-5">
+                <p className="text-sm font-bold text-[#8ea0c0]">{item.label}</p>
+                <p className="mt-2 text-4xl font-black text-white">{item.value}</p>
+                <div className="mt-4">
+                  <ProgressBar value={item.progress} tone="green" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </Glass>
+
+        <div>
+          <SectionKicker>Admin-First gedacht</SectionKicker>
+          <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+            Inhalte sollen später ohne Entwickler gepflegt werden.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#afc0da]">
+            Zertifikate, Kapitel, Fragen, Lernkarten, Erklärungen und Sprachen müssen langfristig
+            über ein Admin-System verwaltet werden. Die Landing Page verkauft genau dieses System.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
@@ -1037,6 +1220,28 @@ function Comparison() {
           ))}
         </div>
       </Glass>
+    </section>
+  );
+}
+
+function ConversionLayer() {
+  return (
+    <section className="mx-auto max-w-[1360px] px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="mb-8 max-w-4xl">
+        <SectionKicker>Business-Logik</SectionKicker>
+        <h2 className="text-4xl font-black tracking-[-0.05em] text-white md:text-6xl">
+          Die Seite verkauft nicht nur Kurse. Sie verkauft Sicherheit.
+        </h2>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-3">
+        {conversionReasons.map((reason) => (
+          <Glass key={reason.title} className="rounded-[30px] p-6">
+            <h3 className="text-2xl font-black text-white">{reason.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-[#afc0da]">{reason.text}</p>
+          </Glass>
+        ))}
+      </div>
     </section>
   );
 }
@@ -1235,13 +1440,17 @@ export default function Page() {
       <Hero />
       <TrustStrip />
       <LearningModes />
+      <CurriculumSystem />
       <LanguageBridge />
       <IntelligenceLayer />
+      <PlatformSection />
       <CertificatesSection />
       <FeatureStrip />
+      <AdminPanelPreview />
       <LearningEngine />
       <ExamSimulation />
       <Comparison />
+      <ConversionLayer />
       <Testimonials />
       <FAQ />
       <FinalCTA />
