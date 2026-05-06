@@ -3,318 +3,110 @@ import type { ReactNode } from "react";
 const navItems = ["Zertifikate", "So funktioniert’s", "Preise", "Erfolgsgeschichten", "Kontakt"];
 
 const heroTrustItems = [
-  { label: "Offizieller Prüfungsstoff", icon: "✓" },
-  { label: "Tausende Übungsfragen", icon: "◎" },
-  { label: "Sicher & DSGVO-konform", icon: "🔒" },
+  "Offizieller Prüfungsstoff",
+  "Tausende Übungsfragen",
+  "Sicher & DSGVO-konform",
+];
+
+const heroStats = [
+  { title: "Mehrsprachig", value: "DE · AR · EN · TR" },
+  { title: "4.9/5", value: "Nutzerbewertung" },
+  { title: "78%", value: "Dein Lernstand" },
+  { title: "12+", value: "Zertifikate verfügbar" },
 ];
 
 const trustStripItems = [
-  { icon: "🛡️", label: "12+ Zertifikate geplant" },
-  { icon: "🧭", label: "1 Plattform für alle Lernpfade" },
-  { icon: "🌍", label: "DE / AR / EN / TR" },
-  { icon: "🧪", label: "Prüfungssimulation & Lernkarten" },
+  "12+ Zertifikate geplant",
+  "1 Plattform für alle Lernpfade",
+  "DE / AR / EN / TR",
+  "Prüfungssimulation & Lernkarten",
 ];
 
 const certificates = [
-  {
-    title: "Taxi & Mietwagen",
-    subtitle: "Fachkundeprüfung nach PBefG",
-    description: "Lerne Tarif-, Orts- und Unternehmerwissen strukturiert und prüfungsnah.",
-    stats: "12 Kapitel · 850+ Fragen",
-    icon: "🚕",
-    badge: "Beliebt",
-  },
-  {
-    title: "§34a Bewachung",
-    subtitle: "Sachkundeprüfung nach §34a GewO",
-    description: "Verstehe Recht, Deeskalation und Praxisfälle mit präziser Auswertung.",
-    stats: "9 Kapitel · 650+ Fragen",
-    icon: "🛡️",
-    badge: "Beliebt",
-  },
-  {
-    title: "Güterkraftverkehr",
-    subtitle: "Fachkundeprüfung Güterverkehr",
-    description: "Lerne Kostenrechnung, Disposition und EU-Regeln strukturiert auf Deutsch.",
-    stats: "10 Kapitel · 700+ Fragen",
-    icon: "🚛",
-    badge: "Beliebt",
-  },
-  {
-    title: "Versicherung §34d",
-    subtitle: "Sachkundeprüfung Versicherungsvermittlung",
-    description: "Trainiere Beratungslogik, Haftung und Produktgrundlagen prüfungsnah.",
-    stats: "8 Kapitel · 600+ Fragen",
-    icon: "☂️",
-    badge: "Verfügbar",
-  },
-  {
-    title: "Finanzanlagen §34f",
-    subtitle: "Sachkundeprüfung Finanzanlagenvermittlung",
-    description: "Verstehe Produkte, Risikoaufklärung und Regulatorik für die IHK-Prüfung.",
-    stats: "7 Kapitel · 550+ Fragen",
-    icon: "📈",
-    badge: "Verfügbar",
-  },
-  {
-    title: "Immobiliardarlehen",
-    subtitle: "Sachkundeprüfung Darlehensvermittlung",
-    description: "Von Darlehensarten bis Verbraucherschutz — klar erklärt und wiederholbar.",
-    stats: "7 Kapitel · 500+ Fragen",
-    icon: "🏢",
-    badge: "Verfügbar",
-  },
-];
+  ["Taxi & Mietwagen", "Fachkundeprüfung nach PBefG", "Lerne Tarif-, Orts- und Unternehmerwissen für deine Personenbeförderung.", "12 Kapitel · 850+ Fragen", "Beliebt"],
+  ["§34a Bewachung", "Sachkundeprüfung nach §34a GewO", "Verstehe Recht, Deeskalation und Praxisfälle sicher anwenden.", "9 Kapitel · 650+ Fragen", "Beliebt"],
+  ["Güterkraftverkehr", "Fachkundeprüfung Güterverkehr", "Kostenrechnung, Disposition und EU-Regeln für Güterverkehr im Griff.", "10 Kapitel · 700+ Fragen", "Verfügbar"],
+  ["Versicherung §34d", "Sachkundeprüfung Versicherungsvermittlung", "Beratungslogik, Haftung und Produktgrundlagen sicher verstehen.", "8 Kapitel · 600+ Fragen", "Verfügbar"],
+  ["Finanzanlagen §34f", "Sachkundeprüfung Finanzanlagenvermittlung", "Produkte, Risikoaufklärung und Regulatorik sicher beherrschen.", "7 Kapitel · 550+ Fragen", "Verfügbar"],
+  ["Immobiliardarlehen", "Sachkundeprüfung Darlehensvermittlung", "Darlehensarten, Finanzierung und Verbraucherschutz im Blick.", "7 Kapitel · 500+ Fragen", "Verfügbar"],
+] as const;
 
 const features = [
-  ["📘", "Verständliche Erklärungen", "Komplexe Themen klar, verständlich und prüfungsorientiert aufbereitet."],
-  ["🧪", "Prüfungssimulation", "Trainiere unter realistischen Bedingungen mit gezielten Auswertungen."],
-  ["🗂️", "Lernkarten", "Wiederhole effizient mit smarten Lernkarten für langfristigen Lernerfolg."],
-  ["📊", "Fortschritt verfolgen", "Behalte deinen Lernstand im Blick und erkenne gezielt Wissenslücken."],
-  ["📱", "Mobil lernen", "Lerne auf Smartphone, Tablet und Desktop — jederzeit und überall."],
-  ["🌍", "Mehrsprachige Unterstützung", "Inhalte in Deutsch, Arabisch, Englisch und Türkisch verfügbar."],
+  ["Verständliche Erklärungen", "Komplexe Themen einfach erklärt."],
+  ["Prüfungssimulation", "Realistische Prüfungen unter echten Bedingungen."],
+  ["Lernkarten", "Smarte Wiederholung für maximalen Lernerfolg."],
+  ["Fortschritt verfolgen", "Deinen Lernstand im Blick und Ziele erreichen."],
+  ["Mobil lernen", "Lerne jederzeit und überall auf allen Geräten."],
+  ["Mehrsprachige Unterstützung", "In deiner Sprache lernen und verstehen."],
 ] as const;
 
 const steps = [
-  ["Zertifikat wählen", "Wähle dein Prüfungsziel aus über 12+ Zertifikaten.", "🎯"],
-  ["Lernen & üben", "Lerne mit Erklärungen, Lernkarten und Übungen.", "📚"],
-  ["Prüfung bestehen", "Bestehe mit mehr Sicherheit und Selbstvertrauen.", "🏁"],
+  ["Zertifikat wählen", "Wähle das Zertifikat, das zu deinem Ziel passt, und erhalte deinen Lernplan."],
+  ["Lernen & üben", "Lerne mit Erklärungen, Lernkarten und Übungsfragen gezielt für die Prüfung."],
+  ["Prüfung bestehen", "Teste dein Wissen in realistischen Prüfungen und bestehe mit Sicherheit."],
 ] as const;
 
 const testimonials = [
-  ["Mehmet K.", "§34a Bewachung", "Dank FachkundePilot habe ich die §34a Prüfung beim ersten Versuch bestanden. Die Erklärungen sind einfach top!"],
-  ["Sarah L.", "Versicherung §34d", "Die Lernkarten und Prüfungen haben mir enorm geholfen, alles stressfrei und strukturiert zu lernen."],
-  ["Ahmed A.", "Taxi & Mietwagen", "Endlich eine Plattform, die komplexe Inhalte verständlich macht — und das in meiner Sprache."],
+  ["Mehmet K.", "Dank FachkundePilot habe ich meine §34a Prüfung beim ersten Versuch bestanden. Die Lernkarten sind Gold wert."],
+  ["Sarah L.", "Die Erklärungen sind super verständlich und die Prüfungssimulationen sehr realitätsnah. Klare Empfehlung!"],
+  ["Ahmed A.", "Endlich eine Plattform, die alles an einem Ort bietet. Übersichtlich, effektiv und mehrsprachig – perfekt!"],
 ] as const;
 
-function SectionCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <section
-      className={`rounded-[28px] border border-white/[0.08] bg-[rgba(9,24,56,0.72)] shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl ${className}`}
-    >
-      {children}
-    </section>
-  );
+function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <section className={`rounded-[24px] border border-white/10 bg-[rgba(8,24,58,0.88)] shadow-[0_20px_60px_rgba(0,0,0,.35)] ${className}`}>{children}</section>;
 }
 
-export default function HomePage() {
+export default function Page() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#06122B] text-[#F8FAFC]">
-      <header className="relative bg-[#071630]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_77%_34%,rgba(78,161,255,.24),transparent_42%),radial-gradient(circle_at_26%_76%,rgba(243,178,60,.16),transparent_36%),linear-gradient(to_bottom,rgba(255,255,255,.02),transparent_45%)]" />
-        <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:42px_42px]" />
+    <div className="min-h-screen bg-[#07162F] text-[#F8FAFC]">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_20%,rgba(78,161,255,.28),transparent_32%),radial-gradient(circle_at_20%_40%,rgba(11,67,167,.18),transparent_40%)]" />
+      <div className="mx-auto max-w-[1360px] px-6 pb-16 pt-4 lg:px-8">
+        <nav className="mb-8 flex min-h-[80px] items-center justify-between rounded-[20px] border border-white/15 bg-[rgba(7,22,48,.82)] px-4 shadow-[0_10px_40px_rgba(0,0,0,.35)] md:px-7">
+          <div className="flex items-center gap-3"><div className="h-11 w-11 rounded-xl border border-[#F4B73F]/50 bg-[#0A1B3F]" /><div><p className="text-2xl font-bold">FachkundePilot</p><p className="text-xs text-[#8EA0C0]">Prüfungsorientiertes Lernen</p></div></div>
+          <div className="hidden gap-10 text-[#C7D2E5] lg:flex">{navItems.map((x) => <span key={x}>{x}</span>)}</div>
+          <div className="flex items-center gap-3"><button className="hidden rounded-xl border border-white/15 px-4 py-2 md:block">DE</button><button className="rounded-xl bg-[#F4B73F] px-6 py-3 font-semibold text-[#07162F]">Jetzt starten</button></div>
+        </nav>
 
-        <div className="relative mx-auto max-w-[1240px] px-5 pb-14 pt-5 md:px-8 md:pb-16 lg:pt-7">
-          <nav className="mb-8 flex min-h-[78px] items-center justify-between rounded-[24px] border border-white/[0.14] bg-[rgba(9,24,56,0.72)] px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl md:mb-10 md:px-8">
-            <div className="flex items-center gap-3.5">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#76B7FF]/35 bg-gradient-to-br from-[#0a1f47] to-[#235cb9] text-lg">🎓</div>
-              <div>
-                <p className="text-lg font-semibold">FachkundePilot</p>
-                <p className="text-xs text-[#9FB0CC]">Prüfungsorientiertes Lernen</p>
-              </div>
-            </div>
-            <div className="hidden items-center gap-8 text-[15px] text-[#D7E1F3] lg:flex">
-              {navItems.map((item) => (
-                <span key={item} className="cursor-pointer transition hover:text-white">
-                  {item}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-[#D7E1F3] md:block">DE</button>
-              <button className="rounded-2xl bg-[#F3B23C] px-5 py-3 text-sm font-semibold text-[#08142B] shadow-[0_12px_30px_rgba(243,178,60,0.18)] transition hover:-translate-y-0.5 hover:bg-[#E09B1F]">
-                Jetzt starten
-              </button>
-            </div>
-          </nav>
-
-          <div className="grid items-center gap-10 pt-14 pb-[72px] lg:min-h-[760px] lg:max-h-[880px] lg:grid-cols-12 lg:gap-12">
-            <div className="max-w-[620px] lg:col-span-5">
-              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#4EA1FF]/35 bg-[rgba(9,24,56,0.72)] px-4 py-2.5 text-sm text-[#D7E1F3] shadow-[0_0_0_1px_rgba(78,161,255,0.12)]">
-                ✨ Die Lernplattform für offizielle Sach- und Fachkundeprüfungen
-              </p>
-              <h1 className="max-w-[560px] text-[clamp(2.7rem,12vw,3.6rem)] font-semibold leading-[0.95] tracking-[-0.055em] lg:text-[clamp(3.7rem,5.4vw,5.4rem)]">
-                Bestehe deine Prüfung.
-                <br />
-                Mit <span className="bg-gradient-to-r from-[#f7c664] to-[#F3B23C] bg-clip-text text-transparent">Klarheit, Struktur</span>
-                <br />
-                und System.
-              </h1>
-              <p className="mt-6 max-w-[560px] text-[17px] leading-[1.65] text-[#D7E1F3] md:text-[18px] lg:text-[19px]">
-                Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische Prüfungen und mobiles Lernen — alles an einem Ort.
-              </p>
-              <div className="mt-7 flex flex-col gap-3.5 sm:flex-row">
-                <button className="rounded-2xl bg-[#F3B23C] px-6 py-3.5 font-semibold text-[#08142B] shadow-[0_12px_30px_rgba(243,178,60,0.18)] transition hover:-translate-y-1 hover:bg-[#E09B1F]">
-                  Jetzt starten →
-                </button>
-                <button className="rounded-2xl border border-[#4EA1FF]/40 bg-[rgba(9,24,56,0.72)] px-6 py-3.5 font-semibold text-[#D7E1F3] shadow-[0_0_0_1px_rgba(78,161,255,0.12)] transition hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(35,92,185,0.22)]">
-                  Alle Zertifikate ansehen
-                </button>
-              </div>
-              <div className="mt-6 grid max-w-[560px] gap-2.5 text-sm sm:grid-cols-3">
-                {heroTrustItems.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/[0.14] bg-[rgba(10,26,60,0.88)] px-3.5 py-2.5 text-[13px] text-[#D7E1F3]">
-                    <span className="mr-2 text-[#76B7FF]">{item.icon}</span>
-                    {item.label}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative w-full min-w-0 lg:col-span-7">
-              <div className="absolute -inset-3 -z-10 rounded-[32px] bg-[radial-gradient(circle,rgba(78,161,255,.24),transparent_68%)]" />
-              <div className="grid min-w-0 items-center gap-5 min-[1101px]:grid-cols-[210px_minmax(0,1fr)] min-[1101px]:gap-6">
-                <div className="grid grid-cols-2 gap-3 min-[1101px]:grid-cols-1 min-[1101px]:gap-3">
-                  {[["🌍","Mehrsprachig","DE · AR · EN · TR"],["⭐","4.9/5","Nutzerbewertung"],["📈","78%","Dein Lernstand"],["📜","12+","Zertifikate verfügbar"]].map(([i,t,s]) => (
-                    <div key={t} className="min-h-[78px] w-full rounded-[20px] border border-white/[0.12] bg-[rgba(8,24,58,0.78)] px-4 py-4 text-sm text-[#D7E1F3] shadow-[0_12px_30px_rgba(0,0,0,0.24)] transition-colors duration-200 hover:border-white/25 hover:bg-[rgba(10,28,66,0.86)] hover:shadow-[0_16px_34px_rgba(0,0,0,0.32)]">
-                      <p>{i} <span className="font-semibold">{t}</span></p>
-                      <p className="text-xs text-[#9FB0CC]">{s}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="min-w-0 overflow-hidden rounded-[30px] border border-white/[0.14] bg-[rgba(10,26,60,0.88)] p-4 shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)] md:p-5">
-                  <div className="mb-5 flex items-center justify-between rounded-2xl border border-white/10 bg-[#081735] px-4 py-3 text-sm text-[#9FB0CC]">
-                    <span>FachkundePilot Dashboard</span>
-                    <span>⌕ 🔔 ● ● ●</span>
-                  </div>
-                  <div className="grid min-w-0 gap-3 min-[420px]:grid-cols-[126px_minmax(0,1fr)] md:grid-cols-[132px_minmax(0,1fr)]">
-                    <aside className="rounded-2xl border border-white/10 bg-[#081735] p-3 text-[12px] text-[#9FB0CC]">
-                      {['Übersicht','Zertifikate','Lernkarten','Prüfungen','Fortschritt','Einstellungen'].map((s, i) => <p key={s} className={i===0 ? 'mb-3 rounded-lg bg-white/10 px-2 py-1 text-[#F8FAFC]' : 'mb-3'}>{s}</p>)}
-                    </aside>
-                    <div className="min-w-0 space-y-3.5">
-                      <div>
-                        <p className="text-base font-semibold sm:text-lg">Guten Abend, Ahmet 👋</p>
-                        <p className="text-sm text-[#9FB0CC]">Weiter so! Du bist auf dem besten Weg.</p>
-                      </div>
-                      <div className="grid gap-3 md:grid-cols-2">
-                      <div className="rounded-[20px] border border-[#4EA1FF]/35 bg-[#0A1838] p-3.5">
-                        <p className="text-sm text-[#D7E1F3]">Dein Gesamtfortschritt</p><p className="mt-1 text-3xl font-semibold">78%</p>
-                        <div className="mt-2 h-2 rounded-full bg-slate-800"><div className="h-2 w-[78%] rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#76B7FF]" /></div>
-                        <p className="mt-2 text-xs text-[#9FB0CC]">Super! Nur noch 22% bis zum Ziel.</p>
-                      </div>
-                      <div className="rounded-[20px] border border-white/10 bg-[#0A1838] p-3.5">
-                        <p className="text-sm text-[#D7E1F3]">Lernzeit diese Woche</p><p className="mt-2 text-2xl font-semibold">12 h 45 min</p><p className="text-xs text-[#34D399]">+18% vs. letzte Woche</p>
-                        <p className="mt-3 text-xs text-[#9FB0CC]">Prüfungsziel in 14 Tagen</p>
-                      </div>
-                    </div>
-                    <div className="space-y-2 rounded-[20px] border border-white/10 bg-[#0A1838] p-3.5 text-sm text-[#D7E1F3]">
-                      <p className="font-medium text-[#F8FAFC]">Aktive Zertifikate</p>
-                      {[['§34a Bewachung','82%'],['Güterkraftverkehr','65%'],['Versicherung §34d','74%']].map(([n,v]) => <div key={n}><div className='mb-1 flex justify-between text-xs'><span>{n}</span><span>{v}</span></div><div className='h-1.5 rounded-full bg-slate-800'><div className='h-1.5 rounded-full bg-gradient-to-r from-[#F3B23C] to-[#4EA1FF]' style={{width:v}}/></div></div>)}
-                    </div>
-                    <div className="rounded-[20px] border border-[#F3B23C]/35 bg-[rgba(243,178,60,0.12)] p-3.5">
-                      <p className="text-sm text-[#F8FAFC]">Heute empfohlen</p><p className="text-sm text-[#D7E1F3]">20 Min. Lernkarten: Recht & Kostenrechnung</p>
-                      <button className="mt-3 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-xs text-[#F8FAFC] transition-colors hover:bg-white/15">Weiterlernen</button>
-                    </div>
-                  </div>
-                </div>
-              </div>              </div>
-            </div>
+        <section className="grid items-center gap-8 pb-8 lg:grid-cols-[1fr_1.25fr]">
+          <div>
+            <p className="inline-flex rounded-full border border-[#4EA1FF]/45 bg-[rgba(10,27,63,.82)] px-4 py-2 text-sm">Die Lernplattform für offizielle Sach- und Fachkundeprüfungen</p>
+            <h1 className="mt-5 text-5xl font-bold leading-[1.05] xl:text-7xl">Bestehe deine Prüfung.<br />Mit <span className="text-[#F4B73F]">Klarheit,<br />Struktur und System.</span></h1>
+            <p className="mt-6 max-w-[620px] text-lg text-[#C7D2E5]">Verständliche Erklärungen in deiner Sprache, smarte Lernkarten, realistische Prüfungen und mobiles Lernen — alles an einem Ort.</p>
+            <div className="mt-7 flex flex-wrap gap-3"><button className="rounded-xl bg-[#F4B73F] px-7 py-3 font-semibold text-[#07162F]">Jetzt starten</button><button className="rounded-xl border border-white/20 bg-[rgba(10,27,63,.82)] px-7 py-3">Alle Zertifikate ansehen</button></div>
+            <div className="mt-5 grid gap-2 sm:grid-cols-3">{heroTrustItems.map((i) => <div key={i} className="rounded-xl border border-white/10 bg-[rgba(10,27,63,.82)] px-3 py-2 text-sm">{i}</div>)}</div>
           </div>
-        </div>
-      </header>
 
-      <main className="mx-auto max-w-[1240px] space-y-8 px-5 pb-20 pt-8 md:space-y-12 md:px-8 md:pt-10">
-        <section className="rounded-full border border-white/[0.14] bg-[rgba(9,24,56,0.72)] px-7 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-          <div className="grid gap-4 md:grid-cols-4">
-            {trustStripItems.map((item, idx) => (
-              <div key={item.label} className={`flex items-center gap-3 ${idx < trustStripItems.length - 1 ? "md:border-r md:border-white/10" : ""}`}>
-                <span className="text-[#76B7FF]">{item.icon}</span>
-                <span className="text-sm text-[#D7E1F3]">{item.label}</span>
+          <div className="grid gap-4 xl:grid-cols-[1fr_220px]">
+            <Panel className="p-4">
+              <div className="rounded-xl border border-white/10 bg-[#091A3C] px-3 py-2 text-sm">FachkundePilot Dashboard</div>
+              <div className="mt-3 grid gap-3 md:grid-cols-[140px_1fr]">
+                <div className="rounded-xl border border-white/10 bg-[#091A3C] p-3 text-sm text-[#8EA0C0]">Übersicht<br/>Zertifikate<br/>Lernkarten<br/>Prüfungen<br/>Fortschritt<br/>Einstellungen</div>
+                <div className="space-y-3">
+                  <div><p className="font-semibold">Guten Abend, Ahmet 👋</p><p className="text-sm text-[#8EA0C0]">Weiter so! Du bist auf dem besten Weg.</p></div>
+                  <div className="grid gap-3 md:grid-cols-2"><div className="rounded-xl border border-white/10 bg-[#091A3C] p-3"><p className="text-sm">Dein Gesamtfortschritt</p><p className="text-4xl font-bold">78%</p><div className="mt-2 h-2 rounded-full bg-black/30"><div className="h-full w-[78%] rounded-full bg-[#4EA1FF]" /></div></div><div className="rounded-xl border border-white/10 bg-[#091A3C] p-3"><p className="text-sm">Lernzeit diese Woche</p><p className="text-3xl font-bold">12 h 45 min</p><p className="text-xs text-[#3DDC97]">+2 h 15 min gegenüber gestern</p></div></div>
+                  <div className="grid gap-3 md:grid-cols-2"><div className="rounded-xl border border-white/10 bg-[#091A3C] p-3 text-sm">Aktive Zertifikate<div className="mt-2 space-y-2 text-xs"><p>Taxi & Mietwagen</p><p>§34a Bewachung</p><p>Güterkraftverkehr</p></div></div><div className="rounded-xl border border-white/10 bg-[#091A3C] p-3 text-sm">Heute empfohlen<p className="mt-2">20 Min. Lernkarten: Recht & Kostenrechnung</p><button className="mt-3 rounded-lg bg-[#2a6ad9] px-3 py-1.5 text-xs">Weiterlernen</button></div></div>
+                </div>
               </div>
-            ))}
+            </Panel>
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">{heroStats.map((s) => <Panel key={s.title} className="p-4"><p className="text-xl font-bold">{s.title}</p><p className="text-sm text-[#C7D2E5]">{s.value}</p></Panel>)}</div>
           </div>
         </section>
 
-        <SectionCard className="p-6 md:p-8">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div><h2 className="text-3xl font-semibold md:text-[40px]">Zertifikate entdecken</h2><p className="mt-2 text-[#D7E1F3]">Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung.</p></div>
-            <button className="text-sm font-semibold text-[#76B7FF] transition hover:text-white">Alle Zertifikate ansehen →</button>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {certificates.map((c) => (
-              <article key={c.title} className="rounded-[22px] border border-white/[0.08] bg-[rgba(10,26,60,0.88)] p-5 transition duration-200 hover:-translate-y-1 hover:border-white/[0.14] hover:shadow-[0_0_0_1px_rgba(78,161,255,0.12),0_20px_60px_rgba(35,92,185,0.22)]">
-                <div className="mb-4 flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0A1838] text-2xl">{c.icon}</div><span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-[#9FB0CC]">{c.badge}</span></div>
-                <h3 className="text-2xl font-semibold">{c.title}</h3>
-                <p className="mt-1 text-sm text-[#D7E1F3]">{c.subtitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-[#9FB0CC]">{c.description}</p>
-                <p className="mt-4 text-sm text-[#D7E1F3]">{c.stats}</p>
-                <button className="mt-5 text-sm font-semibold text-[#76B7FF] transition hover:text-white">Mehr erfahren →</button>
-              </article>
-            ))}
-          </div>
-        </SectionCard>
+        <Panel className="mb-7 px-5 py-4"><div className="grid gap-2 md:grid-cols-4">{trustStripItems.map((x, i) => <div key={x} className={`text-sm ${i < 3 ? "md:border-r md:border-white/15" : ""}`}>{x}</div>)}</div></Panel>
 
-        <SectionCard className="p-5 md:p-7">
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
-            {features.map(([icon, title, text], index) => (
-              <div key={title} className={`px-3 ${index < features.length - 1 ? "xl:border-r xl:border-white/10" : ""}`}>
-                <p className="mb-2 text-xl">{icon}</p>
-                <p className="text-base font-semibold">{title}</p>
-                <p className="mt-1 text-sm text-[#9FB0CC]">{text}</p>
-              </div>
-            ))}
-          </div>
-        </SectionCard>
+        <Panel className="mb-7 p-5 md:p-7"><div className="mb-6 flex items-end justify-between"><div><h2 className="text-4xl font-bold">Zertifikate entdecken</h2><p className="text-[#C7D2E5]">Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung.</p></div><span className="text-[#4EA1FF]">Alle Zertifikate ansehen →</span></div><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{certificates.map(([t,s,d,st,b]) => <article key={t} className="rounded-[20px] border border-white/10 bg-[rgba(10,27,63,.82)] p-5"><div className="mb-3 flex justify-between"><div className="h-11 w-11 rounded-xl bg-[#15366b]" /><span className="rounded-full border border-white/20 px-2 py-1 text-xs">{b}</span></div><h3 className="text-3xl font-semibold leading-tight">{t}</h3><p className="mt-1 text-sm text-[#C7D2E5]">{s}</p><p className="mt-2 text-sm text-[#8EA0C0]">{d}</p><p className="mt-3 text-sm">{st}</p><button className="mt-2 text-[#4EA1FF]">Mehr erfahren →</button></article>)}</div></Panel>
 
-        <div className="grid gap-7 xl:grid-cols-2">
-          <SectionCard className="p-6 md:p-8">
-            <h3 className="text-3xl font-semibold">So funktioniert’s</h3>
-            <div className="relative mt-7 grid gap-4 md:grid-cols-3">
-              <div className="pointer-events-none absolute left-[16.6%] right-[16.6%] top-5 hidden border-t border-dashed border-white/20 md:block" />
-              {steps.map(([title, description, icon], index) => (
-                <div key={title} className="relative rounded-[22px] border border-white/10 bg-[#0A1838] p-4">
-                  <div className="mb-3 flex items-center gap-2"><div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#4EA1FF] to-[#F3B23C] text-sm font-bold text-[#08142B]">{index + 1}</div><span>{icon}</span></div>
-                  <p className="font-semibold">{title}</p>
-                  <p className="mt-1 text-sm text-[#9FB0CC]">{description}</p>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
+        <Panel className="mb-7 p-4"><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">{features.map(([t,tx]) => <div key={t} className="rounded-xl border border-white/10 p-3"><p className="font-semibold">{t}</p><p className="text-sm text-[#8EA0C0]">{tx}</p></div>)}</div></Panel>
 
-          <SectionCard className="p-6 md:p-8">
-            <h3 className="text-3xl font-semibold">Das sagen unsere Teilnehmenden</h3>
-            <div className="mt-6 grid gap-3">
-              {testimonials.map(([name, cert, quote], i) => (
-                <div key={name} className={`rounded-[22px] border p-4 ${i === 1 ? "border-[#4EA1FF]/40 bg-[#102147]" : "border-white/10 bg-[#0A1838]"}`}>
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="flex items-center gap-2"><div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1a3266] text-xs text-[#D7E1F3]">{name.split(" ").map((x) => x[0]).join("")}</div><div><p className="font-semibold">{name}</p><p className="text-xs text-[#76B7FF]">{cert}</p></div></div>
-                    <span className="text-xs text-[#F3B23C]">★★★★★</span>
-                  </div>
-                  <p className="text-sm leading-relaxed text-[#D7E1F3]">“{quote}”</p>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
+        <div className="mb-7 grid gap-6 xl:grid-cols-2">
+          <Panel className="p-6"><h3 className="text-5xl font-bold">So funktioniert’s</h3><div className="mt-5 space-y-3">{steps.map(([t,d],i)=><div className="rounded-xl border border-white/10 p-3" key={t}><p className="font-semibold">{i+1}. {t}</p><p className="text-sm text-[#C7D2E5]">{d}</p></div>)}</div></Panel>
+          <Panel className="p-6"><h3 className="text-5xl font-bold">Das sagen unsere Teilnehmenden</h3><div className="mt-5 grid gap-3">{testimonials.map(([n,q])=><div key={n} className="rounded-xl border border-white/10 p-3"><p className="font-semibold">{n}</p><p className="text-[#F4B73F]">★★★★★</p><p className="text-sm text-[#C7D2E5]">“{q}”</p></div>)}</div></Panel>
         </div>
 
-        <SectionCard className="border-[#F3B23C]/25 bg-gradient-to-r from-[#081735] via-[#0A1838] to-[#1c1b2f] p-6 md:p-8">
-          <div className="grid gap-6 xl:grid-cols-[1.2fr_0.9fr_330px]">
-            <div>
-              <p className="inline-flex rounded-full border border-[#F3B23C]/35 bg-[#F3B23C]/15 px-3 py-1 text-sm text-[#F8FAFC]">Dein Erfolg beginnt jetzt</p>
-              <h3 className="mt-3 text-3xl font-semibold md:text-4xl">Starte heute mit deiner Prüfungsvorbereitung.</h3>
-              <p className="mt-3 text-[#D7E1F3]">Lerne mit klaren Lernpfaden, Lernkarten und realistischen Prüfungssimulationen — für deutsche Sach- und Fachkundeprüfungen.</p>
-              <ul className="mt-4 space-y-2 text-sm text-[#D7E1F3]"><li>• Zugriff auf alle Kurse & Zertifikate</li><li>• Prüfungssimulationen & Lernkarten</li><li>• Mehrsprachige Inhalte</li><li>• Lernen auf allen Geräten</li><li>• DSGVO-konform & sicher</li></ul>
-            </div>
-            <div className="space-y-3 text-sm text-[#D7E1F3]"><div className="rounded-2xl border border-white/15 bg-white/5 p-3">14 Tage Geld-zurück-Garantie</div><div className="rounded-2xl border border-white/15 bg-white/5 p-3">Jederzeit kündbar</div><div className="rounded-2xl border border-white/15 bg-white/5 p-3">Sofortiger Zugriff nach Registrierung</div></div>
-            <div className="rounded-[22px] border border-white/20 bg-[#F8FAFC] p-5 text-[#08142B] shadow-[0_20px_50px_rgba(0,0,0,0.35)]"><p className="inline-flex rounded-full bg-[#08142B] px-2.5 py-1 text-xs font-semibold text-[#F8FAFC]">Premium</p><p className="mt-3 text-base font-semibold">Alles inklusive für deinen Prüfungserfolg</p><p className="mt-4 text-4xl font-bold">Ab 9,90 € <span className="text-base font-medium">/ Monat</span></p><p className="text-sm text-slate-600">Monatlich kündbar</p><button className="mt-4 w-full rounded-2xl bg-[#08142B] px-4 py-3 font-semibold text-slate-50 transition hover:-translate-y-0.5 hover:bg-slate-800">Jetzt starten →</button><p className="mt-2 text-center text-xs text-slate-500">7 Tage kostenlos testen</p></div>
-          </div>
-        </SectionCard>
-      </main>
+        <Panel className="border-[#F4B73F]/35 p-6"><div className="grid gap-4 xl:grid-cols-[1.2fr_.7fr_350px]"><div><p className="inline-flex rounded-full border border-[#F4B73F]/50 px-3 py-1 text-sm">Dein Erfolg beginnt jetzt</p><h3 className="mt-3 text-5xl font-bold">Starte heute mit deiner Prüfungsvorbereitung.</h3><p className="mt-3 text-[#C7D2E5]">Lerne mit klaren Lernpfaden, smarten Lernkarten und realistischen Prüfungen — für deinen sicheren Erfolg.</p><ul className="mt-4 space-y-2 text-[#C7D2E5]"><li>Zugriff auf alle Kurse & Zertifikate</li><li>Prüfungssimulationen & Lernkarten</li><li>Mehrsprachige Inhalte</li><li>Lernen auf allen Geräten</li><li>DSGVO-konform & sicher</li></ul></div><div className="space-y-3"><div className="rounded-xl border border-white/15 p-3">14 Tage Geld-zurück-Garantie</div><div className="rounded-xl border border-white/15 p-3">Jederzeit kündbar</div><div className="rounded-xl border border-white/15 p-3">Sofortiger Zugriff nach Registrierung</div></div><div className="rounded-[20px] border border-[#F4B73F]/35 bg-[#F8F3E8] p-5 text-[#08142B]"><p className="inline-flex rounded-full bg-[#F4B73F] px-3 py-1 font-semibold">Premium</p><p className="mt-3 font-semibold">Alles inklusive für deinen Prüfungserfolg</p><p className="mt-3 text-5xl font-bold">Ab 9,90 € <span className="text-lg">/ Monat</span></p><p>Monatlich kündbar</p><button className="mt-4 w-full rounded-xl bg-[#F4B73F] px-4 py-3 font-semibold">Jetzt starten →</button><p className="mt-2 text-center text-sm">7 Tage kostenlos testen</p></div></div></Panel>
+      </div>
 
-      <footer className="border-t border-white/10 bg-[#071630]">
-        <div className="mx-auto grid max-w-[1240px] gap-8 px-5 py-12 text-sm text-[#D7E1F3] md:grid-cols-5 md:px-8">
-          <div>
-            <p className="text-lg font-semibold text-white">FachkundePilot</p>
-            <p className="mt-2 text-sm text-[#9FB0CC]">Prüfungsorientiertes Lernen für deutsche Sach- und Fachkundeprüfungen.</p>
-          </div>
-          <div><p className="mb-3 font-semibold text-white">Produkt</p><p className="mb-2">Zertifikate</p><p className="mb-2">So funktioniert’s</p><p>Preise</p></div>
-          <div><p className="mb-3 font-semibold text-white">Unternehmen</p><p className="mb-2">Über uns</p><p className="mb-2">Karriere</p><p>Kontakt</p></div>
-          <div><p className="mb-3 font-semibold text-white">Rechtliches</p><p className="mb-2">Datenschutz</p><p className="mb-2">Impressum</p><p>AGB</p></div>
-          <div><p className="mb-3 font-semibold text-white">Folge uns</p><p>◯ ◯ ◯</p></div>
-        </div>
-        <p className="pb-8 text-center text-xs text-[#7E8FB0]">© 2026 FachkundePilot. Alle Rechte vorbehalten.</p>
-      </footer>
+      <footer className="border-t border-white/10 bg-[#071630]"><div className="mx-auto grid max-w-[1360px] gap-7 px-6 py-10 text-[#C7D2E5] md:grid-cols-5 lg:px-8"><div><p className="text-2xl font-bold text-white">FachkundePilot</p><p className="mt-2 text-sm">Prüfungsorientiertes Lernen für deutsche Sach- und Fachkundeprüfungen.</p></div><div><p className="font-semibold text-white">Produkt</p><p>Zertifikate</p><p>So funktioniert’s</p><p>Preise</p><p>Erfolgsgeschichten</p></div><div><p className="font-semibold text-white">Unternehmen</p><p>Über uns</p><p>Karriere</p><p>Kontakt</p></div><div><p className="font-semibold text-white">Rechtliches</p><p>Datenschutz</p><p>Impressum</p><p>AGB</p></div><div><p className="font-semibold text-white">Folge uns</p><p>Facebook</p><p>Instagram</p><p>YouTube</p><p>LinkedIn</p></div></div><p className="pb-7 text-center text-sm text-[#8EA0C0]">© 2026 FachkundePilot. Alle Rechte vorbehalten.</p></footer>
     </div>
   );
 }
