@@ -9,10 +9,10 @@ const heroTrustItems = [
 ];
 
 const heroMetrics = [
-  { label: "Lernstand", value: "78%", tone: "blue" },
-  { label: "Lernzeit", value: "12h 45m", tone: "green" },
-  { label: "Karten fällig", value: "24", tone: "gold" },
-];
+  { label: "Prüfungsreife", value: "78%", progress: "78%", tone: "blue" },
+  { label: "Lernzeit", value: "12h 45m", progress: "64%", tone: "green" },
+  { label: "Karten fällig", value: "24", progress: "42%", tone: "gold" },
+] as const;
 
 const trustStats = [
   {
@@ -137,21 +137,41 @@ const features = [
   },
 ] as const;
 
-const steps = [
+const learningSteps = [
   {
     number: "01",
     title: "Zertifikat wählen",
-    text: "Wähle dein Prüfungsziel und starte mit einem klaren Lernplan.",
+    text: "Wähle dein Prüfungsziel und erhalte automatisch eine klare Lernstruktur.",
   },
   {
     number: "02",
     title: "Deutsch verstehen",
-    text: "Lerne die offiziellen deutschen Begriffe mit einfachen Erklärungen.",
+    text: "Lerne die offiziellen Begriffe auf Deutsch — mit einfachen Erklärungen.",
   },
   {
     number: "03",
-    title: "Prüfung trainieren",
-    text: "Übe mit Lernkarten, Fragen und realistischen Prüfungssimulationen.",
+    title: "Lernkarten trainieren",
+    text: "Wiederhole wichtige Regeln, Begriffe und Rechenlogik systematisch.",
+  },
+  {
+    number: "04",
+    title: "Prüfung simulieren",
+    text: "Teste dich unter realistischen Bedingungen mit Zeit, Punkten und Auswertung.",
+  },
+] as const;
+
+const comparisonRows = [
+  {
+    normal: "PDFs, Bücher und Notizen sind unübersichtlich.",
+    pilot: "Klare Lernpfade mit Fortschritt, Themenlogik und Prüfungsvorbereitung.",
+  },
+  {
+    normal: "Du weißt nicht genau, was du schon kannst.",
+    pilot: "Du siehst Schwächen, Fortschritt und nächste Lernschritte sofort.",
+  },
+  {
+    normal: "Prüfungen fühlen sich plötzlich und stressig an.",
+    pilot: "Simulationen bereiten dich gezielt auf echte Prüfungssituationen vor.",
   },
 ] as const;
 
@@ -174,11 +194,6 @@ const testimonials = [
     label: "Taxi & Mietwagen",
     quote: "Deutsch war schwer für mich. Die einfachen Erklärungen haben alles verändert.",
   },
-] as const;
-
-const comparison = [
-  ["Bücher & PDFs", "unübersichtlich", "kein Fortschritt", "keine Prüfungssimulation"],
-  ["FachkundePilot", "klare Lernpfade", "messbarer Fortschritt", "realistische Prüfungen"],
 ] as const;
 
 const pricingBenefits = [
@@ -249,6 +264,27 @@ function SecondaryButton({ children }: { children: ReactNode }) {
   );
 }
 
+function ProgressBar({
+  value,
+  tone = "blue",
+}: {
+  value: string;
+  tone?: "blue" | "gold" | "green";
+}) {
+  const color =
+    tone === "gold"
+      ? "bg-[#f3b23c]"
+      : tone === "green"
+        ? "bg-[#34d399]"
+        : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
+
+  return (
+    <div className="h-2 rounded-full bg-black/30">
+      <div className={`h-full rounded-full ${color}`} style={{ width: value }} />
+    </div>
+  );
+}
+
 function Navbar() {
   return (
     <header className="relative z-20 mx-auto max-w-[1380px] px-4 pt-5 sm:px-6 lg:px-8">
@@ -283,21 +319,6 @@ function Navbar() {
         </div>
       </nav>
     </header>
-  );
-}
-
-function ProgressBar({ value, tone = "blue" }: { value: string; tone?: "blue" | "gold" | "green" }) {
-  const color =
-    tone === "gold"
-      ? "bg-[#f3b23c]"
-      : tone === "green"
-        ? "bg-[#34d399]"
-        : "bg-gradient-to-r from-[#4ea1ff] to-[#6ee7f9]";
-
-  return (
-    <div className="h-2 rounded-full bg-black/30">
-      <div className={`h-full rounded-full ${color}`} style={{ width: value }} />
-    </div>
   );
 }
 
@@ -355,14 +376,17 @@ function DashboardPreview() {
 
             <div className="grid gap-3 md:grid-cols-3">
               {heroMetrics.map((metric) => (
-                <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                <div
+                  key={metric.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
+                >
                   <p className="text-sm text-[#afc0da]">{metric.label}</p>
                   <p className="mt-2 text-3xl font-black tracking-[-0.05em] text-white">
                     {metric.value}
                   </p>
                   <div className="mt-4">
                     <ProgressBar
-                      value={metric.label === "Lernzeit" ? "64%" : metric.label === "Karten fällig" ? "42%" : "78%"}
+                      value={metric.progress}
                       tone={metric.tone as "blue" | "gold" | "green"}
                     />
                   </div>
@@ -606,7 +630,7 @@ function MethodAndProof() {
         </p>
 
         <div className="mt-8 space-y-4">
-          {steps.map((step) => (
+          {learningSteps.map((step) => (
             <div
               key={step.title}
               className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4"
@@ -634,21 +658,23 @@ function MethodAndProof() {
           FachkundePilot verwandelt trockene Unterlagen in einen klaren Lernprozess.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {comparison.map(([title, a, b, c]) => (
+        <div className="mt-8 space-y-4">
+          {comparisonRows.map((row) => (
             <div
-              key={title}
-              className={`rounded-3xl border p-5 ${
-                title === "FachkundePilot"
-                  ? "border-[#f3b23c]/35 bg-[#f3b23c]/10"
-                  : "border-white/10 bg-white/[0.045]"
-              }`}
+              key={row.normal}
+              className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.045] p-4 md:grid-cols-2"
             >
-              <p className="text-2xl font-black text-white">{title}</p>
-              <div className="mt-5 space-y-3 text-sm font-semibold text-[#c7d2e5]">
-                <p>• {a}</p>
-                <p>• {b}</p>
-                <p>• {c}</p>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8ea0c0]">
+                  Bücher / PDFs
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[#afc0da]">✕ {row.normal}</p>
+              </div>
+              <div className="rounded-2xl border border-[#f3b23c]/25 bg-[#f3b23c]/10 p-4">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f3b23c]">
+                  FachkundePilot
+                </p>
+                <p className="mt-2 text-sm font-bold leading-7 text-white">✓ {row.pilot}</p>
               </div>
             </div>
           ))}
