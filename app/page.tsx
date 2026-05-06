@@ -1250,11 +1250,11 @@ function Footer() {
           </p>
 
           <div className="mt-4 flex gap-3">
-            {["f", "ig", "yt", "in"].map((item) => (
+            {[["Kontakt","/kontakt"],["FAQ","/faq"],["Preise","/preise"],["Dashboard","/dashboard"]].map(([item,href]) => (
               <a
                 key={item}
-                href="#"
-                aria-label={item}
+                href={href}
+                aria-label={`Zu ${item}`}
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 font-black text-white transition hover:bg-yellow-400 hover:text-[#081526]"
               >
                 {item}
