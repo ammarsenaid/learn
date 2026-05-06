@@ -3,23 +3,29 @@ import type { ReactNode } from "react";
 const navItems = ["Zertifikate", "Lernmethode", "Preise", "Erfolge", "Kontakt"];
 
 const heroTrustItems = [
-  "IHK-orientierte Struktur",
   "Deutsch bleibt Prüfungssprache",
-  "Mehrsprachige Erklärungen",
+  "Erklärungen in deiner Sprache",
+  "Prüfung realistisch trainieren",
 ];
+
+const dashboardMetrics = [
+  { label: "Prüfungsreife", value: "82%", progress: "82%", tone: "blue" },
+  { label: "Lernzeit", value: "12h 45m", progress: "64%", tone: "green" },
+  { label: "Karten fällig", value: "24", progress: "42%", tone: "gold" },
+] as const;
 
 const trustStats = [
   {
     icon: "🌍",
     title: "Mehrsprachig",
     value: "DE · AR · EN · TR",
-    text: "Prüfungsdeutsch verstehen, ohne den deutschen Wortlaut zu verlieren.",
+    text: "Deutsch bleibt Prüfungssprache — deine Sprache hilft beim Verstehen.",
   },
   {
     icon: "🧪",
-    title: "Prüfungssimulation",
+    title: "Simulation",
     value: "Realistisch",
-    text: "Trainiere mit Zeitdruck, Auswertung und Themenanalyse.",
+    text: "Trainiere mit Zeitdruck, Punkten und Themenanalyse.",
   },
   {
     icon: "🧠",
@@ -146,7 +152,7 @@ const learningSteps = [
   {
     number: "02",
     title: "Deutsch verstehen",
-    text: "Lerne die offiziellen deutschen Begriffe mit einfachen Erklärungen in deiner Sprache.",
+    text: "Lerne offizielle deutsche Begriffe mit einfachen Erklärungen in deiner Sprache.",
   },
   {
     number: "03",
@@ -156,7 +162,7 @@ const learningSteps = [
   {
     number: "04",
     title: "Prüfung simulieren",
-    text: "Teste dich unter realistischen Bedingungen und erkenne deine letzten Schwächen.",
+    text: "Teste dich mit Zeitdruck, Punkten und realistischer Fehlerauswertung.",
   },
 ] as const;
 
@@ -171,7 +177,7 @@ const comparisonRows = [
   },
   {
     bad: "Die Prüfung fühlt sich plötzlich und stressig an.",
-    good: "Du übst vorher mit Zeitdruck, Punkten und realistischen Prüfungsrunden.",
+    good: "Du übst vorher mit Zeitdruck, Punkten und echten Prüfungsrunden.",
   },
 ] as const;
 
@@ -208,15 +214,18 @@ const pricingBenefits = [
 const faqItems = [
   {
     question: "Ist die Prüfung auf Deutsch?",
-    answer: "Ja. Deutsch bleibt die echte Prüfungssprache. Die anderen Sprachen helfen beim Verstehen.",
+    answer:
+      "Ja. Deutsch bleibt die echte Prüfungssprache. Die anderen Sprachen helfen dir beim Verstehen der Inhalte.",
   },
   {
     question: "Kann ich mehrere Zertifikate lernen?",
-    answer: "Ja. Die Plattform ist von Anfang an für mehrere Sach- und Fachkundeprüfungen geplant.",
+    answer:
+      "Ja. Die Plattform ist von Anfang an für mehrere Sach- und Fachkundeprüfungen geplant.",
   },
   {
     question: "Ist das nur für Taxi & Mietwagen?",
-    answer: "Nein. Taxi & Mietwagen ist nur eines der Zertifikate. Weitere Bereiche sind vorbereitet.",
+    answer:
+      "Nein. Taxi & Mietwagen ist nur eines der Zertifikate. Weitere Bereiche sind bereits vorbereitet.",
   },
 ] as const;
 
@@ -255,11 +264,10 @@ function Glass({
   );
 }
 
-function Pill({ children, className = "" }: { children: ReactNode; className?: string }) {
+function Badge({ children }: { children: ReactNode }) {
   return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-black text-[#d8ebff] ${className}`}
-    >
+    <span className="inline-flex items-center gap-2 rounded-full border border-[#4ea1ff]/35 bg-[#0a2452]/70 px-4 py-2 text-sm font-bold text-[#d8ebff] shadow-[0_0_35px_rgba(78,161,255,0.12)]">
+      <span className="h-2 w-2 rounded-full bg-[#4ea1ff]" />
       {children}
     </span>
   );
@@ -307,9 +315,10 @@ function Navbar() {
     <header className="relative z-20 mx-auto max-w-[1400px] px-4 pt-5 sm:px-6 lg:px-8">
       <nav className="flex min-h-[84px] items-center justify-between rounded-[30px] border border-white/10 bg-[#061731]/82 px-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl md:px-7">
         <div className="flex items-center gap-3">
-          <div className="grid h-13 w-13 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#f3b23c]/45 bg-gradient-to-br from-[#16417d] to-[#071832] text-xl shadow-[0_0_38px_rgba(78,161,255,0.25)]">
             ✦
           </div>
+
           <div>
             <p className="text-xl font-black tracking-[-0.04em] text-white md:text-2xl">
               FachkundePilot
@@ -351,6 +360,7 @@ function DashboardPreview() {
             <p className="text-sm font-black text-white">FachkundePilot Dashboard</p>
             <p className="text-xs font-medium text-[#8ea0c0]">Live Lernübersicht</p>
           </div>
+
           <div className="flex items-center gap-2">
             <span className="grid h-8 w-8 place-items-center rounded-full bg-white/[0.06] text-[#9fb0cc]">
               ⌕
@@ -392,11 +402,7 @@ function DashboardPreview() {
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
-              {[
-                { label: "Prüfungsreife", value: "78%", progress: "78%", tone: "blue" },
-                { label: "Lernzeit", value: "12h", progress: "64%", tone: "green" },
-                { label: "Karten fällig", value: "24", progress: "42%", tone: "gold" },
-              ].map((metric) => (
+              {dashboardMetrics.map((metric) => (
                 <div
                   key={metric.label}
                   className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
@@ -567,7 +573,7 @@ function CertificatesSection() {
           {certificates.map((certificate) => (
             <article
               key={certificate.title}
-              className="group flex min-h-[310px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
+              className="group flex min-h-[330px] flex-col rounded-[28px] border border-white/10 bg-[#0a1b3f]/85 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4ea1ff]/40 hover:shadow-[0_24px_70px_rgba(78,161,255,0.16)]"
             >
               <div className="mb-5 flex items-center justify-between">
                 <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.05] text-2xl">
@@ -598,10 +604,15 @@ function CertificatesSection() {
                 </span>
               </div>
 
-              <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-                <span className="text-xs font-bold text-[#8ea0c0]">
-                  Beispiel-Lernstand: {certificate.readiness}
-                </span>
+              <div className="mt-5">
+                <div className="mb-2 flex items-center justify-between text-xs font-bold text-[#8ea0c0]">
+                  <span>Beispiel-Lernstand</span>
+                  <span>{certificate.readiness}</span>
+                </div>
+                <ProgressBar value={certificate.readiness} tone="blue" />
+              </div>
+
+              <div className="mt-5 border-t border-white/10 pt-4">
                 <button className="text-sm font-black text-[#76b7ff] transition group-hover:text-[#f3b23c]">
                   Mehr erfahren →
                 </button>
@@ -884,9 +895,19 @@ function Footer() {
   );
 }
 
+function MobileStickyCTA() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#06122b]/90 p-3 backdrop-blur-xl md:hidden">
+      <button className="w-full rounded-2xl bg-gradient-to-b from-[#ffe08a] to-[#f3b23c] px-5 py-4 text-sm font-black text-[#06122b] shadow-[0_14px_40px_rgba(244,178,60,0.34)]">
+        Kostenlos starten →
+      </button>
+    </div>
+  );
+}
+
 export default function Page() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#06122b] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#06122b] pb-20 text-white md:pb-0">
       <Hero />
       <TrustStrip />
       <CertificatesSection />
@@ -896,6 +917,7 @@ export default function Page() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <MobileStickyCTA />
     </div>
   );
 }
