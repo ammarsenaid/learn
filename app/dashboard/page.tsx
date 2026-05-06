@@ -71,7 +71,7 @@ export default async function DashboardPage() {
           title: 'Lernkarten wiederholen',
           description: `${flashcards.length} Karten sind verfügbar für deine Wiederholung.`,
           cta: 'Lernkarten öffnen',
-          href: '/zertifikate/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen',
         }
       : null,
     questions.length > 0
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
           title: 'Prüfungsfragen üben',
           description: `${questions.length} Fragen für Training und Prüfungssimulation.`,
           cta: 'Fragen starten',
-          href: '/zertifikate/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen',
         }
       : null,
     glossary.length > 0
@@ -87,7 +87,7 @@ export default async function DashboardPage() {
           title: 'Glossarbegriffe sichern',
           description: `${glossary.length} Begriffe kurz festigen und wiederholen.`,
           cta: 'Glossar öffnen',
-          href: '/zertifikate/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen',
         }
       : null,
     chapters.length > 0
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
           title: 'Kapitel lesen',
           description: `${chapters.length} Kapitel stehen im Lernpfad bereit.`,
           cta: 'Kapitel öffnen',
-          href: '/zertifikate/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen',
         }
       : null,
   ].filter((task): task is TodayTask => task !== null);
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
                   <p className="mt-1 text-sm text-slate-300">{item.description}</p>
                   {item.estimated_minutes ? <p className="mt-1 text-xs text-slate-400">~ {item.estimated_minutes} Minuten</p> : null}
                   <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]"><div className="h-full w-1/3 rounded-full bg-[#f3c76a]" /></div>
-                  <Link href="/zertifikate/taxi-mietwagen" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Öffnen</Link>
+                  <Link href={lessons.find((lesson) => lesson.chapter_id === item.id)?.slug ? `/lernen/taxi-mietwagen/${lessons.find((lesson) => lesson.chapter_id === item.id)?.slug}` : '/lernen/taxi-mietwagen'} className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Öffnen</Link>
                 </article>
               ))}
             </div>
