@@ -1,3 +1,4 @@
+import OfficialDisclaimer from '@/components/site/OfficialDisclaimer';
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -719,7 +720,7 @@ function DashboardMockup() {
                 </span>
               </div>
             </div>
-          </main>
+          <div className='mx-auto mt-10 max-w-6xl px-5'><OfficialDisclaimer /></div></main>
         </div>
       </div>
     </div>

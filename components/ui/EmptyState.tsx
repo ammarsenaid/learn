@@ -1,0 +1,2 @@
+import ButtonLink from './ButtonLink';
+export default function EmptyState({ message }: { message: string }) { return <div className="rounded-xl border border-dashed border-[#2a4c77] bg-[#0b2645] p-4 text-sm text-slate-300"><p>{message}</p><p className="mt-1 text-xs text-slate-400">Hinweis: In Directus pflegen.</p><div className="mt-3"><ButtonLink href="/admin">Zum Admin Gateway</ButtonLink></div></div>; }

@@ -1,0 +1,1 @@
+export default function ProgressBar({ value }: { value: number }) { const safe = Math.max(0, Math.min(100, value)); return <div className="h-2 overflow-hidden rounded-full bg-[#15335a]"><div className="h-full rounded-full bg-[#f3c76a]" style={{ width: `${safe}%` }} /></div>; }
