@@ -71,7 +71,7 @@ export default async function DashboardPage() {
           title: 'Lernkarten wiederholen',
           description: `${flashcards.length} Karten sind verfügbar für deine Wiederholung.`,
           cta: 'Lernkarten öffnen',
-          href: '/lernen/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen/karten',
         }
       : null,
     questions.length > 0
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
           title: 'Prüfungsfragen üben',
           description: `${questions.length} Fragen für Training und Prüfungssimulation.`,
           cta: 'Fragen starten',
-          href: '/lernen/taxi-mietwagen',
+          href: '/lernen/taxi-mietwagen/fragen',
         }
       : null,
     glossary.length > 0
@@ -219,6 +219,7 @@ export default async function DashboardPage() {
                 <p className="text-slate-200">{firstFlashcard.back_de}</p>
                 {firstFlashcard.explanation_ar ? <p className="mt-2 text-sm text-slate-300">{firstFlashcard.explanation_ar}</p> : null}
                 {firstFlashcard.tags ? <p className="mt-2 text-xs text-slate-400">Tags: {Array.isArray(firstFlashcard.tags) ? firstFlashcard.tags.join(', ') : firstFlashcard.tags}</p> : null}
+                <Link href="/lernen/taxi-mietwagen/karten" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Alle Lernkarten</Link>
               </article>
             ) : (
               <p className="mt-3 text-sm text-slate-300">Noch keine Lernkarten im CMS gepflegt.</p>
@@ -230,6 +231,7 @@ export default async function DashboardPage() {
             <p className="mt-2 text-slate-200">{questions.length} Fragen verfügbar</p>
             <p className="text-sm text-slate-300">Simulation vorbereiten</p>
             {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : null}
+            <Link href="/lernen/taxi-mietwagen/fragen" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Alle Fragen öffnen</Link>
             <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
               <li>45 Minuten</li>
               <li>Punkteauswertung</li>
