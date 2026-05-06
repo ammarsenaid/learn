@@ -29,7 +29,6 @@ type IconName =
   | "mobile"
   | "check"
   | "warning"
-  | "clock"
   | "users"
   | "brain"
   | "route";
@@ -57,7 +56,7 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · EN · TR",
     progress: "82%",
-    href: "/de/zertifikate/taxi-mietwagen",
+    href: "#preise",
     color: "from-yellow-500/35 to-yellow-300/10",
     border: "border-yellow-400/50",
   },
@@ -73,7 +72,7 @@ const certificates = [
     level: "Einsteiger",
     languages: "DE · AR · EN",
     progress: "76%",
-    href: "/de/zertifikate/34a-bewachung",
+    href: "#preise",
     color: "from-purple-500/35 to-purple-300/10",
     border: "border-purple-400/35",
   },
@@ -89,7 +88,7 @@ const certificates = [
     level: "Fortgeschritten",
     languages: "DE · EN · TR",
     progress: "68%",
-    href: "/de/zertifikate/gueterkraftverkehr",
+    href: "#preise",
     color: "from-blue-500/35 to-cyan-300/10",
     border: "border-sky-400/35",
   },
@@ -105,7 +104,7 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · EN",
     progress: "54%",
-    href: "/de/zertifikate/versicherung-34d",
+    href: "#preise",
     color: "from-emerald-500/35 to-emerald-300/10",
     border: "border-emerald-400/30",
   },
@@ -121,7 +120,7 @@ const certificates = [
     level: "Fortgeschritten",
     languages: "DE · EN",
     progress: "49%",
-    href: "/de/zertifikate/finanzanlagen-34f",
+    href: "#preise",
     color: "from-orange-500/35 to-orange-300/10",
     border: "border-orange-400/30",
   },
@@ -137,7 +136,7 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · TR",
     progress: "46%",
-    href: "/de/zertifikate/immobiliardarlehen",
+    href: "#preise",
     color: "from-rose-500/35 to-rose-300/10",
     border: "border-rose-400/30",
   },
@@ -159,7 +158,7 @@ const painPoints = [
     title: "Prüfungsdruck fehlt",
     text: "Lesen reicht nicht. Man muss unter Zeitdruck Fragen sicher verstehen und beantworten.",
   },
-];
+] as const;
 
 const featureStrip = [
   ["book", "Erklären", "Deutsche Begriffe verständlich aufbauen."],
@@ -191,11 +190,11 @@ const methodSteps = [
     title: "Prüfung simulieren",
     text: "Zeitdruck, Punkte, Fehleranalyse und nächste Lernaufgabe.",
   },
-];
+] as const;
 
 const pricingPlans = [
   {
-    name: "Free",
+    name: "Kostenlos",
     price: "0 €",
     period: "",
     label: "Zum Testen",
@@ -204,7 +203,7 @@ const pricingPlans = [
     featured: false,
   },
   {
-    name: "Single Certificate",
+    name: "Einzelzertifikat",
     price: "9,90 €",
     period: "/ Monat",
     label: "Beliebt",
@@ -219,7 +218,7 @@ const pricingPlans = [
     featured: true,
   },
   {
-    name: "All Access",
+    name: "Alle Zertifikate",
     price: "19,90 €",
     period: "/ Monat",
     label: "Für mehrere Ziele",
@@ -248,7 +247,7 @@ const pricingPlans = [
     ],
     featured: false,
   },
-];
+] as const;
 
 const testimonials = [
   [
@@ -292,7 +291,7 @@ const faqItems = [
     answer:
       "Ja. Die Plattform ist für mehrere deutsche Sach- und Fachkundeprüfungen geplant, nicht nur für Taxi & Mietwagen.",
   },
-];
+] as const;
 
 function SvgIcon({
   name,
@@ -301,10 +300,9 @@ function SvgIcon({
   name: IconName;
   className?: string;
 }) {
-  const common = "h-5 w-5";
   return (
     <svg
-      className={`${common} ${className}`}
+      className={`h-5 w-5 ${className}`}
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
@@ -316,45 +314,53 @@ function SvgIcon({
           <path d="M7 15h.01M17 15h.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
         </>
       )}
+
       {name === "shield" && (
         <path d="M12 3l7 3v5c0 4.8-3 8.2-7 10-4-1.8-7-5.2-7-10V6l7-3z" stroke="currentColor" strokeWidth="1.8" />
       )}
+
       {name === "truck" && (
         <>
           <path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z" stroke="currentColor" strokeWidth="1.8" />
           <path d="M7 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.8" />
         </>
       )}
+
       {name === "badge" && (
         <>
           <rect x="5" y="3" width="14" height="18" rx="3" stroke="currentColor" strokeWidth="1.8" />
           <path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </>
       )}
+
       {name === "chart" && (
         <>
           <path d="M4 19V5M4 19h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path d="M7 15l4-4 3 3 5-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </>
       )}
+
       {name === "home" && (
         <>
           <path d="M4 11l8-7 8 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path d="M6 10v10h12V10" stroke="currentColor" strokeWidth="1.8" />
         </>
       )}
+
       {name === "book" && (
         <>
           <path d="M5 4h9a3 3 0 013 3v13H8a3 3 0 00-3 3V4z" stroke="currentColor" strokeWidth="1.8" />
           <path d="M17 7h2v13h-2" stroke="currentColor" strokeWidth="1.8" />
         </>
       )}
+
       {name === "cards" && (
         <>
           <rect x="7" y="4" width="11" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
           <path d="M5 7v12a2 2 0 002 2h8" stroke="currentColor" strokeWidth="1.8" />
         </>
       )}
+
       {name === "target" && (
         <>
           <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
@@ -362,48 +368,50 @@ function SvgIcon({
           <path d="M12 12h.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
         </>
       )}
+
       {name === "analytics" && (
         <>
           <path d="M5 19V9M12 19V5M19 19v-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path d="M3 19h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </>
       )}
+
       {name === "globe" && (
         <>
           <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
           <path d="M3 12h18M12 3c2.5 2.4 3.7 5.4 3.7 9S14.5 18.6 12 21M12 3C9.5 5.4 8.3 8.4 8.3 12S9.5 18.6 12 21" stroke="currentColor" strokeWidth="1.4" />
         </>
       )}
+
       {name === "mobile" && (
         <>
           <rect x="8" y="3" width="8" height="18" rx="2" stroke="currentColor" strokeWidth="1.8" />
           <path d="M11 18h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </>
       )}
+
       {name === "check" && (
         <path d="M5 12l4 4L19 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       )}
+
       {name === "warning" && (
         <>
           <path d="M12 3l10 18H2L12 3z" stroke="currentColor" strokeWidth="1.8" />
           <path d="M12 9v5M12 17h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </>
       )}
-      {name === "clock" && (
-        <>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </>
-      )}
+
       {name === "users" && (
         <>
           <path d="M9 11a3 3 0 100-6 3 3 0 000 6zM17 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" strokeWidth="1.8" />
           <path d="M3 20a6 6 0 0112 0M14 19a5 5 0 017 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </>
       )}
+
       {name === "brain" && (
         <path d="M9 4a3 3 0 00-3 3v1a3 3 0 00-2 5.2A3.5 3.5 0 007.5 19H10V4H9zM15 4a3 3 0 013 3v1a3 3 0 012 5.2A3.5 3.5 0 0116.5 19H14V4h1z" stroke="currentColor" strokeWidth="1.8" />
       )}
+
       {name === "route" && (
         <>
           <path d="M6 6h.01M18 18h.01" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
@@ -523,7 +531,7 @@ function IconBox({
 
 function Header() {
   return (
-    <header className="mx-auto max-w-[1180px] px-4 pt-4">
+    <header className="mx-auto max-w-[1240px] px-4 pt-4">
       <nav
         aria-label="Hauptnavigation"
         className="flex min-h-[72px] items-center justify-between rounded-2xl border border-slate-600/40 bg-[#06172a]/88 px-4 shadow-[0_20px_70px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:px-5"
@@ -540,7 +548,7 @@ function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#sprachen"
+            href="#methode"
             className="hidden rounded-xl border border-slate-600/40 bg-[#07172a] px-4 py-2 text-sm font-black text-white transition hover:bg-white/10 sm:flex"
           >
             DE
@@ -725,7 +733,7 @@ function SideStats() {
   ] as const;
 
   return (
-    <div className="grid gap-3 lg:w-[178px]">
+    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
       {items.map(([icon, value, text]) => (
         <div
           key={value}
@@ -746,22 +754,24 @@ function SideStats() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 bg-[#03111f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(34,139,230,0.24),transparent_35%),radial-gradient(circle_at_20%_10%,rgba(246,200,79,0.1),transparent_24%),linear-gradient(180deg,#03111f_0%,#05172a_60%,#03111f_100%)]" />
-      <div className="absolute inset-0 opacity-[0.15] [background-image:linear-gradient(rgba(86,161,220,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(86,161,220,.12)_1px,transparent_1px)] [background-size:58px_58px]" />
-      <div className="absolute left-1/2 top-28 h-[580px] w-[580px] -translate-x-1/2 rounded-full border border-sky-500/10 bg-sky-500/5 blur-3xl" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_56%_28%,rgba(34,139,230,0.28),transparent_34%),radial-gradient(circle_at_18%_18%,rgba(246,200,79,0.12),transparent_28%),linear-gradient(180deg,#03111f_0%,#05172a_64%,#03111f_100%)]" />
+      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(86,161,220,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(86,161,220,.12)_1px,transparent_1px)] [background-size:58px_58px]" />
 
-      <div className="relative">
+      <div className="absolute left-1/2 top-24 -z-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-sky-500/10 blur-3xl" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#03111f]" />
+
+      <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1180px] gap-8 px-4 pb-8 pt-7 lg:grid-cols-[408px_1fr_178px] lg:items-center">
+        <div className="mx-auto grid max-w-[1240px] gap-10 px-4 pb-16 pt-10 lg:grid-cols-[minmax(0,430px)_minmax(0,1fr)] lg:items-center lg:pb-24 xl:gap-14">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="text-[42px] font-black leading-[1.03] tracking-[-0.058em] text-white sm:text-[56px]">
+            <h1 className="text-[42px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[58px] lg:text-[62px]">
               Deutsch lernen.
               <br />
               In deiner Sprache{" "}
@@ -772,7 +782,7 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[410px] text-base font-medium leading-7 text-slate-300">
+            <p className="mt-5 max-w-[430px] text-base font-medium leading-7 text-slate-300">
               FachkundePilot hilft dir, deutsche Prüfungsbegriffe zu verstehen, mit Lernkarten zu
               sichern und echte Prüfungssituationen zu trainieren.
             </p>
@@ -782,7 +792,7 @@ function Hero() {
               <DarkButton href="#methode">Demo ansehen</DarkButton>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:max-w-[430px]">
               {[
                 ["check", "An offiziellen Themen orientiert"],
                 ["cards", "Lernkarten & Wiederholung"],
@@ -799,9 +809,42 @@ function Hero() {
             </div>
           </div>
 
-          <DashboardMockup />
-          <SideStats />
+          <div className="min-w-0">
+            <DashboardMockup />
+
+            <div className="mt-4">
+              <SideStats />
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function StatStrip() {
+  const stats = [
+    ["12+", "Zertifikate geplant", "Für mehrere deutsche Prüfungen"],
+    ["1", "Lernsystem", "Lesen, Karten, Fragen, Simulation"],
+    ["DE / AR / EN / TR", "Mehrsprachig", "Deutsch lernen, besser verstehen"],
+    ["Smart Review", "Fehleranalyse", "Schwächen automatisch wiederholen"],
+  ] as const;
+
+  return (
+    <section className="mx-auto max-w-[1180px] px-4 pt-6">
+      <div className="grid gap-3 rounded-2xl border border-[#b88a2e]/40 bg-[#06182c]/90 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.35)] md:grid-cols-4">
+        {stats.map(([value, title, text], index) => (
+          <div
+            key={title}
+            className={`px-3 ${
+              index !== stats.length - 1 ? "md:border-r md:border-slate-500/35" : ""
+            }`}
+          >
+            <p className="text-2xl font-black leading-none text-white">{value}</p>
+            <p className="mt-1 text-sm font-black text-yellow-300">{title}</p>
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-400">{text}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -836,34 +879,6 @@ function ProblemSection() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function StatStrip() {
-  const stats = [
-    ["12+", "Zertifikate geplant", "Für mehrere deutsche Prüfungen"],
-    ["1", "Lernsystem", "Lesen, Karten, Fragen, Simulation"],
-    ["DE / AR / EN / TR", "Mehrsprachig", "Deutsch lernen, besser verstehen"],
-    ["Smart Review", "Fehleranalyse", "Schwächen automatisch wiederholen"],
-  ] as const;
-
-  return (
-    <section className="mx-auto max-w-[1180px] px-4 pt-4">
-      <div className="grid gap-3 rounded-2xl border border-[#b88a2e]/40 bg-[#06182c]/90 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.35)] md:grid-cols-4">
-        {stats.map(([value, title, text], index) => (
-          <div
-            key={title}
-            className={`px-3 ${
-              index !== stats.length - 1 ? "md:border-r md:border-slate-500/35" : ""
-            }`}
-          >
-            <p className="text-2xl font-black leading-none text-white">{value}</p>
-            <p className="mt-1 text-sm font-black text-yellow-300">{title}</p>
-            <p className="mt-1 text-xs font-semibold leading-5 text-slate-400">{text}</p>
-          </div>
-        ))}
       </div>
     </section>
   );
@@ -943,7 +958,7 @@ function Certificates() {
 
             <div className="relative mt-4">
               <div className="mb-2 flex items-center justify-between text-[11px] font-bold text-slate-400">
-                <span>Beispiel-Lernstand</span>
+                <span>Beispiel für Lernfortschritt</span>
                 <span>{item.progress}</span>
               </div>
               <Progress value={item.progress} color={index === 0 ? "gold" : "sky"} />
@@ -1077,7 +1092,9 @@ function StepsAndTestimonials() {
               Das sagen Lernende
             </h2>
           </div>
-          <p className="hidden text-sm font-black text-yellow-300 sm:block">★★★★★ Beispielbewertungen</p>
+          <p className="hidden text-sm font-black text-yellow-300 sm:block">
+            ★★★★★ Beispielbewertungen
+          </p>
         </div>
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
@@ -1159,12 +1176,15 @@ function PricingSection() {
               ))}
             </div>
 
-            <GoldButton
-              href="#kontakt"
-              className={`mt-6 w-full ${plan.featured ? "" : "bg-none"}`}
-            >
-              Auswählen →
-            </GoldButton>
+            {plan.featured ? (
+              <GoldButton href="#kontakt" className="mt-6 w-full">
+                Auswählen →
+              </GoldButton>
+            ) : (
+              <DarkButton href="#kontakt" className="mt-6 w-full px-5">
+                Auswählen →
+              </DarkButton>
+            )}
           </article>
         ))}
       </div>
