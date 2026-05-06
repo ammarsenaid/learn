@@ -1,0 +1,56 @@
+{
+  "certificateSlug": "taxi-mietwagen",
+  "chapters": [
+    {
+      "slug": "pbefg-genehmigung",
+      "title": "PBefG & Genehmigung",
+      "description": "Grundlagen zur Genehmigungspflicht im Taxi- und Mietwagenverkehr.",
+      "estimated_minutes": 45,
+      "position": 1,
+      "lessons": [
+        {
+          "slug": "genehmigungspflicht",
+          "title": "Genehmigungspflicht verstehen",
+          "summary": "Wann eine Genehmigung erforderlich ist und welche Regeln gelten.",
+          "content_de": "Die Genehmigungspflicht regelt, wann Unternehmen Personen befördern dürfen.",
+          "content_ar": "شرح مبسط لمتى تكون الموافقة الرسمية مطلوبة.",
+          "estimated_minutes": 20,
+          "position": 1,
+          "flashcards": [
+            {
+              "slug": "genehmigungspflicht-definition",
+              "front_de": "Was bedeutet Genehmigungspflicht?",
+              "back_de": "Eine behördliche Erlaubnis ist Voraussetzung für die gewerbliche Personenbeförderung.",
+              "explanation_ar": "تعني ضرورة الحصول على تصريح رسمي قبل مزاولة النشاط.",
+              "difficulty": "normal",
+              "tags": ["PBefG", "Genehmigung"]
+            }
+          ],
+          "questions": [
+            {
+              "slug": "frage-genehmigungspflicht-1",
+              "question_de": "Wann ist im Regelfall eine Genehmigung notwendig?",
+              "explanation_de": "Bei entgeltlicher oder geschäftsmäßiger Personenbeförderung.",
+              "explanation_ar": "عادةً عند نقل الأشخاص مقابل أجر أو بشكل تجاري.",
+              "difficulty": "normal",
+              "tags": ["PBefG"],
+              "options": [
+                { "option_text_de": "Bei gewerblicher Personenbeförderung", "is_correct": true },
+                { "option_text_de": "Nur bei Privatfahrten", "is_correct": false }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "PBefG",
+      "simple_de": "Das Personenbeförderungsgesetz regelt den gewerblichen Transport von Personen.",
+      "explanation_ar": "قانون نقل الركاب الذي ينظم النقل التجاري للأشخاص.",
+      "category": "Recht",
+      "tags": ["PBefG", "Recht"]
+    }
+  ]
+}
