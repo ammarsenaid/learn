@@ -592,7 +592,7 @@ function DashboardMockup() {
   const bars = [35, 50, 42, 65, 48, 78, 92] as const;
 
   return (
-    <div className="relative rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-4 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
+    <div className="relative w-full max-w-[620px] rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-4 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
       <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/60 blur-xl" />
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
 
@@ -754,21 +754,23 @@ function Hero() {
       <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1240px] gap-12 px-4 pb-16 pt-10 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] lg:items-center lg:pb-24 lg:pt-16 xl:gap-14">
-          <div>
+        <div className="mx-auto grid max-w-[1320px] gap-12 px-4 pb-16 pt-8 md:pt-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(480px,1.05fr)] lg:items-center lg:gap-16 lg:pb-20 lg:pt-14 xl:gap-20 xl:pt-16">
+          <div className="min-w-0 max-w-[620px]">
             <p className="mb-4 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="max-w-[560px] text-[40px] font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-[54px] lg:text-[60px] xl:text-[66px]">
-              Deutsche Fachkundeprüfungen gezielt bestehen.
+            <h1 className="max-w-[620px] text-[42px] font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-[50px] md:text-[58px] lg:text-[72px] xl:text-[80px]">
+              Deutsche <br className="sm:hidden" />
+              Fachkundeprüfungen <br className="sm:hidden" />
+              gezielt bestehen.
             </h1>
 
             <p className="mt-6 max-w-[580px] text-lg font-medium leading-8 text-slate-300">
               Lerne deutsche Prüfungsbegriffe, verstehe sie in deiner Sprache und trainiere mit Lernkarten, Simulationen und klaren Lernpfaden.
             </p>
 
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row">
               <GoldButton href="/zertifikate">Zertifikat auswählen</GoldButton>
               <DarkButton href="/dashboard">Demo ansehen</DarkButton>
             </div>
@@ -790,7 +792,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="min-w-0">
+          <div className="min-w-0 lg:translate-x-2 xl:translate-x-3">
             <DashboardMockup />
 
             <div className="mt-4">
