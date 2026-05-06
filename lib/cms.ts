@@ -28,8 +28,12 @@ type DirectusLesson = {
   id: string;
   certificate_id: string;
   chapter_id?: string | null;
+  slug: string;
   title: string;
+  summary?: string | null;
   description?: string | null;
+  content_de?: string | null;
+  content_ar?: string | null;
   position?: number | null;
   status?: string | null;
 };
@@ -143,4 +147,37 @@ export async function getQuestionOptionsByQuestionId(questionId: string): Promis
 
 export async function getGlossaryByCertificateId(certificateId: string): Promise<DirectusGlossaryTerm[]> {
   return safeFetchCollection<DirectusGlossaryTerm>(`/items/glossary_terms?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+}
+
+
+export async function getLessonBySlug(slug: string): Promise<DirectusLesson | null> {
+  try {
+    const items = await directusFetch<DirectusLesson[]>(`/items/lessons?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
+    return items?.[0] ?? null;
+  } catch (error) {
+    console.error(`Failed to fetch lesson for slug "${slug}":`, error);
+    return null;
+  }
+}
+
+export async function getLessonsByChapterId(chapterId: string): Promise<DirectusLesson[]> {
+  return safeFetchCollection<DirectusLesson>(`/items/lessons?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
+}
+
+export async function getFlashcardsByLessonId(lessonId: string): Promise<DirectusFlashcard[]> {
+  return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[lesson_id][_eq]=${encodeURIComponent(lessonId)}&sort=position`);
+}
+
+export async function getQuestionsByChapterId(chapterId: string): Promise<DirectusQuestion[]> {
+  return safeFetchCollection<DirectusQuestion>(`/items/questions?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
+}
+
+export async function getChapterById(chapterId: string): Promise<DirectusChapter | null> {
+  try {
+    const items = await directusFetch<DirectusChapter[]>(`/items/chapters?filter[id][_eq]=${encodeURIComponent(chapterId)}&limit=1`);
+    return items?.[0] ?? null;
+  } catch (error) {
+    console.error(`Failed to fetch chapter for id "${chapterId}":`, error);
+    return null;
+  }
 }
