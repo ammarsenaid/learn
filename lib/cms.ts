@@ -41,9 +41,12 @@ type DirectusLesson = {
 type DirectusFlashcard = {
   id: string;
   certificate_id: string;
+  chapter_id?: string | null;
+  lesson_id?: string | null;
   front_de: string;
   back_de: string;
   explanation_ar?: string | null;
+  difficulty?: string | null;
   tags?: string[] | string | null;
   position?: number | null;
 };
@@ -51,9 +54,12 @@ type DirectusFlashcard = {
 type DirectusQuestion = {
   id: string;
   certificate_id: string;
+  chapter_id?: string | null;
   question_de: string;
   explanation_de?: string | null;
   explanation_ar?: string | null;
+  difficulty?: string | null;
+  tags?: string[] | string | null;
   position?: number | null;
 };
 
@@ -74,6 +80,8 @@ type DirectusGlossaryTerm = {
   category?: string | null;
   position?: number | null;
 };
+
+export type { DirectusCertificate, DirectusChapter, DirectusLesson, DirectusFlashcard, DirectusQuestion, DirectusQuestionOption, DirectusGlossaryTerm };
 
 function mapDirectusCertificate(item: DirectusCertificate): Certificate {
   return {
@@ -149,7 +157,6 @@ export async function getGlossaryByCertificateId(certificateId: string): Promise
   return safeFetchCollection<DirectusGlossaryTerm>(`/items/glossary_terms?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-
 export async function getLessonBySlug(slug: string): Promise<DirectusLesson | null> {
   try {
     const items = await directusFetch<DirectusLesson[]>(`/items/lessons?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
@@ -178,6 +185,26 @@ export async function getChapterById(chapterId: string): Promise<DirectusChapter
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch chapter for id "${chapterId}":`, error);
+    return null;
+  }
+}
+
+export async function getFlashcardById(cardId: string): Promise<DirectusFlashcard | null> {
+  try {
+    const items = await directusFetch<DirectusFlashcard[]>(`/items/flashcards?filter[id][_eq]=${encodeURIComponent(cardId)}&limit=1`);
+    return items?.[0] ?? null;
+  } catch (error) {
+    console.error(`Failed to fetch flashcard for id "${cardId}":`, error);
+    return null;
+  }
+}
+
+export async function getQuestionById(questionId: string): Promise<DirectusQuestion | null> {
+  try {
+    const items = await directusFetch<DirectusQuestion[]>(`/items/questions?filter[id][_eq]=${encodeURIComponent(questionId)}&limit=1`);
+    return items?.[0] ?? null;
+  } catch (error) {
+    console.error(`Failed to fetch question for id "${questionId}":`, error);
     return null;
   }
 }
