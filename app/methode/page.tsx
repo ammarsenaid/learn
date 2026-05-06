@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PageShell } from '@/components/site/PageShell';
-import { SectionHeader } from '@/components/site/SectionHeader';
-import { methodSteps } from '@/lib/fachkunde-data';
-
+import { ButtonLink } from '@/components/ui/ButtonLink';
+import { Card } from '@/components/ui/Card';
 export const metadata: Metadata = { title: 'Methode | FachkundePilot', description: 'So lernst du mit FachkundePilot.' };
-export default function MethodePage(){return <PageShell><main className='mx-auto max-w-5xl px-5 py-12'><SectionHeader title='Unsere Lernmethode' subtitle='Deutsch im Fokus, Verständnis in deiner Sprache.'/><ol className='space-y-4'>{methodSteps.map((s,i)=><li key={s} className='rounded-xl border border-slate-700 bg-[#0b1d33] p-5'><span className='text-yellow-300'>0{i+1}</span><p className='font-bold'>{s}</p></li>)}</ol></main></PageShell>}
+const steps=['Deutsch lesen','In deiner Sprache verstehen','Mit Lernkarten sichern','Prüfungsfragen üben','Simulation starten','Schwächen wiederholen'];
+export default function MethodePage(){return <PageShell><main className='mx-auto max-w-6xl space-y-8 px-5 py-12'><h1 className='text-4xl font-bold'>So lernst du mit FachkundePilot</h1><div className='grid gap-3 md:grid-cols-2'>{steps.map((s,i)=><Card key={s}><p className='text-yellow-300'>0{i+1}</p><p className='font-semibold'>{s}</p></Card>)}</div><Card><h2 className='text-xl font-semibold'>Beispiel-Workflow</h2><p className='mt-2 text-slate-300'>Begriff → Erklärung → Lernkarte → Frage → Simulation.</p></Card><div className='flex gap-3'><ButtonLink href='/dashboard'>Zum Dashboard</ButtonLink><ButtonLink href='/zertifikate' variant='secondary'>Zertifikate</ButtonLink></div></main></PageShell>}

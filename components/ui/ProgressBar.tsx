@@ -1,0 +1,1 @@
+export function ProgressBar({ value }: { value: number }) { const safe = Math.max(0, Math.min(100, value)); return <div className="h-2 rounded-full bg-slate-700"><div className="h-2 rounded-full bg-gradient-to-r from-yellow-300 to-sky-300" style={{ width: `${safe}%` }} /></div>; }

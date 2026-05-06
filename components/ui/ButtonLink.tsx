@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+export function ButtonLink({ href, children, variant = 'primary' }: { href: string; children: ReactNode; variant?: 'primary' | 'secondary' | 'ghost' }) { const styles = { primary: 'bg-[#d4a84f] text-[#03111f] hover:bg-[#e2b965]', secondary: 'border border-sky-300/40 bg-sky-400/10 text-sky-100 hover:bg-sky-400/20', ghost: 'border border-slate-600 bg-[#0a2039] text-slate-200 hover:border-sky-300/40' }; return <Link href={href} className={`inline-flex rounded-xl px-5 py-3 text-sm font-semibold transition ${styles[variant]}`}>{children}</Link>; }

@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export function EmptyState({ title, description }: { title: string; description?: string }) { return <div className="rounded-xl border border-slate-700 bg-[#0b1d33] p-5 text-slate-300"><p className="font-semibold text-white">{title}</p>{description ? <p className="mt-1 text-sm">{description}</p> : null}<Link href="/admin" className="mt-3 inline-flex text-sm text-sky-300 underline-offset-4 hover:underline">Zum Admin Gateway</Link></div>; }

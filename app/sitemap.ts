@@ -1,0 +1,3 @@
+import type { MetadataRoute } from 'next';
+const base='https://fachkundepilot.de';
+export default function sitemap(): MetadataRoute.Sitemap { const routes=['','/zertifikate','/zertifikate/taxi-mietwagen','/zertifikate/34a-bewachung','/zertifikate/gueterkraftverkehr','/zertifikate/versicherung-34d','/zertifikate/finanzanlagen-34f','/zertifikate/immobiliardarlehen','/methode','/preise','/faq','/kontakt','/dashboard','/lernen/taxi-mietwagen','/lernen/taxi-mietwagen/karten','/lernen/taxi-mietwagen/fragen','/lernen/taxi-mietwagen/simulation']; return routes.map((r)=>({url:`${base}${r}`,lastModified:new Date()})); }

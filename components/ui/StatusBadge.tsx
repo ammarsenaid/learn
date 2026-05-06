@@ -1,0 +1,1 @@
+export function StatusBadge({ label }: { label: string }) { const isActive = /aktiv|connected|verbunden|bereit/i.test(label); return <span className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${isActive ? 'border-emerald-400/40 bg-emerald-500/15 text-emerald-200' : 'border-amber-400/40 bg-amber-500/15 text-amber-200'}`}>{label}</span>; }
