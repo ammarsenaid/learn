@@ -193,7 +193,7 @@ export default async function DashboardPage() {
                   <p className="mt-1 text-sm text-slate-300">{item.description}</p>
                   {item.estimated_minutes ? <p className="mt-1 text-xs text-slate-400">~ {item.estimated_minutes} Minuten</p> : null}
                   <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]"><div className="h-full w-1/3 rounded-full bg-[#f3c76a]" /></div>
-                  <Link href={lessons.find((lesson) => lesson.chapter_id === item.id)?.slug ? `/lernen/taxi-mietwagen/${lessons.find((lesson) => lesson.chapter_id === item.id)?.slug}` : '/lernen/taxi-mietwagen'} className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Öffnen</Link>
+                  <Link href={`/lernen/taxi-mietwagen/kapitel/${item.slug}`} className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Öffnen</Link>
                 </article>
               ))}
             </div>

@@ -17,6 +17,7 @@ type DirectusCertificate = {
 type DirectusChapter = {
   id: string;
   certificate_id: string;
+  slug: string;
   title: string;
   description: string;
   estimated_minutes?: number | null;
@@ -36,6 +37,7 @@ type DirectusLesson = {
   content_ar?: string | null;
   position?: number | null;
   status?: string | null;
+  estimated_minutes?: number | null;
 };
 
 type DirectusFlashcard = {
@@ -133,6 +135,17 @@ async function safeFetchCollection<T>(path: string): Promise<T[]> {
   }
 }
 
+
+export async function getChapterBySlug(certificateId: string, chapterSlug: string): Promise<DirectusChapter | null> {
+  try {
+    const items = await directusFetch<DirectusChapter[]>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&filter[slug][_eq]=${encodeURIComponent(chapterSlug)}&limit=1`);
+    return items?.[0] ?? null;
+  } catch (error) {
+    console.error(`Failed to fetch chapter for slug "${chapterSlug}":`, error);
+    return null;
+  }
+}
+
 export async function getChaptersByCertificateId(certificateId: string): Promise<DirectusChapter[]> {
   return safeFetchCollection<DirectusChapter>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
@@ -173,6 +186,10 @@ export async function getLessonsByChapterId(chapterId: string): Promise<Directus
 
 export async function getFlashcardsByLessonId(lessonId: string): Promise<DirectusFlashcard[]> {
   return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[lesson_id][_eq]=${encodeURIComponent(lessonId)}&sort=position`);
+}
+
+export async function getFlashcardsByChapterId(chapterId: string): Promise<DirectusFlashcard[]> {
+  return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
 }
 
 export async function getQuestionsByChapterId(chapterId: string): Promise<DirectusQuestion[]> {
