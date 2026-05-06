@@ -33,7 +33,7 @@ export default async function TaxiSimulationPage() {
             question_de: question.question_de,
             explanation_de: question.explanation_de,
             explanation_ar: question.explanation_ar,
-            options: question.options.map((option) => ({ id: option.id, option_de: option.option_de, is_correct: option.is_correct })),
+            options: question.options.map((option) => ({ id: option.id, option_text_de: option.option_text_de ?? option.option_de ?? "", is_correct: option.is_correct })),
           }))}
         />
       </div>

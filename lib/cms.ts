@@ -11,7 +11,7 @@ export type CmsCertificate = {
   status: string;
   level: string;
   languages_text: string;
-  progress: number;
+  progress?: string | number | null;
 };
 
 export type CmsChapter = {
@@ -68,7 +68,8 @@ export type CmsQuestion = {
 export type CmsQuestionOption = {
   id: string;
   question_id: string;
-  option_de: string;
+  option_text_de: string;
+  option_de?: string;
   is_correct: boolean;
   position?: number | null;
 };
@@ -83,7 +84,28 @@ export type CmsGlossaryTerm = {
   position?: number | null;
 };
 
-export type CmsPricingPlan = { id: string; name: string; price_monthly?: number | null; description?: string | null; status?: string | null; position?: number | null; };
+export type CmsPricingPlan = {
+  id: string;
+  slug: string;
+  name: string;
+  price: string;
+  period?: string | null;
+  description?: string | null;
+  benefits?: string[] | null;
+  is_featured?: boolean | null;
+  is_active?: boolean | null;
+  position?: number | null;
+};
+
+export function normalizeProgress(value: string | number | null | undefined): string {
+  if (value === null || value === undefined || value === '') return '0%';
+  if (typeof value === 'number' && Number.isFinite(value)) return `${Math.max(0, Math.min(100, Math.round(value)))}%`;
+
+  const normalized = String(value).trim().replace(/%+$/, '');
+  const parsed = Number(normalized);
+  if (!Number.isFinite(parsed)) return '0%';
+  return `${Math.max(0, Math.min(100, Math.round(parsed)))}%`;
+}
 
 function mapDirectusCertificate(item: CmsCertificate): Certificate {
   return {
@@ -95,7 +117,7 @@ function mapDirectusCertificate(item: CmsCertificate): Certificate {
     status: item.status,
     level: item.level,
     languages: item.languages_text.split(/\s*[,/]\s*/).filter(Boolean),
-    progress: item.progress,
+    progress: Number.parseInt(normalizeProgress(item.progress), 10),
     modules: [],
     href: `/zertifikate/${item.slug}`,
   };
