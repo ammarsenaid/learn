@@ -1,6 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import {
+  getCertificateBySlug,
+  getChaptersByCertificateId,
+  getFlashcardsByCertificateId,
+  getGlossaryByCertificateId,
+  getLessonsByCertificateId,
+  getQuestionsByCertificateId,
+} from '@/lib/cms';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'Dashboard — FachkundePilot',
   description:
@@ -8,14 +20,7 @@ export const metadata: Metadata = {
 };
 
 type SidebarItem = { label: string; href: string; active?: boolean };
-type KpiItem = { title: string; value: string; helper: string; progress: number };
-
-type SectionCard = {
-  title: string;
-  description: string;
-  cta: string;
-  href: string;
-};
+type TodayTask = { title: string; description: string; cta: string; href: string };
 
 const sidebarItems: SidebarItem[] = [
   { label: 'Übersicht', href: '/dashboard', active: true },
@@ -28,50 +33,81 @@ const sidebarItems: SidebarItem[] = [
   { label: 'Fortschritt', href: '/dashboard#fortschritt' },
 ];
 
-const kpiItems: KpiItem[] = [
-  { title: 'Prüfungsreife', value: '78%', helper: 'Gute Entwicklung in den Kernmodulen.', progress: 78 },
-  { title: 'Lernzeit diese Woche', value: '4h 20m', helper: 'Ziel: mindestens 5h pro Woche.', progress: 86 },
-  { title: 'Fällige Karten', value: '24', helper: 'Heute priorisieren für bessere Merkquote.', progress: 60 },
-  { title: 'Letzte Simulation', value: '63%', helper: 'Steigerung von +9% seit Start.', progress: 63 },
-];
+const mathTopics = ['Dreisatz', 'Prozentrechnung', 'Kosten pro Tag / Jahr', 'Kosten pro Kilometer'];
 
-const learningPath = [
-  { title: 'Grundlagen PBefG', status: 'Fertig', progress: 100 },
-  { title: 'BOKraft & Betriebspflichten', status: 'Aktiv', progress: 74 },
-  { title: 'Taxiordnung & Tarife', status: 'Aktiv', progress: 61 },
-  { title: 'Mietwagenregeln', status: 'Offen', progress: 22 },
-  { title: 'Kostenrechnung', status: 'Offen', progress: 15 },
-];
+function getStatusLabel(status?: string | null): string {
+  if (!status) return 'Aktiv';
+  if (status === 'published') return 'Aktiv';
+  if (status === 'draft') return 'Entwurf';
+  return status;
+}
 
-const todayTasks = [
-  '20 Lernkarten wiederholen',
-  '10 Rechenfragen lösen',
-  '1 Mini-Simulation starten',
-  '5 Glossarbegriffe festigen',
-];
+export default async function DashboardPage() {
+  const certificate = await getCertificateBySlug('taxi-mietwagen');
 
-const previews: SectionCard[] = [
-  {
-    title: 'Flashcard Preview',
-    description: 'Nächste Karte: Bereitstellungspflicht mit DE/AR Erklärung und Kontextbeispiel.',
-    cta: 'Lernkarten öffnen',
-    href: '/dashboard#lernkarten',
-  },
-  {
-    title: 'Exam Simulation Preview',
-    description: '30 Fragen in 45 Minuten mit automatischer Fehleranalyse und Themenauswertung.',
-    cta: 'Simulation starten',
-    href: '/dashboard#simulation',
-  },
-  {
-    title: 'Glossary Preview',
-    description: 'Heute empfohlen: PBefG, Rückkehrpflicht, Bereitstellungspflicht.',
-    cta: 'Glossar öffnen',
-    href: '/dashboard#glossar',
-  },
-];
+  const [chapters, lessons, flashcards, questions, glossary] = certificate
+    ? await Promise.all([
+        getChaptersByCertificateId(certificate.id),
+        getLessonsByCertificateId(certificate.id),
+        getFlashcardsByCertificateId(certificate.id),
+        getQuestionsByCertificateId(certificate.id),
+        getGlossaryByCertificateId(certificate.id),
+      ])
+    : [[], [], [], [], []];
 
-export default function DashboardPage() {
+  const firstChapter = chapters[0];
+  const firstFlashcard = flashcards[0];
+  const firstQuestion = questions[0];
+
+  const nextRecommendations = [
+    chapters.length > 0 ? `Weiter mit: ${firstChapter?.title ?? 'Kapitel 1'}` : null,
+    flashcards.length > 0 ? 'Heute: Lernkarten wiederholen' : null,
+    questions.length > 0 ? 'Danach: Mini-Simulation starten' : null,
+  ].filter(Boolean);
+
+  const todayTasks: TodayTask[] = [
+    flashcards.length > 0
+      ? {
+          title: 'Lernkarten wiederholen',
+          description: `${flashcards.length} Karten sind verfügbar für deine Wiederholung.`,
+          cta: 'Lernkarten öffnen',
+          href: '/zertifikate/taxi-mietwagen',
+        }
+      : null,
+    questions.length > 0
+      ? {
+          title: 'Prüfungsfragen üben',
+          description: `${questions.length} Fragen für Training und Prüfungssimulation.`,
+          cta: 'Fragen starten',
+          href: '/zertifikate/taxi-mietwagen',
+        }
+      : null,
+    glossary.length > 0
+      ? {
+          title: 'Glossarbegriffe sichern',
+          description: `${glossary.length} Begriffe kurz festigen und wiederholen.`,
+          cta: 'Glossar öffnen',
+          href: '/zertifikate/taxi-mietwagen',
+        }
+      : null,
+    chapters.length > 0
+      ? {
+          title: 'Kapitel lesen',
+          description: `${chapters.length} Kapitel stehen im Lernpfad bereit.`,
+          cta: 'Kapitel öffnen',
+          href: '/zertifikate/taxi-mietwagen',
+        }
+      : null,
+  ].filter((task): task is TodayTask => task !== null);
+
+  const strengthChapters = chapters.slice(0, 2).map((chapter) => chapter.title);
+  const weaknessChapters = chapters
+    .filter((chapter) => /kostenrechnung|mietwagen|versicherung/i.test(chapter.title))
+    .slice(0, 3)
+    .map((chapter) => chapter.title);
+
+  const connectedMathChapter = chapters.find((chapter) => /kostenrechnung|rechnen|kalkulation/i.test(chapter.title));
+
   return (
     <div className="min-h-screen bg-[#03111f] text-slate-100">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row">
@@ -85,15 +121,11 @@ export default function DashboardPage() {
 
             <nav className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1">
               {sidebarItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`rounded-lg border px-3 py-2 text-sm transition ${
-                    item.active
-                      ? 'border-[#4ca3ff] bg-[#0b2645] text-white'
-                      : 'border-[#1e385c] bg-[#0a2039] text-slate-300 hover:border-[#4ca3ff] hover:text-white'
-                  }`}
-                >
+                <Link key={item.label} href={item.href} className={`rounded-lg border px-3 py-2 text-sm transition ${
+                  item.active
+                    ? 'border-[#4ca3ff] bg-[#0b2645] text-white'
+                    : 'border-[#1e385c] bg-[#0a2039] text-slate-300 hover:border-[#4ca3ff] hover:text-white'
+                }`}>
                   {item.label}
                 </Link>
               ))}
@@ -105,16 +137,14 @@ export default function DashboardPage() {
           <header className="mb-6 rounded-2xl border border-[#1e385c] bg-[#09223f] p-5 sm:p-6">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <h1 className="text-2xl font-bold text-white sm:text-3xl">Dashboard</h1>
-                <p className="mt-1 text-sm text-slate-300">Taxi & Mietwagen Fachkundeprüfung • Lernmodus</p>
+                <h1 className="text-2xl font-bold text-white sm:text-3xl">Willkommen zurück</h1>
+                <p className="mt-1 text-sm text-slate-300">{certificate?.title ?? 'Taxi & Mietwagen Fachkundeprüfung'}</p>
+                <p className="mt-1 text-sm text-slate-400">{certificate?.subtitle ?? 'Lernmodus'}</p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <div className="rounded-lg border border-[#2a4c77] bg-[#0a2039] px-3 py-2 text-sm">DE / AR</div>
                 <div className="rounded-lg border border-[#2a4c77] bg-[#0a2039] px-3 py-2 text-sm">Ahmet</div>
-                <Link
-                  href="/dashboard#simulation"
-                  className="rounded-lg bg-[#f3c76a] px-4 py-2 text-sm font-semibold text-[#1a2538]"
-                >
+                <Link href="/dashboard#simulation" className="rounded-lg bg-[#f3c76a] px-4 py-2 text-sm font-semibold text-[#1a2538]">
                   Prüfung starten
                 </Link>
               </div>
@@ -122,23 +152,28 @@ export default function DashboardPage() {
           </header>
 
           <section className="mb-8 rounded-2xl border border-[#2a588d] bg-gradient-to-r from-[#0a2d54] to-[#0c2544] p-6">
-            <h2 className="text-2xl font-bold text-white">Progress Overview</h2>
-            <p className="mt-1 text-slate-200">Du bist auf dem Weg zur Prüfungsreife.</p>
+            <h2 className="text-2xl font-bold text-white">{certificate?.title ?? 'Taxi & Mietwagen'}</h2>
+            <p className="mt-1 text-slate-200">{certificate?.description ?? 'Du bist auf dem Weg zur Prüfungsreife.'}</p>
             <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#15335a]">
-              <div className="h-full rounded-full bg-[#f3c76a]" style={{ width: '78%' }} />
+              <div className="h-full rounded-full bg-[#f3c76a]" style={{ width: `${certificate?.progress ?? 0}%` }} />
             </div>
-            <p className="mt-2 text-sm text-slate-200">Gesamtfortschritt: 78%</p>
+            <p className="mt-2 text-sm text-slate-200">Gesamtfortschritt: {certificate?.progress ?? 0}%</p>
+            <div className="mt-4 flex flex-wrap gap-2 text-sm text-slate-200">
+              {nextRecommendations.length > 0 ? nextRecommendations.map((item) => <span key={item}>{item}</span>) : <span>Noch keine Lerninhalte gefunden.</span>}
+            </div>
           </section>
 
-          <section className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {kpiItems.map((item) => (
+          <section className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+            {[
+              { title: 'Kapitel', value: chapters.length },
+              { title: 'Lektionen', value: lessons.length },
+              { title: 'Lernkarten', value: flashcards.length },
+              { title: 'Prüfungsfragen', value: questions.length },
+              { title: 'Glossarbegriffe', value: glossary.length },
+            ].map((item) => (
               <article key={item.title} className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-4">
                 <p className="text-xs uppercase tracking-wide text-slate-300">{item.title}</p>
                 <p className="mt-2 text-2xl font-bold text-white">{item.value}</p>
-                <p className="mt-1 text-sm text-slate-400">{item.helper}</p>
-                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#15335a]">
-                  <div className="h-full rounded-full bg-[#4ca3ff]" style={{ width: `${item.progress}%` }} />
-                </div>
               </article>
             ))}
           </section>
@@ -146,15 +181,16 @@ export default function DashboardPage() {
           <section id="lernpfad" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
             <h3 className="text-xl font-semibold text-white">Learning Path</h3>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
-              {learningPath.map((item) => (
-                <article key={item.title} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
+              {chapters.map((item) => (
+                <article key={item.id} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-medium text-white">{item.title}</p>
-                    <span className="rounded-full border border-[#2f5d90] px-2 py-1 text-xs text-slate-200">{item.status}</span>
+                    <span className="rounded-full border border-[#2f5d90] px-2 py-1 text-xs text-slate-200">{getStatusLabel(item.status)}</span>
                   </div>
-                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]">
-                    <div className="h-full rounded-full bg-[#f3c76a]" style={{ width: `${item.progress}%` }} />
-                  </div>
+                  <p className="mt-1 text-sm text-slate-300">{item.description}</p>
+                  {item.estimated_minutes ? <p className="mt-1 text-xs text-slate-400">~ {item.estimated_minutes} Minuten</p> : null}
+                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]"><div className="h-full w-1/3 rounded-full bg-[#f3c76a]" /></div>
+                  <Link href="/zertifikate/taxi-mietwagen" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Öffnen</Link>
                 </article>
               ))}
             </div>
@@ -164,47 +200,54 @@ export default function DashboardPage() {
             <h3 className="mb-3 text-xl font-semibold text-white">Today&apos;s Tasks</h3>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {todayTasks.map((task) => (
-                <article key={task} className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-4">
-                  <p className="min-h-12 text-sm text-slate-200">{task}</p>
-                  <span className="mt-4 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">
-                    Starten
-                  </span>
+                <article key={task.title} className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-4">
+                  <p className="font-medium text-white">{task.title}</p>
+                  <p className="mt-2 min-h-12 text-sm text-slate-200">{task.description}</p>
+                  <Link href={task.href} className="mt-4 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">{task.cta}</Link>
                 </article>
               ))}
             </div>
           </section>
 
-          <section className="mb-8 grid gap-4 xl:grid-cols-3">
-            {previews.map((card) => (
-              <article key={card.title} className="rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-                <h4 className="text-lg font-semibold text-white">{card.title}</h4>
-                <p className="mt-2 text-sm text-slate-300">{card.description}</p>
-                <Link href={card.href} className="mt-4 inline-flex text-sm font-semibold text-[#90cbff]">
-                  {card.cta}
-                </Link>
+          <section id="lernkarten" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
+            <h3 className="text-xl font-semibold text-white">Flashcard Preview</h3>
+            {firstFlashcard ? (
+              <article className="mt-4 rounded-xl border border-[#214267] bg-[#0b2645] p-4">
+                <p className="text-sm text-slate-400">Vorderseite</p>
+                <p className="font-medium text-white">{firstFlashcard.front_de}</p>
+                <p className="mt-3 text-sm text-slate-400">Rückseite</p>
+                <p className="text-slate-200">{firstFlashcard.back_de}</p>
+                {firstFlashcard.explanation_ar ? <p className="mt-2 text-sm text-slate-300">{firstFlashcard.explanation_ar}</p> : null}
+                {firstFlashcard.tags ? <p className="mt-2 text-xs text-slate-400">Tags: {Array.isArray(firstFlashcard.tags) ? firstFlashcard.tags.join(', ') : firstFlashcard.tags}</p> : null}
               </article>
-            ))}
+            ) : (
+              <p className="mt-3 text-sm text-slate-300">Noch keine Lernkarten im CMS gepflegt.</p>
+            )}
           </section>
 
           <section id="simulation" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
             <h3 className="text-xl font-semibold text-white">Exam Simulation Preview</h3>
+            <p className="mt-2 text-slate-200">{questions.length} Fragen verfügbar</p>
+            <p className="text-sm text-slate-300">Simulation vorbereiten</p>
+            {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : null}
             <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
-              <li>30 Fragen</li>
               <li>45 Minuten</li>
               <li>Punkteauswertung</li>
               <li>Fehleranalyse</li>
+              <li>Letzte Versuche (Mock)</li>
             </ul>
           </section>
 
           <section id="rechnen" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
-            <h3 className="text-xl font-semibold text-white">Math Trainer</h3>
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-xl font-semibold text-white">Math Trainer</h3>
+              {connectedMathChapter ? <span className="rounded-full border border-[#f3c76a] px-3 py-1 text-xs text-[#f3c76a]">Rechnen aktiv: {connectedMathChapter.title}</span> : null}
+            </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {['Dreisatz', 'Prozentrechnung', 'Kosten pro Tag / Jahr', 'Kosten pro Kilometer'].map((topic) => (
+              {mathTopics.map((topic) => (
                 <article key={topic} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
                   <p className="font-medium text-white">{topic}</p>
-                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]">
-                    <div className="h-full w-2/3 rounded-full bg-[#4ca3ff]" />
-                  </div>
+                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#163861]"><div className="h-full w-2/3 rounded-full bg-[#4ca3ff]" /></div>
                 </article>
               ))}
             </div>
@@ -212,45 +255,32 @@ export default function DashboardPage() {
 
           <section id="glossar" className="mb-8 rounded-2xl border border-[#1e385c] bg-[#0a2039] p-6">
             <h3 className="text-xl font-semibold text-white">Glossary Preview</h3>
-            <ul className="mt-4 space-y-3">
-              {[
-                ['PBefG', 'Rechtliche Grundlage für den gewerblichen Personenverkehr.'],
-                ['BOKraft', 'Regelwerk für den Betrieb von Kraftfahrunternehmen im Personenverkehr.'],
-                ['Rückkehrpflicht', 'Mietwagen müssen nach Auftrag grundsätzlich zum Betriebssitz zurückkehren.'],
-              ].map(([term, desc]) => (
-                <li key={term} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
-                  <p className="font-semibold text-white">{term}</p>
-                  <p className="text-sm text-slate-300">{desc}</p>
-                </li>
-              ))}
-            </ul>
+            {glossary.length > 0 ? (
+              <ul className="mt-4 space-y-3">
+                {glossary.slice(0, 6).map((item) => (
+                  <li key={item.id} className="rounded-xl border border-[#214267] bg-[#0b2645] p-4">
+                    <p className="font-semibold text-white">{item.term}</p>
+                    {item.category ? <p className="text-xs text-slate-400">Kategorie: {item.category}</p> : null}
+                    {item.simple_de ? <p className="text-sm text-slate-300">{item.simple_de}</p> : null}
+                    {item.explanation_ar ? <p className="mt-1 text-sm text-slate-300">{item.explanation_ar}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-slate-300">Noch keine Glossarbegriffe im CMS gepflegt.</p>
+            )}
           </section>
 
           <section id="fortschritt" className="mb-8 grid gap-4 md:grid-cols-2">
             <article className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-5">
               <h4 className="font-semibold text-white">Progress & Weaknesses</h4>
-              <p className="mt-3 text-sm text-slate-200">Stärken: PBefG, Taxiordnung, Kundenverhalten.</p>
-              <p className="mt-2 text-sm text-slate-200">Schwächen: Kostenrechnung, Mietwagenregeln, Versicherungen.</p>
+              <p className="mt-3 text-sm text-slate-200">Stärken: {strengthChapters.length > 0 ? strengthChapters.join(', ') : 'Noch keine Kapitel'}.</p>
+              <p className="mt-2 text-sm text-slate-200">Schwächen: {weaknessChapters.length > 0 ? weaknessChapters.join(', ') : 'Kostenrechnung, Mietwagenregeln, Versicherungen'}.</p>
             </article>
             <article className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-5">
               <h4 className="font-semibold text-white">Empfehlung heute</h4>
-              <p className="mt-3 text-sm text-slate-200">Fokus: Kostenrechnung + Rückkehrpflicht mit 20-min Lernblock.</p>
+              <p className="mt-3 text-sm text-slate-200">Fokus: {nextRecommendations[0] ?? 'Kapitel und Lernkarten'}.</p>
             </article>
-          </section>
-
-          <section className="rounded-2xl border border-[#2a588d] bg-gradient-to-r from-[#0b2645] to-[#102e52] p-6">
-            <h3 className="text-2xl font-semibold text-white">CTA • Bereit für den nächsten Schritt?</h3>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link href="/dashboard#today" className="rounded-lg bg-[#4ca3ff] px-4 py-2 text-sm font-semibold text-[#08203c]">
-                Tagesaufgaben starten
-              </Link>
-              <Link
-                href="/dashboard#simulation"
-                className="rounded-lg border border-[#4ca3ff] px-4 py-2 text-sm font-semibold text-[#9dd2ff]"
-              >
-                Prüfung simulieren
-              </Link>
-            </div>
           </section>
         </main>
       </div>
