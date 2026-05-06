@@ -1,7 +1,7 @@
 import { certificates as fallbackCertificates, type Certificate } from '@/lib/fachkunde-data';
 import { directusFetch } from '@/lib/directus';
 
-type DirectusCertificate = {
+export type CmsCertificate = {
   id: string;
   slug: string;
   title: string;
@@ -14,7 +14,7 @@ type DirectusCertificate = {
   progress: number;
 };
 
-type DirectusChapter = {
+export type CmsChapter = {
   id: string;
   certificate_id: string;
   slug: string;
@@ -25,7 +25,7 @@ type DirectusChapter = {
   status?: string | null;
 };
 
-type DirectusLesson = {
+export type CmsLesson = {
   id: string;
   certificate_id: string;
   chapter_id?: string | null;
@@ -40,7 +40,7 @@ type DirectusLesson = {
   estimated_minutes?: number | null;
 };
 
-type DirectusFlashcard = {
+export type CmsFlashcard = {
   id: string;
   certificate_id: string;
   chapter_id?: string | null;
@@ -53,7 +53,7 @@ type DirectusFlashcard = {
   position?: number | null;
 };
 
-type DirectusQuestion = {
+export type CmsQuestion = {
   id: string;
   certificate_id: string;
   chapter_id?: string | null;
@@ -65,7 +65,7 @@ type DirectusQuestion = {
   position?: number | null;
 };
 
-type DirectusQuestionOption = {
+export type CmsQuestionOption = {
   id: string;
   question_id: string;
   option_de: string;
@@ -73,7 +73,7 @@ type DirectusQuestionOption = {
   position?: number | null;
 };
 
-type DirectusGlossaryTerm = {
+export type CmsGlossaryTerm = {
   id: string;
   certificate_id: string;
   term: string;
@@ -83,9 +83,9 @@ type DirectusGlossaryTerm = {
   position?: number | null;
 };
 
-export type { DirectusCertificate, DirectusChapter, DirectusLesson, DirectusFlashcard, DirectusQuestion, DirectusQuestionOption, DirectusGlossaryTerm };
+export type CmsPricingPlan = { id: string; name: string; price_monthly?: number | null; description?: string | null; status?: string | null; position?: number | null; };
 
-function mapDirectusCertificate(item: DirectusCertificate): Certificate {
+function mapDirectusCertificate(item: CmsCertificate): Certificate {
   return {
     slug: item.slug,
     title: item.title,
@@ -103,7 +103,7 @@ function mapDirectusCertificate(item: DirectusCertificate): Certificate {
 
 export async function getCertificates(): Promise<Certificate[]> {
   try {
-    const items = await directusFetch<DirectusCertificate[]>('/items/certificates?sort=position');
+    const items = await directusFetch<CmsCertificate[]>('/items/certificates?sort=position');
     if (!items || items.length === 0) {
       return fallbackCertificates;
     }
@@ -115,9 +115,9 @@ export async function getCertificates(): Promise<Certificate[]> {
   }
 }
 
-export async function getCertificateBySlug(slug: string): Promise<DirectusCertificate | null> {
+export async function getCertificateBySlug(slug: string): Promise<CmsCertificate | null> {
   try {
-    const items = await directusFetch<DirectusCertificate[]>(`/items/certificates?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
+    const items = await directusFetch<CmsCertificate[]>(`/items/certificates?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch certificate for slug "${slug}":`, error);
@@ -136,9 +136,9 @@ async function safeFetchCollection<T>(path: string): Promise<T[]> {
 }
 
 
-export async function getChapterBySlug(certificateId: string, chapterSlug: string): Promise<DirectusChapter | null> {
+export async function getChapterBySlug(certificateId: string, chapterSlug: string): Promise<CmsChapter | null> {
   try {
-    const items = await directusFetch<DirectusChapter[]>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&filter[slug][_eq]=${encodeURIComponent(chapterSlug)}&limit=1`);
+    const items = await directusFetch<CmsChapter[]>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&filter[slug][_eq]=${encodeURIComponent(chapterSlug)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch chapter for slug "${chapterSlug}":`, error);
@@ -146,33 +146,33 @@ export async function getChapterBySlug(certificateId: string, chapterSlug: strin
   }
 }
 
-export async function getChaptersByCertificateId(certificateId: string): Promise<DirectusChapter[]> {
-  return safeFetchCollection<DirectusChapter>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+export async function getChaptersByCertificateId(certificateId: string): Promise<CmsChapter[]> {
+  return safeFetchCollection<CmsChapter>(`/items/chapters?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-export async function getLessonsByCertificateId(certificateId: string): Promise<DirectusLesson[]> {
-  return safeFetchCollection<DirectusLesson>(`/items/lessons?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+export async function getLessonsByCertificateId(certificateId: string): Promise<CmsLesson[]> {
+  return safeFetchCollection<CmsLesson>(`/items/lessons?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-export async function getFlashcardsByCertificateId(certificateId: string): Promise<DirectusFlashcard[]> {
-  return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+export async function getFlashcardsByCertificateId(certificateId: string): Promise<CmsFlashcard[]> {
+  return safeFetchCollection<CmsFlashcard>(`/items/flashcards?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-export async function getQuestionsByCertificateId(certificateId: string): Promise<DirectusQuestion[]> {
-  return safeFetchCollection<DirectusQuestion>(`/items/questions?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+export async function getQuestionsByCertificateId(certificateId: string): Promise<CmsQuestion[]> {
+  return safeFetchCollection<CmsQuestion>(`/items/questions?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-export async function getQuestionOptionsByQuestionId(questionId: string): Promise<DirectusQuestionOption[]> {
-  return safeFetchCollection<DirectusQuestionOption>(`/items/question_options?filter[question_id][_eq]=${encodeURIComponent(questionId)}&sort=position`);
+export async function getQuestionOptionsByQuestionId(questionId: string): Promise<CmsQuestionOption[]> {
+  return safeFetchCollection<CmsQuestionOption>(`/items/question_options?filter[question_id][_eq]=${encodeURIComponent(questionId)}&sort=position`);
 }
 
-export async function getGlossaryByCertificateId(certificateId: string): Promise<DirectusGlossaryTerm[]> {
-  return safeFetchCollection<DirectusGlossaryTerm>(`/items/glossary_terms?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
+export async function getGlossaryByCertificateId(certificateId: string): Promise<CmsGlossaryTerm[]> {
+  return safeFetchCollection<CmsGlossaryTerm>(`/items/glossary_terms?filter[certificate_id][_eq]=${encodeURIComponent(certificateId)}&sort=position`);
 }
 
-export async function getLessonBySlug(slug: string): Promise<DirectusLesson | null> {
+export async function getLessonBySlug(slug: string): Promise<CmsLesson | null> {
   try {
-    const items = await directusFetch<DirectusLesson[]>(`/items/lessons?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
+    const items = await directusFetch<CmsLesson[]>(`/items/lessons?filter[slug][_eq]=${encodeURIComponent(slug)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch lesson for slug "${slug}":`, error);
@@ -180,25 +180,25 @@ export async function getLessonBySlug(slug: string): Promise<DirectusLesson | nu
   }
 }
 
-export async function getLessonsByChapterId(chapterId: string): Promise<DirectusLesson[]> {
-  return safeFetchCollection<DirectusLesson>(`/items/lessons?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
+export async function getLessonsByChapterId(chapterId: string): Promise<CmsLesson[]> {
+  return safeFetchCollection<CmsLesson>(`/items/lessons?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
 }
 
-export async function getFlashcardsByLessonId(lessonId: string): Promise<DirectusFlashcard[]> {
-  return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[lesson_id][_eq]=${encodeURIComponent(lessonId)}&sort=position`);
+export async function getFlashcardsByLessonId(lessonId: string): Promise<CmsFlashcard[]> {
+  return safeFetchCollection<CmsFlashcard>(`/items/flashcards?filter[lesson_id][_eq]=${encodeURIComponent(lessonId)}&sort=position`);
 }
 
-export async function getFlashcardsByChapterId(chapterId: string): Promise<DirectusFlashcard[]> {
-  return safeFetchCollection<DirectusFlashcard>(`/items/flashcards?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
+export async function getFlashcardsByChapterId(chapterId: string): Promise<CmsFlashcard[]> {
+  return safeFetchCollection<CmsFlashcard>(`/items/flashcards?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
 }
 
-export async function getQuestionsByChapterId(chapterId: string): Promise<DirectusQuestion[]> {
-  return safeFetchCollection<DirectusQuestion>(`/items/questions?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
+export async function getQuestionsByChapterId(chapterId: string): Promise<CmsQuestion[]> {
+  return safeFetchCollection<CmsQuestion>(`/items/questions?filter[chapter_id][_eq]=${encodeURIComponent(chapterId)}&sort=position`);
 }
 
-export async function getChapterById(chapterId: string): Promise<DirectusChapter | null> {
+export async function getChapterById(chapterId: string): Promise<CmsChapter | null> {
   try {
-    const items = await directusFetch<DirectusChapter[]>(`/items/chapters?filter[id][_eq]=${encodeURIComponent(chapterId)}&limit=1`);
+    const items = await directusFetch<CmsChapter[]>(`/items/chapters?filter[id][_eq]=${encodeURIComponent(chapterId)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch chapter for id "${chapterId}":`, error);
@@ -206,9 +206,9 @@ export async function getChapterById(chapterId: string): Promise<DirectusChapter
   }
 }
 
-export async function getFlashcardById(cardId: string): Promise<DirectusFlashcard | null> {
+export async function getFlashcardById(cardId: string): Promise<CmsFlashcard | null> {
   try {
-    const items = await directusFetch<DirectusFlashcard[]>(`/items/flashcards?filter[id][_eq]=${encodeURIComponent(cardId)}&limit=1`);
+    const items = await directusFetch<CmsFlashcard[]>(`/items/flashcards?filter[id][_eq]=${encodeURIComponent(cardId)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch flashcard for id "${cardId}":`, error);
@@ -216,12 +216,16 @@ export async function getFlashcardById(cardId: string): Promise<DirectusFlashcar
   }
 }
 
-export async function getQuestionById(questionId: string): Promise<DirectusQuestion | null> {
+export async function getQuestionById(questionId: string): Promise<CmsQuestion | null> {
   try {
-    const items = await directusFetch<DirectusQuestion[]>(`/items/questions?filter[id][_eq]=${encodeURIComponent(questionId)}&limit=1`);
+    const items = await directusFetch<CmsQuestion[]>(`/items/questions?filter[id][_eq]=${encodeURIComponent(questionId)}&limit=1`);
     return items?.[0] ?? null;
   } catch (error) {
     console.error(`Failed to fetch question for id "${questionId}":`, error);
     return null;
   }
+}
+
+export async function getPricingPlans(): Promise<CmsPricingPlan[]> {
+  return safeFetchCollection<CmsPricingPlan>(`/items/pricing_plans?sort=position`);
 }

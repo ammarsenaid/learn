@@ -1,0 +1,1 @@
+export default function OfficialDisclaimer() { return <p className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-100">FachkundePilot ist eine private Lernplattform und keine offizielle IHK-, Behörden- oder Prüfungsstelle. Inhalte dienen der Prüfungsvorbereitung und ersetzen keine offiziellen Informationen.</p>; }

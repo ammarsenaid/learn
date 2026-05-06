@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import OfficialDisclaimer from '@/components/site/OfficialDisclaimer';
 import { PageShell } from '@/components/site/PageShell';
 import {
   getCertificateBySlug,
@@ -75,7 +76,7 @@ export default async function ZertifikatDetailPage({ params }: { params: Promise
           <section className="rounded-2xl border border-slate-700 bg-[#0b1d33] p-6 text-slate-300">
             Diese Detailseite ist als professionelle Struktur vorbereitet. Inhalte folgen im nächsten Schritt.
           </section>
-        </main>
+        <div className='mt-8'><OfficialDisclaimer /></div></main>
       </PageShell>
     );
   }
