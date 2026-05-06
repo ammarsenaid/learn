@@ -754,16 +754,14 @@ function Hero() {
       <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1320px] gap-12 px-4 pb-16 pt-8 md:pt-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(480px,1.05fr)] lg:items-center lg:gap-16 lg:pb-20 lg:pt-14 xl:gap-20 xl:pt-16">
-          <div className="min-w-0 max-w-[620px]">
+        <div className="mx-auto grid max-w-[1320px] gap-12 px-4 pb-16 pt-8 md:pt-10 lg:grid-cols-[minmax(0,560px)_minmax(0,620px)] lg:items-center lg:justify-between lg:gap-12 lg:pb-20 lg:pt-14 xl:grid-cols-[minmax(0,600px)_minmax(0,640px)] xl:gap-16 xl:pt-16">
+          <div className="min-w-0 lg:max-w-[560px] xl:max-w-[600px]">
             <p className="mb-4 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="max-w-[620px] text-[42px] font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-[50px] md:text-[58px] lg:text-[72px] xl:text-[80px]">
-              Deutsche <br className="sm:hidden" />
-              Fachkundeprüfungen <br className="sm:hidden" />
-              gezielt bestehen.
+            <h1 className="max-w-[12ch] text-[42px] font-black leading-[0.92] tracking-[-0.06em] text-white sm:text-[50px] md:text-[56px] lg:text-[72px] xl:text-[84px]">
+              Deutsche Fachkundeprüfungen gezielt bestehen.
             </h1>
 
             <p className="mt-6 max-w-[580px] text-lg font-medium leading-8 text-slate-300">
@@ -792,7 +790,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="min-w-0 lg:translate-x-2 xl:translate-x-3">
+          <div className="min-w-0 w-full max-w-[620px] justify-self-end xl:max-w-[640px]">
             <DashboardMockup />
 
             <div className="mt-4">
