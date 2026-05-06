@@ -237,7 +237,7 @@ export default async function DashboardPage() {
                 <Link href="/lernen/taxi-mietwagen/karten" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Alle Lernkarten</Link>
               </article>
             ) : (
-              <p className="mt-3 text-sm text-slate-300">Noch keine Lernkarten im CMS gepflegt.</p>
+              <div className="mt-4 rounded-xl border border-[#214267] bg-[#0b2645] p-4 text-sm text-slate-200"><p className="font-medium text-white">Noch keine Lernkarten verfügbar.</p><p className="mt-1 text-slate-300">Pflege Lernkarten im CMS, damit hier Vorschau und Wiederholung angezeigt werden.</p><Link href="/admin" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Im CMS verwalten</Link></div>
             )}
           </section>
 
@@ -245,7 +245,7 @@ export default async function DashboardPage() {
             <h3 className="text-xl font-semibold text-white">Prüfungssimulation</h3>
             <p className="mt-2 text-slate-200">{questions.length} Fragen verfügbar</p>
             <p className="text-sm text-slate-300">Simulation vorbereiten</p>
-            {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : null}
+            {firstQuestion ? <p className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200">{firstQuestion.question_de}</p> : <div className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-3 text-sm text-slate-200"><p className="font-medium text-white">Noch keine Prüfungsfragen verfügbar.</p><p className="mt-1 text-slate-300">Lege Fragen im CMS an, um die Simulation freizuschalten.</p><Link href="/admin" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Im CMS verwalten</Link></div>}
             <Link href="/lernen/taxi-mietwagen/simulation" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Simulation starten</Link>
             <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
               <li>45 Minuten</li>
@@ -284,13 +284,14 @@ export default async function DashboardPage() {
                 ))}
               </ul>
             ) : (
-              <p className="mt-3 text-sm text-slate-300">Noch keine Glossarbegriffe im CMS gepflegt.</p>
+              <div className="mt-3 rounded-lg border border-[#214267] bg-[#0b2645] p-4 text-sm text-slate-200"><p className="font-medium text-white">Noch keine Glossarbegriffe verfügbar.</p><p className="mt-1 text-slate-300">Füge Begriffe im CMS hinzu, damit Lernende Definitionen nachschlagen können.</p><Link href="/admin" className="mt-3 inline-flex rounded-lg border border-[#4ca3ff] px-3 py-1.5 text-sm text-[#9dd2ff]">Im CMS verwalten</Link></div>
             )}
           </section>
 
           <section id="fortschritt" className="mb-8 grid gap-4 md:grid-cols-2">
+            <h3 className="sr-only">CMS-Inhalte</h3>
             <article className="rounded-xl border border-[#1e385c] bg-[#0a2039] p-5">
-              <h4 className="font-semibold text-white">Fortschritt & Schwächen</h4>
+              <h4 className="font-semibold text-white">CMS-Inhalte: Lernstand & Schwächen</h4>
               <p className="mt-3 text-sm text-slate-200">Stärken: {strengthChapters.length > 0 ? strengthChapters.join(', ') : 'Noch keine Kapitel'}.</p>
               <p className="mt-2 text-sm text-slate-200">Schwächen: {weaknessChapters.length > 0 ? weaknessChapters.join(', ') : 'Kostenrechnung, Mietwagenregeln, Versicherungen'}.</p>
             </article>
