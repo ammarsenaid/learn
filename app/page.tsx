@@ -1,4 +1,4 @@
-import OfficialDisclaimer from '@/components/site/OfficialDisclaimer';
+import OfficialDisclaimer from "@/components/site/OfficialDisclaimer";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -57,7 +57,7 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · EN · TR",
     progress: "82%",
-    href: "#preise",
+    href: "/zertifikate/taxi-mietwagen",
     color: "from-yellow-500/35 to-yellow-300/10",
     border: "border-yellow-400/50",
   },
@@ -73,7 +73,7 @@ const certificates = [
     level: "Einsteiger",
     languages: "DE · AR · EN",
     progress: "76%",
-    href: "#preise",
+    href: "/zertifikate/34a-bewachung",
     color: "from-purple-500/35 to-purple-300/10",
     border: "border-purple-400/35",
   },
@@ -89,7 +89,7 @@ const certificates = [
     level: "Fortgeschritten",
     languages: "DE · EN · TR",
     progress: "68%",
-    href: "#preise",
+    href: "/zertifikate/gueterkraftverkehr",
     color: "from-blue-500/35 to-cyan-300/10",
     border: "border-sky-400/35",
   },
@@ -98,14 +98,14 @@ const certificates = [
     title: "Versicherung §34d",
     number: "04",
     subtitle: "Sachkunde Versicherungsvermittlung",
-    text: "Beratungslogik, Haftung, Produktgrundlagen und Regulatorik verstehen.",
+    text: "Beratungslogik, Haftung und Produktgrundlagen verstehen.",
     meta: "8 Kapitel · Beratung",
     badge: "Geplant",
     status: "Bald",
     level: "Mittel",
     languages: "DE · AR · EN",
     progress: "54%",
-    href: "#preise",
+    href: "/zertifikate/versicherung-34d",
     color: "from-emerald-500/35 to-emerald-300/10",
     border: "border-emerald-400/30",
   },
@@ -121,7 +121,7 @@ const certificates = [
     level: "Fortgeschritten",
     languages: "DE · EN",
     progress: "49%",
-    href: "#preise",
+    href: "/zertifikate/finanzanlagen-34f",
     color: "from-orange-500/35 to-orange-300/10",
     border: "border-orange-400/30",
   },
@@ -137,7 +137,7 @@ const certificates = [
     level: "Mittel",
     languages: "DE · AR · TR",
     progress: "46%",
-    href: "#preise",
+    href: "/zertifikate/immobiliardarlehen",
     color: "from-rose-500/35 to-rose-300/10",
     border: "border-rose-400/30",
   },
@@ -449,7 +449,7 @@ function Logo() {
 
 function GoldButton({
   children,
-  href = "#preise",
+  href = "/preise",
   className = "",
 }: {
   children: ReactNode;
@@ -459,7 +459,7 @@ function GoldButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3.5 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_42px_rgba(246,200,79,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-xl bg-gradient-to-b from-[#ffe27a] via-[#f6c84f] to-[#c89417] px-7 py-3 text-sm font-black text-[#081526] shadow-[0_10px_30px_rgba(246,200,79,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_42px_rgba(246,200,79,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
     >
       {children}
     </a>
@@ -468,7 +468,7 @@ function GoldButton({
 
 function DarkButton({
   children,
-  href = "#zertifikate",
+  href = "/zertifikate",
   className = "",
 }: {
   children: ReactNode;
@@ -478,7 +478,7 @@ function DarkButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3.5 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-400/60 hover:bg-sky-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-500/45 bg-[#07172a]/80 px-7 py-3 text-sm font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-400/60 hover:bg-sky-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#03111f] ${className}`}
     >
       {children}
     </a>
@@ -592,12 +592,12 @@ function DashboardMockup() {
   const bars = [35, 50, 42, 65, 48, 78, 92] as const;
 
   return (
-    <div className="relative w-full max-w-[620px] rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-4 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)]">
+    <div className="relative w-full rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)] sm:p-4">
       <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/60 blur-xl" />
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
 
       <div className="relative rounded-2xl border border-slate-600/35 bg-[#07172a] p-4">
-        <div className="mb-3 flex items-center justify-between">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-black text-white">
             <span className="rounded-md bg-yellow-400 px-1.5 py-0.5 text-[10px] text-[#081526]">
               FP
@@ -613,100 +613,96 @@ function DashboardMockup() {
           </div>
         </div>
 
-        <div className="grid gap-3">
-          <main>
-            <div className="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
+        <div>
+          <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
+            <div>
+              <p className="text-base font-black text-white sm:text-lg">Guten Abend, Ahmet</p>
+              <p className="text-sm text-slate-400">
+                Prüfung in 14 Tagen · Heute: 24 Karten fällig
+              </p>
+            </div>
+            <span className="w-fit rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[10px] font-black text-emerald-300">
+              Lernplan aktiv
+            </span>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
+              <p className="text-xs font-semibold text-slate-400">Prüfungsreife</p>
+              <p className="mt-1 text-3xl font-black tracking-[-0.06em] text-white sm:text-4xl">
+                78%
+              </p>
+              <div className="mt-2">
+                <Progress value="78%" />
+              </div>
+              <p className="mt-2 text-xs text-slate-400">Nächstes Ziel: Kostenrechnung</p>
+            </div>
+
+            <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
+              <p className="text-sm font-semibold text-slate-300">Lernzeit heute</p>
+              <div className="mt-2 flex items-end justify-between gap-4">
+                <p className="text-3xl font-black tracking-[-0.06em] text-white">42m</p>
+                <div className="flex h-9 flex-1 items-end gap-1">
+                  {bars.map((h) => (
+                    <span
+                      key={h}
+                      className="w-full rounded-t bg-gradient-to-t from-sky-600 to-sky-300"
+                      style={{ height: `${h}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="mt-2 text-xs text-slate-400">Diese Woche: 4h 20m</p>
+            </div>
+          </div>
+
+          <div className="mt-3 grid gap-3 md:grid-cols-[1.18fr_.82fr]">
+            <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
+              <p className="mb-2 text-sm font-black text-white">Aktive Zertifikate</p>
+
+              {activeCerts.map(([name, progress, tone]) => (
+                <div
+                  key={name}
+                  className="mb-2 grid grid-cols-[1fr_92px] items-center gap-3 rounded-lg bg-[#061326] px-3 py-2.5"
+                >
+                  <div className="text-sm font-bold text-slate-200">{name}</div>
+                  <Progress value={progress} color={tone} />
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-xl border border-yellow-400/25 bg-yellow-400/10 p-3">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-yellow-300">
+                Heute empfohlen
+              </p>
+              <p className="mt-2 text-2xl font-black text-white">20 Min.</p>
+              <p className="mt-1 text-sm leading-6 text-slate-300">
+                Lernkarten Recht & Kostenrechnung
+              </p>
+              <a
+                href="/dashboard"
+                className="mt-3 block rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
+              >
+                Weiterlernen
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-3 rounded-xl border border-slate-600/35 bg-[#061326] p-3">
+            <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-base font-black text-white sm:text-lg">Guten Abend, Ahmet</p>
-                <p className="text-sm text-slate-400">
-                  Prüfung in 14 Tagen · Heute: 24 Karten fällig
+                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-sky-300">
+                  Sprachbrücke
+                </p>
+                <p className="mt-1 text-sm font-bold text-white">
+                  Betriebssitz → المكان الرسمي المسجل للشركة
                 </p>
               </div>
-              <span className="w-fit rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[10px] font-black text-emerald-300">
-                Lernplan aktiv
+              <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black text-slate-300">
+                DE → AR
               </span>
             </div>
-
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
-                <p className="text-xs font-semibold text-slate-400">Prüfungsreife</p>
-                <p className="mt-1 text-3xl font-black tracking-[-0.06em] text-white sm:text-4xl">
-                  78%
-                </p>
-                <div className="mt-2">
-                  <Progress value="78%" />
-                </div>
-                <p className="mt-2 text-xs text-slate-400">
-                  Nächstes Ziel: Kostenrechnung
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
-                <p className="text-sm font-semibold text-slate-300">Lernzeit heute</p>
-                <div className="mt-2 flex items-end justify-between gap-4">
-                  <p className="text-3xl font-black tracking-[-0.06em] text-white">42m</p>
-                  <div className="flex h-9 flex-1 items-end gap-1">
-                    {bars.map((h) => (
-                      <span
-                        key={h}
-                        className="w-full rounded-t bg-gradient-to-t from-sky-600 to-sky-300"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-2 text-xs text-slate-400">Diese Woche: 4h 20m</p>
-              </div>
-            </div>
-
-            <div className="mt-3 grid gap-3 md:grid-cols-[1.18fr_.82fr]">
-              <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
-                <p className="mb-2 text-sm font-black text-white">Aktive Zertifikate</p>
-
-                {activeCerts.map(([name, progress, tone]) => (
-                  <div
-                    key={name}
-                    className="mb-2 grid grid-cols-[1fr_92px] items-center gap-3 rounded-lg bg-[#061326] px-3 py-2.5"
-                  >
-                    <div className="text-sm font-bold text-slate-200">{name}</div>
-                    <Progress value={progress} color={tone} />
-                  </div>
-                ))}
-              </div>
-
-              <div className="rounded-xl border border-yellow-400/25 bg-yellow-400/10 p-3">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-yellow-300">
-                  Heute empfohlen
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">20 Min.</p>
-                <p className="mt-1 text-sm leading-6 text-slate-300">
-                  Lernkarten Recht & Kostenrechnung
-                </p>
-                <a
-                  href="/methode"
-                  className="mt-3 block rounded-lg bg-gradient-to-b from-sky-400 to-blue-600 px-3 py-2 text-center text-xs font-black text-white"
-                >
-                  Weiterlernen
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-3 rounded-xl border border-slate-600/35 bg-[#061326] p-2.5">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.14em] text-sky-300">
-                    Sprachbrücke
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-white">
-                    Betriebssitz → المكان الرسمي المسجل للشركة
-                  </p>
-                </div>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black text-slate-300">
-                  DE → AR
-                </span>
-              </div>
-            </div>
-          <div className='mx-auto mt-10 max-w-6xl px-5'><OfficialDisclaimer /></div></main>
+          </div>
         </div>
       </div>
     </div>
@@ -747,25 +743,29 @@ function Hero() {
       <div className="absolute inset-0 bg-[#03111f]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_28%,rgba(34,139,230,0.28),transparent_34%),radial-gradient(circle_at_18%_18%,rgba(246,200,79,0.12),transparent_28%),linear-gradient(180deg,#03111f_0%,#05172a_64%,#03111f_100%)]" />
       <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(86,161,220,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(86,161,220,.12)_1px,transparent_1px)] [background-size:58px_58px]" />
-
       <div className="absolute left-1/2 top-24 -z-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-sky-500/10 blur-3xl" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#03111f]" />
 
       <div className="relative z-10">
         <Header />
 
-        <div className="mx-auto grid max-w-[1320px] gap-12 px-4 pb-16 pt-8 md:pt-10 lg:grid-cols-[minmax(0,560px)_minmax(0,620px)] lg:items-center lg:justify-between lg:gap-12 lg:pb-20 lg:pt-14 xl:grid-cols-[minmax(0,600px)_minmax(0,640px)] xl:gap-16 xl:pt-16">
-          <div className="min-w-0 lg:max-w-[560px] xl:max-w-[600px]">
-            <p className="mb-4 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
+        <div className="mx-auto grid max-w-[1240px] gap-10 px-4 pb-16 pt-10 lg:grid-cols-[minmax(0,500px)_minmax(0,600px)] lg:items-center lg:justify-between lg:gap-16 lg:pb-20 lg:pt-14 xl:grid-cols-[minmax(0,540px)_minmax(0,620px)] xl:gap-20 xl:pt-16">
+          <div className="min-w-0 max-w-[540px]">
+            <p className="mb-5 inline-flex rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 text-xs font-black text-sky-300 shadow-[0_0_26px_rgba(56,189,248,0.18)]">
               Für deutsche Sach- und Fachkundeprüfungen
             </p>
 
-            <h1 className="max-w-[12ch] text-[42px] font-black leading-[0.92] tracking-[-0.06em] text-white sm:text-[50px] md:text-[56px] lg:text-[72px] xl:text-[84px]">
-              Deutsche Fachkundeprüfungen gezielt bestehen.
+            <h1 className="text-[42px] font-black leading-[0.94] tracking-[-0.065em] text-white sm:text-[54px] md:text-[62px] lg:text-[68px] xl:text-[74px]">
+              <span className="block">Deutsche</span>
+              <span className="block">Fachkunde-</span>
+              <span className="block">prüfungen</span>
+              <span className="block">gezielt</span>
+              <span className="block">bestehen.</span>
             </h1>
 
-            <p className="mt-6 max-w-[580px] text-lg font-medium leading-8 text-slate-300">
-              Lerne deutsche Prüfungsbegriffe, verstehe sie in deiner Sprache und trainiere mit Lernkarten, Simulationen und klaren Lernpfaden.
+            <p className="mt-6 max-w-[520px] text-base font-medium leading-7 text-slate-300 sm:text-lg sm:leading-8">
+              Lerne deutsche Prüfungsbegriffe, verstehe sie in deiner Sprache und trainiere mit
+              Lernkarten, Simulationen und klaren Lernpfaden.
             </p>
 
             <div className="mt-7 flex flex-col gap-4 sm:flex-row">
@@ -773,7 +773,7 @@ function Hero() {
               <DarkButton href="/dashboard">Demo ansehen</DarkButton>
             </div>
 
-            <div className="mt-7 grid gap-4 sm:grid-cols-3 lg:max-w-[560px]">
+            <div className="mt-7 grid gap-4 sm:grid-cols-3">
               {[
                 ["check", "An offiziellen Themen orientiert"],
                 ["cards", "Lernkarten & Wiederholung"],
@@ -790,9 +790,8 @@ function Hero() {
             </div>
           </div>
 
-          <div className="min-w-0 w-full max-w-[620px] justify-self-end xl:max-w-[640px]">
+          <div className="min-w-0 w-full max-w-[600px] justify-self-end xl:max-w-[620px]">
             <DashboardMockup />
-
             <div className="mt-4">
               <SideStats />
             </div>
@@ -843,7 +842,9 @@ function ProblemSection() {
             Viele lernen viel — aber nicht gezielt genug.
           </h2>
           <p className="mt-4 text-base leading-7 text-slate-300">
-            Viele arbeiten mit PDFs, verstreuten Notizen und zu wenig Struktur. Gleichzeitig sind deutsche Fachbegriffe, Prüfungsdruck und Rechenthemen oft die größten Hürden kurz vor dem Termin.
+            Viele arbeiten mit PDFs, verstreuten Notizen und zu wenig Struktur. Gleichzeitig sind
+            deutsche Fachbegriffe, Prüfungsdruck und Rechenthemen oft die größten Hürden kurz vor
+            dem Termin.
           </p>
         </div>
 
@@ -927,7 +928,9 @@ function Certificates() {
 
             <div className="relative mt-5 space-y-2">
               <p className="text-sm font-semibold text-slate-300">{item.subtitle}</p>
-              <p className="text-sm leading-6 text-slate-400">{item.meta} · {item.level}</p>
+              <p className="text-sm leading-6 text-slate-400">
+                {item.meta} · {item.level}
+              </p>
             </div>
 
             <div className="relative mt-4">
@@ -955,13 +958,8 @@ function FeatureStrip() {
   return (
     <section className="mx-auto max-w-[1180px] px-4 pt-8 lg:pt-10">
       <div className="grid gap-4 rounded-2xl border border-slate-600/40 bg-[#071a30]/88 p-5 md:grid-cols-3">
-        {featureStrip.map(([icon, title, text], index) => (
-          <div
-            key={title}
-            className={`flex items-start gap-3 ${
-              index !== featureStrip.length - 1 ? "md:border-r md:border-slate-500/35 md:pr-4" : ""
-            }`}
-          >
+        {featureStrip.map(([icon, title, text]) => (
+          <div key={title} className="flex items-start gap-3">
             <IconBox icon={icon as IconName} />
             <div>
               <p className="text-base font-black leading-5 text-white">{title}</p>
@@ -1204,6 +1202,14 @@ function FAQSection() {
   );
 }
 
+function DisclaimerSection() {
+  return (
+    <section className="mx-auto max-w-[1180px] px-4 pt-10">
+      <OfficialDisclaimer />
+    </section>
+  );
+}
+
 function Footer() {
   const groups = [
     ["Produkt", ["Zertifikate", "/zertifikate"], ["Methode", "/methode"], ["Preise", "/preise"], ["FAQ", "/faq"]],
@@ -1221,13 +1227,13 @@ function Footer() {
             Prüfungsorientiertes Lernen für deutsche Sach- und Fachkundeprüfungen.
           </p>
 
-          <div className="mt-6 flex gap-3">
-            {[["Kontakt","/kontakt"],["FAQ","/faq"],["Preise","/preise"],["Dashboard","/dashboard"]].map(([item,href]) => (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {[["Kontakt", "/kontakt"], ["FAQ", "/faq"], ["Preise", "/preise"], ["Dashboard", "/dashboard"]].map(([item, href]) => (
               <a
                 key={item}
                 href={href}
                 aria-label={`Zu ${item}`}
-                className="grid min-h-10 min-w-10 place-items-center rounded-full bg-white/10 px-3 font-black text-white transition hover:bg-yellow-400 hover:text-[#081526]"
+                className="grid min-h-10 place-items-center rounded-full bg-white/10 px-3 font-black text-white transition hover:bg-yellow-400 hover:text-[#081526]"
               >
                 {item}
               </a>
@@ -1259,7 +1265,9 @@ function Footer() {
 function MobileStickyCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#061526]/90 p-3 backdrop-blur-xl md:hidden">
-      <GoldButton className="w-full">Kostenlos starten →</GoldButton>
+      <GoldButton href="/zertifikate" className="w-full">
+        Kostenlos starten →
+      </GoldButton>
     </div>
   );
 }
@@ -1276,6 +1284,7 @@ export default function Page() {
       <StepsAndTestimonials />
       <PricingSection />
       <FAQSection />
+      <DisclaimerSection />
       <Footer />
       <MobileStickyCTA />
     </main>
