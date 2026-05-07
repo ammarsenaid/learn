@@ -37,8 +37,8 @@ type IconName =
 type ProgressTone = "sky" | "green" | "gold" | "red" | "purple";
 
 const navItems = [
+  { label: "Taxi & Mietwagen", href: "#taxi-mietwagen" },
   { label: "Zertifikate", href: "#zertifikate" },
-  { label: "Problem", href: "#problem" },
   { label: "Methode", href: "#methode" },
   { label: "Preise", href: "#preise" },
   { label: "FAQ", href: "#faq" },
@@ -53,11 +53,11 @@ const certificates = [
     text: "Tarif-, Orts-, Unternehmer- und Kostenwissen für die Personenbeförderung.",
     meta: "12 Kapitel · viele Übungsfragen",
     badge: "Start-Zertifikat",
-    status: "Priorität",
+    status: "Aktiv im Aufbau",
     level: "Mittel",
     languages: "DE · AR · EN · TR",
     progress: "82%",
-    href: "#preise",
+    href: "#taxi-mietwagen",
     color: "from-yellow-500/35 to-yellow-300/10",
     border: "border-yellow-400/60",
   },
@@ -68,12 +68,12 @@ const certificates = [
     subtitle: "Sachkundeprüfung nach §34a GewO",
     text: "Recht, Deeskalation und Praxisfälle sicher verstehen und anwenden.",
     meta: "9 Kapitel · Simulationen",
-    badge: "Beliebt",
-    status: "Aktiv geplant",
+    badge: "Warteliste",
+    status: "Warteliste",
     level: "Einsteiger",
     languages: "DE · AR · EN",
     progress: "76%",
-    href: "#preise",
+    href: "#kontakt",
     color: "from-purple-500/35 to-purple-300/10",
     border: "border-purple-400/35",
   },
@@ -84,12 +84,12 @@ const certificates = [
     subtitle: "Fachkundeprüfung Güterverkehr",
     text: "Kostenrechnung, Disposition, Transportrecht und EU-Regeln im Griff.",
     meta: "10 Kapitel · Rechnen",
-    badge: "Geplant",
-    status: "Nächste Phase",
+    badge: "Warteliste",
+    status: "Warteliste",
     level: "Fortgeschritten",
     languages: "DE · EN · TR",
     progress: "68%",
-    href: "#preise",
+    href: "#kontakt",
     color: "from-blue-500/35 to-cyan-300/10",
     border: "border-sky-400/35",
   },
@@ -101,11 +101,11 @@ const certificates = [
     text: "Beratungslogik, Haftung und Produktgrundlagen verstehen.",
     meta: "8 Kapitel · Beratung",
     badge: "Geplant",
-    status: "Bald",
+    status: "Geplant",
     level: "Mittel",
     languages: "DE · AR · EN",
     progress: "54%",
-    href: "#preise",
+    href: "#kontakt",
     color: "from-emerald-500/35 to-emerald-300/10",
     border: "border-emerald-400/30",
   },
@@ -117,11 +117,11 @@ const certificates = [
     text: "Produkte, Risikoaufklärung und regulatorische Pflichten sicher beherrschen.",
     meta: "7 Kapitel · Risiko",
     badge: "Geplant",
-    status: "Bald",
+    status: "Geplant",
     level: "Fortgeschritten",
     languages: "DE · EN",
     progress: "49%",
-    href: "#preise",
+    href: "#kontakt",
     color: "from-orange-500/35 to-orange-300/10",
     border: "border-orange-400/30",
   },
@@ -133,14 +133,25 @@ const certificates = [
     text: "Darlehensarten, Finanzierung, Verbraucherschutz und Beratungslogik.",
     meta: "7 Kapitel · Finanzierung",
     badge: "Geplant",
-    status: "Bald",
+    status: "Geplant",
     level: "Mittel",
     languages: "DE · AR · TR",
     progress: "46%",
-    href: "#preise",
+    href: "#kontakt",
     color: "from-rose-500/35 to-rose-300/10",
     border: "border-rose-400/30",
   },
+] as const;
+
+const taxiTopics = [
+  ["PBefG & Genehmigung", "Grundlagen, Genehmigungspflichten und wichtige Begriffe."],
+  ["BOKraft", "Fahrzeugpflichten, Betriebspflichten und wichtige Sicherheitsregeln."],
+  ["Taxiordnung", "Taxistände, Pflichtfahrgebiet, Betriebspflichten und Praxisfälle."],
+  ["Tariflogik", "Tarifpflicht, Zuschläge, Pflichtfahrgebiet und typische Prüfungsfallen."],
+  ["Mietwagenpflichten", "Rückkehrpflicht, Auftragsannahme, Abgrenzung zum Taxi."],
+  ["Kostenrechnung", "Feste Kosten, variable Kosten, Dreisatz, Prozent und Kalkulation."],
+  ["Unternehmerpflichten", "Dokumentation, Fahrer, Versicherung, Organisation und Kontrolle."],
+  ["Prüfungssimulation", "Fragen unter Zeitdruck lösen und Schwächen gezielt wiederholen."],
 ] as const;
 
 const painPoints = [
@@ -195,6 +206,56 @@ const methodSteps = [
     number: "04",
     title: "Prüfung simulieren",
     text: "Zeitdruck, Punkte, Fehleranalyse und automatische Wiederholung der schwachen Themen.",
+  },
+] as const;
+
+const learningPreviews = [
+  {
+    label: "Lektion",
+    title: "Betriebssitz",
+    eyebrow: "Deutscher Begriff",
+    body:
+      "Der Betriebssitz ist der offizielle Ort, von dem aus das Unternehmen organisiert und verwaltet wird.",
+    helper: "AR: المكان الرسمي المسجل والمنظم للشركة.",
+  },
+  {
+    label: "Lernkarte",
+    title: "Taxi oder Mietwagen?",
+    eyebrow: "Aktive Wiederholung",
+    body:
+      "Frage: Darf ein Mietwagen ohne vorherigen Auftrag einfach an einem Bahnhof warten und Fahrgäste aufnehmen?",
+    helper: "Antwort: Nein. Das wäre typisch Taxi-Verkehr, nicht Mietwagenverkehr.",
+  },
+  {
+    label: "Simulation",
+    title: "Prüfungsfrage unter Zeitdruck",
+    eyebrow: "Prüfungsmodus",
+    body:
+      "30 Fragen · 45 Minuten · Punkteauswertung · danach automatische Liste deiner schwachen Themen.",
+    helper: "Ziel: nicht nur erkennen, sondern sicher entscheiden.",
+  },
+] as const;
+
+const trustItems = [
+  {
+    icon: "shield",
+    title: "Private Lernplattform",
+    text: "FachkundePilot ist ein privates Lernangebot zur Prüfungsvorbereitung.",
+  },
+  {
+    icon: "warning",
+    title: "Keine offizielle Stelle",
+    text: "Die Plattform ist keine IHK-, Behörden- oder Prüfungsstelle.",
+  },
+  {
+    icon: "book",
+    title: "Deutsch bleibt zentral",
+    text: "Die Prüfungssprache bleibt Deutsch. Fachbegriffe werden bewusst sichtbar gehalten.",
+  },
+  {
+    icon: "globe",
+    title: "Sprachen helfen beim Verstehen",
+    text: "Arabisch, Englisch oder Türkisch dienen als Brücke, nicht als Ersatz für Deutsch.",
   },
 ] as const;
 
@@ -318,20 +379,41 @@ function SvgIcon({
     >
       {name === "car" && (
         <>
-          <path d="M5 13l1.6-4.2A3 3 0 019.4 7h5.2a3 3 0 012.8 1.8L19 13" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M4 13h16v5a1 1 0 01-1 1h-1.2a1 1 0 01-1-1v-1H7.2v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-5z" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M7 15h.01M17 15h.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <path
+            d="M5 13l1.6-4.2A3 3 0 019.4 7h5.2a3 3 0 012.8 1.8L19 13"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
+          <path
+            d="M4 13h16v5a1 1 0 01-1 1h-1.2a1 1 0 01-1-1v-1H7.2v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-5z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
+          <path
+            d="M7 15h.01M17 15h.01"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
         </>
       )}
 
       {name === "shield" && (
-        <path d="M12 3l7 3v5c0 4.8-3 8.2-7 10-4-1.8-7-5.2-7-10V6l7-3z" stroke="currentColor" strokeWidth="1.8" />
+        <path
+          d="M12 3l7 3v5c0 4.8-3 8.2-7 10-4-1.8-7-5.2-7-10V6l7-3z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+        />
       )}
 
       {name === "truck" && (
         <>
           <path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M7 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M7 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
         </>
       )}
 
@@ -345,7 +427,13 @@ function SvgIcon({
       {name === "chart" && (
         <>
           <path d="M4 19V5M4 19h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M7 15l4-4 3 3 5-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M7 15l4-4 3 3 5-7"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </>
       )}
 
@@ -358,7 +446,11 @@ function SvgIcon({
 
       {name === "book" && (
         <>
-          <path d="M5 4h9a3 3 0 013 3v13H8a3 3 0 00-3 3V4z" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M5 4h9a3 3 0 013 3v13H8a3 3 0 00-3 3V4z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
           <path d="M17 7h2v13h-2" stroke="currentColor" strokeWidth="1.8" />
         </>
       )}
@@ -388,7 +480,11 @@ function SvgIcon({
       {name === "globe" && (
         <>
           <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M3 12h18M12 3c2.5 2.4 3.7 5.4 3.7 9S14.5 18.6 12 21M12 3C9.5 5.4 8.3 8.4 8.3 12S9.5 18.6 12 21" stroke="currentColor" strokeWidth="1.4" />
+          <path
+            d="M3 12h18M12 3c2.5 2.4 3.7 5.4 3.7 9S14.5 18.6 12 21M12 3C9.5 5.4 8.3 8.4 8.3 12S9.5 18.6 12 21"
+            stroke="currentColor"
+            strokeWidth="1.4"
+          />
         </>
       )}
 
@@ -412,13 +508,21 @@ function SvgIcon({
 
       {name === "users" && (
         <>
-          <path d="M9 11a3 3 0 100-6 3 3 0 000 6zM17 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M9 11a3 3 0 100-6 3 3 0 000 6zM17 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
           <path d="M3 20a6 6 0 0112 0M14 19a5 5 0 017 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </>
       )}
 
       {name === "brain" && (
-        <path d="M9 4a3 3 0 00-3 3v1a3 3 0 00-2 5.2A3.5 3.5 0 007.5 19H10V4H9zM15 4a3 3 0 013 3v1a3 3 0 012 5.2A3.5 3.5 0 0116.5 19H14V4h1z" stroke="currentColor" strokeWidth="1.8" />
+        <path
+          d="M9 4a3 3 0 00-3 3v1a3 3 0 00-2 5.2A3.5 3.5 0 007.5 19H10V4H9zM15 4a3 3 0 013 3v1a3 3 0 012 5.2A3.5 3.5 0 0116.5 19H14V4h1z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+        />
       )}
 
       {name === "route" && (
@@ -452,7 +556,7 @@ function Logo() {
 
 function GoldButton({
   children,
-  href = "#preise",
+  href = "#taxi-mietwagen",
   className = "",
 }: {
   children: ReactNode;
@@ -471,7 +575,7 @@ function GoldButton({
 
 function DarkButton({
   children,
-  href = "#zertifikate",
+  href = "#methode",
   className = "",
 }: {
   children: ReactNode;
@@ -563,11 +667,11 @@ function Header() {
           >
             DE
           </a>
-          <GoldButton href="#preise" className="hidden sm:inline-flex">
-            Zugang wählen
+          <GoldButton href="#taxi-mietwagen" className="hidden sm:inline-flex">
+            Taxi & Mietwagen testen
           </GoldButton>
-          <GoldButton href="#preise" className="px-4 sm:hidden">
-            Start
+          <GoldButton href="#taxi-mietwagen" className="px-4 sm:hidden">
+            Testen
           </GoldButton>
         </div>
       </nav>
@@ -600,7 +704,10 @@ function DashboardMockup() {
   const bars = [35, 50, 42, 65, 48, 78, 92] as const;
 
   return (
-    <div id="demo" className="relative w-full rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)] sm:p-4">
+    <div
+      id="demo"
+      className="relative w-full rounded-[28px] border border-sky-400/45 bg-[#06172c]/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_70px_rgba(56,189,248,0.35)] sm:p-4"
+    >
       <div className="absolute inset-x-10 -bottom-3 h-5 rounded-full bg-sky-400/60 blur-xl" />
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-sky-400/20 blur-3xl" />
 
@@ -624,7 +731,7 @@ function DashboardMockup() {
         <div>
           <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
             <div>
-              <p className="text-base font-black text-white sm:text-lg">Guten Abend</p>
+              <p className="text-base font-black text-white sm:text-lg">Willkommen zurück</p>
               <p className="text-sm text-slate-400">
                 Prüfung in 14 Tagen · Heute: 24 Karten fällig
               </p>
@@ -636,7 +743,7 @@ function DashboardMockup() {
 
           <div className="grid gap-3 md:grid-cols-2">
             <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-4">
-              <p className="text-xs font-semibold text-slate-400">Beispiel-Prüfungsreife</p>
+              <p className="text-xs font-semibold text-slate-400">Vorbereitungsstand</p>
               <p className="mt-1 text-3xl font-black tracking-[-0.06em] text-white sm:text-4xl">
                 78%
               </p>
@@ -666,7 +773,7 @@ function DashboardMockup() {
 
           <div className="mt-3 grid gap-3 md:grid-cols-[1.18fr_.82fr]">
             <div className="rounded-xl border border-slate-600/35 bg-[#0a1d35] p-3">
-              <p className="mb-2 text-sm font-black text-white">Aktive Zertifikate</p>
+              <p className="mb-2 text-sm font-black text-white">Aktive Lernbereiche</p>
 
               {activeCerts.map(([name, progress, tone]) => (
                 <div
@@ -764,23 +871,24 @@ function Hero() {
             </p>
 
             <h1 className="text-[42px] font-black leading-[0.94] tracking-[-0.065em] text-white sm:text-[54px] md:text-[62px] lg:text-[68px] xl:text-[74px]">
-              <span className="block">Prüfungen</span>
+              <span className="block">Fachkundeprüfung</span>
               <span className="block">auf Deutsch</span>
               <span className="block">lernen.</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-sky-300">
-                Richtig
+              <span className="block bg-gradient-to-r from-yellow-200 via-yellow-400 to-sky-300 bg-clip-text text-transparent">
+                In deiner Sprache
               </span>
               <span className="block">verstehen.</span>
             </h1>
 
             <p className="mt-6 max-w-[540px] text-base font-medium leading-7 text-slate-300 sm:text-lg sm:leading-8">
-              FachkundePilot verbindet deutsche Prüfungsbegriffe mit einfachen Erklärungen,
-              Lernkarten, Prüfungssimulationen und mehrsprachiger Unterstützung.
+              FachkundePilot hilft dir, deutsche Prüfungsbegriffe wirklich zu verstehen — mit
+              klaren Lernpfaden, Lernkarten, Rechenlogik, Simulationen und optionalen Erklärungen
+              auf Arabisch, Englisch oder Türkisch.
             </p>
 
             <div className="mt-7 flex flex-col gap-4 sm:flex-row">
-              <GoldButton href="#preise">Zugang wählen</GoldButton>
-              <DarkButton href="#demo">Demo ansehen</DarkButton>
+              <GoldButton href="#taxi-mietwagen">Taxi & Mietwagen testen</GoldButton>
+              <DarkButton href="#methode">Lernmethode ansehen</DarkButton>
             </div>
 
             <div className="mt-7 grid gap-4 sm:grid-cols-3">
@@ -814,10 +922,10 @@ function Hero() {
 
 function StatStrip() {
   const stats = [
-    ["12+", "Zertifikate geplant", "Für mehrere deutsche Prüfungen"],
-    ["1", "Lernsystem", "Lesen, Karten, Fragen, Simulation"],
+    ["Taxi & Mietwagen", "Start-Zertifikat", "Der erste Fokus der Plattform"],
     ["DE / AR / EN / TR", "Mehrsprachig", "Deutsch bleibt im Mittelpunkt"],
     ["Smart Review", "Fehleranalyse", "Schwächen gezielt wiederholen"],
+    ["12+", "Zertifikate geplant", "Für weitere deutsche Prüfungen"],
   ] as const;
 
   return (
@@ -835,6 +943,72 @@ function StatStrip() {
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-400">{text}</p>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function TaxiFocusSection() {
+  return (
+    <section id="taxi-mietwagen" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="relative overflow-hidden rounded-3xl border border-yellow-400/35 bg-gradient-to-br from-yellow-400/12 via-[#071a30] to-[#061326] p-7 shadow-[0_20px_70px_rgba(0,0,0,0.38)]">
+        <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-yellow-400/20 blur-3xl" />
+        <div className="absolute -bottom-28 left-10 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl" />
+
+        <div className="relative grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-yellow-300">
+              Start-Zertifikat
+            </p>
+            <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.05em] text-white md:text-4xl">
+              Starte mit Taxi & Mietwagen.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              Der erste Fokus von FachkundePilot ist die Taxi- und Mietwagen-Fachkundeprüfung.
+              Du lernst deutsche Begriffe, verstehst die Logik dahinter und trainierst
+              prüfungsnahe Situationen Schritt für Schritt.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <GoldButton href="#preise">Taxi & Mietwagen testen</GoldButton>
+              <DarkButton href="#learning-preview">So sieht Lernen aus</DarkButton>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-sky-400/25 bg-sky-400/10 p-5">
+              <p className="text-sm font-black text-sky-300">Warum zuerst Taxi & Mietwagen?</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                Viele Lernende scheitern nicht am Fleiß, sondern an Sprache, Struktur und
+                Rechenlogik. Genau dafür ist diese Lernmethode gebaut.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {taxiTopics.map(([title, text], index) => (
+              <article
+                key={title}
+                className={`rounded-2xl border p-5 transition duration-300 hover:-translate-y-1 ${
+                  index === 0
+                    ? "border-yellow-400/45 bg-yellow-400/10"
+                    : "border-slate-600/40 bg-[#081d36]/90 hover:border-sky-400/45"
+                }`}
+              >
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-xs font-black text-yellow-300">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {index === 0 && (
+                    <span className="rounded-full bg-yellow-400 px-3 py-1 text-[10px] font-black text-[#081526]">
+                      Kernbereich
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-base font-black text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -884,10 +1058,10 @@ function Certificates() {
             Zertifikate
           </p>
           <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
-            Zertifikate entdecken
+            Heute starten. Später erweitern.
           </h2>
           <p className="mt-1 text-sm font-medium text-slate-400">
-            Wähle dein Ziel und starte mit einer klaren Prüfungsvorbereitung.
+            Taxi & Mietwagen ist der erste Fokus. Weitere Fachkundeprüfungen folgen Schritt für Schritt.
           </p>
         </div>
 
@@ -922,7 +1096,7 @@ function Certificates() {
                   </h3>
                   <span
                     className={`shrink-0 rounded-lg px-2 py-1 text-[10px] font-black ${
-                      item.badge === "Beliebt" || item.badge === "Start-Zertifikat"
+                      item.badge === "Warteliste" || item.badge === "Start-Zertifikat"
                         ? "bg-emerald-400/20 text-emerald-300"
                         : "bg-sky-400/20 text-sky-300"
                     }`}
@@ -954,7 +1128,7 @@ function Certificates() {
             <div className="relative mt-4 flex items-center justify-between border-t border-white/10 pt-3">
               <span className="text-sm font-black text-slate-400">{item.status}</span>
               <a href={item.href} className="text-sm font-black text-slate-200 group-hover:text-yellow-300">
-                Zugang ansehen →
+                {index === 0 ? "Kurs ansehen →" : "Interesse zeigen →"}
               </a>
             </div>
           </article>
@@ -1013,6 +1187,63 @@ function MethodSection() {
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function LearningPreviewSection() {
+  return (
+    <section id="learning-preview" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="mb-7">
+        <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-300">
+          Produktvorschau
+        </p>
+        <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
+          So sieht Lernen aus.
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+          Nicht nur lange Texte. FachkundePilot soll Begriffe, Karten und Simulationen so verbinden,
+          dass du verstehst, wiederholst und prüfungsnah trainierst.
+        </p>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-3">
+        {learningPreviews.map((item, index) => (
+          <article
+            key={item.label}
+            className={`relative overflow-hidden rounded-3xl border p-6 shadow-[0_18px_55px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-1 ${
+              index === 0
+                ? "border-yellow-400/45 bg-yellow-400/10"
+                : "border-slate-600/40 bg-[#071a30]/88 hover:border-sky-400/45"
+            }`}
+          >
+            <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-sky-400/10 blur-3xl" />
+            <div className="relative">
+              <p
+                className={`w-fit rounded-full px-3 py-1 text-[10px] font-black ${
+                  index === 0
+                    ? "bg-yellow-400 text-[#081526]"
+                    : "border border-slate-500/40 bg-white/5 text-slate-300"
+                }`}
+              >
+                {item.label}
+              </p>
+
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-sky-300">
+                {item.eyebrow}
+              </p>
+              <h3 className="mt-2 text-2xl font-black tracking-[-0.04em] text-white">
+                {item.title}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-slate-300">{item.body}</p>
+
+              <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="text-sm font-bold leading-6 text-slate-200">{item.helper}</p>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -1103,6 +1334,44 @@ function StepsAndScenarios() {
   );
 }
 
+function TrustSection() {
+  return (
+    <section className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
+      <div className="rounded-3xl border border-slate-600/40 bg-[#071a30]/88 p-7">
+        <div className="mb-7 max-w-2xl">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-300">
+            Vertrauen
+          </p>
+          <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-white">
+            Klar, privat und transparent.
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            Eine Lernplattform muss keine falschen Versprechen machen. Sie muss klar zeigen,
+            was sie ist — und was nicht.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {trustItems.map((item, index) => (
+            <article
+              key={item.title}
+              className={`rounded-2xl border p-5 ${
+                index === 0
+                  ? "border-emerald-400/35 bg-emerald-400/10"
+                  : "border-slate-600/40 bg-[#081d36]"
+              }`}
+            >
+              <IconBox icon={item.icon as IconName} tone={index === 1 ? "red" : index === 0 ? "green" : "sky"} />
+              <h3 className="mt-4 text-base font-black text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingSection() {
   return (
     <section id="preise" className="mx-auto max-w-[1180px] px-4 pt-14 lg:pt-20">
@@ -1148,9 +1417,9 @@ function PricingSection() {
               </span>
             </p>
 
-            {plan.price !== "Individuell" && (
+            {plan.price !== "Individuell" && plan.price !== "0 €" && (
               <p className="mt-1 text-xs font-semibold text-slate-500">
-                inkl. MwSt. · monatlich kündbar
+                inkl. gesetzlicher MwSt. · monatlich kündbar
               </p>
             )}
 
@@ -1176,11 +1445,17 @@ function PricingSection() {
         ))}
       </div>
 
-      <p className="mt-6 rounded-2xl border border-slate-600/40 bg-[#071a30]/70 p-5 text-sm leading-6 text-slate-400">
-        Hinweis: FachkundePilot ist eine private Lernplattform und keine offizielle IHK-,
-        Behörden- oder Prüfungsstelle. Die Inhalte sollen prüfungsorientiert und an relevanten
-        Themenbereichen ausgerichtet sein.
-      </p>
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+        <p className="rounded-2xl border border-slate-600/40 bg-[#071a30]/70 p-5 text-sm leading-6 text-slate-400">
+          Hinweis: FachkundePilot ist eine private Lernplattform und keine offizielle IHK-,
+          Behörden- oder Prüfungsstelle. Die Inhalte sollen prüfungsorientiert und an relevanten
+          Themenbereichen ausgerichtet sein.
+        </p>
+        <p className="rounded-2xl border border-yellow-400/25 bg-yellow-400/10 p-5 text-sm leading-6 text-slate-300">
+          Kein Bestehensversprechen. Die Plattform unterstützt deine Vorbereitung, ersetzt aber
+          keine offizielle Prüfungsberatung und garantiert kein Prüfungsergebnis.
+        </p>
+      </div>
     </section>
   );
 }
@@ -1228,8 +1503,8 @@ function DisclaimerSection() {
 function Footer() {
   const groups = [
     ["Produkt", ["Zertifikate", "#zertifikate"], ["Methode", "#methode"], ["Preise", "#preise"], ["FAQ", "#faq"]],
-    ["Prüfungen", ["Taxi & Mietwagen", "#zertifikate"], ["§34a Bewachung", "#zertifikate"], ["Güterkraftverkehr", "#zertifikate"]],
-    ["Rechtliches", ["Datenschutz", "#kontakt"], ["Impressum", "#kontakt"], ["AGB", "#kontakt"]],
+    ["Prüfungen", ["Taxi & Mietwagen", "#taxi-mietwagen"], ["§34a Bewachung", "#zertifikate"], ["Güterkraftverkehr", "#zertifikate"]],
+    ["Rechtliches", ["Impressum", "/impressum"], ["Datenschutz", "/datenschutz"], ["AGB", "/agb"], ["Widerruf", "/widerruf"]],
     ["Kontakt", ["Support", "#kontakt"], ["Akademien", "#kontakt"], ["Partnerschaften", "#kontakt"]],
   ] as const;
 
@@ -1280,8 +1555,8 @@ function Footer() {
 function MobileStickyCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#061526]/90 p-3 backdrop-blur-xl md:hidden">
-      <GoldButton href="#preise" className="w-full">
-        Zugang wählen →
+      <GoldButton href="#taxi-mietwagen" className="w-full">
+        Taxi & Mietwagen testen →
       </GoldButton>
     </div>
   );
@@ -1289,14 +1564,17 @@ function MobileStickyCTA() {
 
 export default function Page() {
   return (
-    <main className="min-h-screen scroll-smooth overflow-x-hidden bg-[#03111f] pb-24 text-white md:pb-0">
+    <main className="min-h-screen overflow-x-hidden bg-[#03111f] pb-24 text-white md:pb-0">
       <Hero />
       <StatStrip />
+      <TaxiFocusSection />
       <ProblemSection />
       <Certificates />
       <FeatureStrip />
       <MethodSection />
+      <LearningPreviewSection />
       <StepsAndScenarios />
+      <TrustSection />
       <PricingSection />
       <FAQSection />
       <DisclaimerSection />
